@@ -1,599 +1,2599 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'on-secondary-container': '#b4b4bd', 'tertiary-fixed': '#e2e2e2', 'primary-container': '#e2e2e2', 'primary': '#ffffff', 'on-primary-fixed-variant': '#454747', 'surface-container-high': '#2a2a2a', 'inverse-on-surface': '#303030', 'on-surface': '#e2e2e2', 'inverse-primary': '#5d5f5f', 'on-tertiary-container': '#636565', 'error': '#ffb4ab', 'secondary': '#c6c6cf', 'tertiary-container': '#e2e2e2', 'tertiary': '#ffffff', 'secondary-fixed-dim': '#c6c6cf', 'secondary-fixed': '#e2e1eb', 'on-error-container': '#ffdad6', 'on-primary-fixed': '#1a1c1c', 'on-tertiary': '#2f3131', 'surface-tint': '#c6c6c7', 'on-primary': '#2f3131', 'on-secondary-fixed-variant': '#45464e', 'surface-bright': '#393939', 'on-background': '#e2e2e2', 'on-primary-container': '#636565', 'surface-variant': '#353535', 'surface': '#131313', 'inverse-surface': '#e2e2e2', 'primary-fixed-dim': '#c6c6c7', 'on-secondary': '#2f3037', 'secondary-container': '#45464e', 'error-container': '#93000a', 'surface-dim': '#131313', 'surface-container-highest': '#353535', 'outline': '#8e9192', 'tertiary-fixed-dim': '#c6c6c7', 'on-tertiary-fixed-variant': '#454747', 'surface-container': '#1f1f1f', 'on-surface-variant': '#c4c7c8', 'on-tertiary-fixed': '#1a1c1c', 'surface-container-low': '#1b1b1b', 'background': '#131313', 'outline-variant': '#444748', 'on-secondary-fixed': '#1a1b22', 'on-error': '#690005', 'surface-container-lowest': '#0e0e0e', 'primary-fixed': '#e2e2e2' }, borderRadius: { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, spacing: { 'margin-mobile': '1rem', 'space-md': '1rem', 'space-xl': '2.5rem', 'space-lg': '1.5rem', 'space-sm': '0.5rem', 'gutter': '1.5rem', 'gutter-mobile': '1rem', 'margin': '2rem', 'space-xs': '0.25rem' }, fontFamily: { 'body-md': ['Inter'], 'display-mobile': ['Space Grotesk'], 'headline-sm': ['Space Grotesk'], 'label-lg': ['Space Grotesk'], 'body-sm': ['Inter'], 'label-sm': ['Space Grotesk'], 'body-lg': ['Inter'], 'label-md': ['Space Grotesk'], 'headline-lg-mobile': ['Space Grotesk'], 'headline-md': ['Space Grotesk'], 'headline-lg': ['Space Grotesk'], 'display': ['Space Grotesk'] }, fontSize: { 'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0em', fontWeight: '400' }], 'display-mobile': ['36px', { lineHeight: '44px', letterSpacing: '-0.02em', fontWeight: '700' }], 'headline-sm': ['18px', { lineHeight: '24px', letterSpacing: '-0.01em', fontWeight: '500' }], 'label-lg': ['13px', { lineHeight: '16px', letterSpacing: '0.04em', fontWeight: '600' }], 'body-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.01em', fontWeight: '400' }], 'label-sm': ['10px', { lineHeight: '12px', letterSpacing: '0.08em', fontWeight: '700' }], 'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '-0.005em', fontWeight: '400' }], 'label-md': ['11px', { lineHeight: '14px', letterSpacing: '0.06em', fontWeight: '600' }], 'headline-lg-mobile': ['26px', { lineHeight: '34px', letterSpacing: '-0.01em', fontWeight: '600' }], 'headline-md': ['22px', { lineHeight: '28px', letterSpacing: '-0.015em', fontWeight: '600' }], 'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '600' }], 'display': ['48px', { lineHeight: '56px', letterSpacing: '-0.03em', fontWeight: '700' }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#000000;color:#e2e2e2;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}@keyframes subtle-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.85);}}.animate-status-ping{animation:subtle-pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;}</style></head><body class="bg-black text-on-surface font-body-md text-body-md flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-black/85 backdrop-blur-xl pt-safe shadow-[0_1px_12px_rgba(0,0,0,0.8)]"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="TubeVault Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WJiO0_-NFXAEz6Jp6uZYjTL0wd9PyVKGBNUiB0Q-756_UYkLjY3bNkmW9VJnPEPu4n2jtLHIfnL7QRfjl7zN5QK0Jy9lwlPgbjlsN-uyme46v1wcH-7TGYRDs9iy9xfbmCjFy-ZBs0MANPYl0Ubarv755amelshCYgruhjvlEWVGgfn34m-D206x8AvaedizqvFIBePz7NrahzV4Z3D0Or2aI3_5EKKA9MwOQziUQaZ-nkX3v2uW5tGBGe"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm tracking-tight text-primary font-bold uppercase">TubeVault</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-white/10 text-primary shadow-[0_0_12px_rgba(255,255,255,0.18)]">v2.4 PRO</span></div></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-1.5 px-2 py-1 rounded-full bg-surface-container-lowest"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-status-ping"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Online</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="px-gutter-mobile pb-1 flex items-center justify-between"><span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Dashboard</span><div class="flex sm:hidden items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-status-ping"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Server Online</span></div></div></header><main class="flex-1 flex flex-col relative w-full pt-24 pb-28 bg-black"><div class="flex flex-col w-full px-gutter-mobile relative overflow-hidden">
-<!-- Toast Notification Overlay -->
-<div class="fixed top-20 left-1/2 -translate-x-1/2 z-[60] pointer-events-none opacity-0 transition-all duration-300 transform -translate-y-2 flex items-center gap-space-sm px-space-md py-space-sm rounded-full bg-surface-container-highest/95 backdrop-blur-xl shadow-[0_4px_24px_rgba(255,255,255,0.12)]" id="toast">
-<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
-<span class="font-label-md text-label-md text-primary tracking-wide" id="toast-message">Direct link copied to clipboard</span>
-</div>
-<!-- Ambient Light Atmosphere -->
-<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[340px] h-[340px] bg-primary/[0.04] blur-[120px] rounded-full pointer-events-none"></div>
-<canvas class="absolute top-0 inset-x-0 w-full h-[480px] pointer-events-none opacity-60" id="particle-canvas"></canvas>
-<!-- Hero Header Block -->
-<div class="relative z-10 flex flex-col items-center text-center mt-space-sm mb-space-lg">
-<!-- Brand Pill Tag -->
-<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest/60 backdrop-blur-md mb-space-md shadow-sm">
-<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">FAST EXTRACT • YOUTUBE &amp; SHORTS</span>
-</div>
-<!-- Title & Value Prop -->
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-tight text-primary font-bold">
-      Download Any Video.<br/>
-<span class="text-on-surface-variant font-medium">Pure. Fast. Free.</span>
-</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm max-w-[340px]">
-      Lossless 1080p Full HD MP4 streaming, direct CDN links, and 320kbps audio playback. Zero ads, zero latency.
-    </p>
-</div>
-<!-- Interactive URL Input Section -->
-<div class="relative z-10 w-full flex flex-col gap-space-sm mb-space-xl">
-<div class="relative w-full rounded-2xl p-1 bg-surface-container-low/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.8)] focus-within:shadow-[0_0_25px_rgba(255,255,255,0.18)] transition-all duration-300">
-<div class="flex items-center gap-space-xs px-space-sm py-2">
-<span class="material-symbols-outlined text-on-surface-variant text-[22px] shrink-0">link</span>
-<input class="w-full bg-transparent font-body-md text-body-md text-primary placeholder:text-outline focus:outline-none min-w-0" id="url-input" placeholder="Paste YouTube or Shorts URL..." type="url" value="https://youtube.com/watch?v=dQw4w9WgXcQ"/>
-<button aria-label="Clear input" class="p-1.5 text-on-surface-variant hover:text-primary transition-colors" id="clear-btn" type="button">
-<span class="material-symbols-outlined text-[18px]">cancel</span>
-</button>
-</div>
-<!-- Action Button inside Box -->
-<button class="w-full mt-1 flex items-center justify-center gap-space-xs py-3 px-space-md rounded-xl bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-semibold active:scale-[0.98] transition-transform duration-150 shadow-[0_0_20px_rgba(255,255,255,0.22)]" id="fetch-btn" type="button">
-<span class="hidden material-symbols-outlined text-[18px] animate-spin" id="btn-spinner">progress_activity</span>
-<span class="flex items-center gap-1.5" id="btn-label">
-<span>Resolve Stream</span>
-<span class="material-symbols-outlined text-[18px]">bolt</span>
-</span>
-</button>
-</div>
-<!-- Supported Sources Badges -->
-<div class="flex items-center justify-center gap-1.5 flex-wrap">
-<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">youtube.com/watch</span>
-<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">youtu.be</span>
-<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">youtube.com/shorts</span>
-</div>
-</div>
-<!-- Loaded Result Preview Card -->
-<div class="relative z-10 w-full rounded-2xl bg-surface-container-low/90 backdrop-blur-2xl p-space-md shadow-2xl mb-space-xl transition-all duration-300">
-<!-- Header with Verified Badge -->
-<div class="flex items-center justify-between gap-space-sm mb-space-sm">
-<div class="flex items-center gap-2 min-w-0">
-<img alt="TubeVault Logo" class="w-6 h-6 rounded-md shrink-0 bg-black object-contain p-0.5" src="https://lh3.googleusercontent.com/aida/AEtjO1WJiO0_-NFXAEz6Jp6uZYjTL0wd9PyVKGBNUiB0Q-756_UYkLjY3bNkmW9VJnPEPu4n2jtLHIfnL7QRfjl7zN5QK0Jy9lwlPgbjlsN-uyme46v1wcH-7TGYRDs9iy9xfbmCjFy-ZBs0MANPYl0Ubarv755amelshCYgruhjvlEWVGgfn34m-D206x8AvaedizqvFIBePz7NrahzV4Z3D0Or2aI3_5EKKA9MwOQziUQaZ-nkX3v2uW5tGBGe"/>
-<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase truncate">Engine Resolution: OK (200)</span>
-</div>
-<span class="shrink-0 px-2 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-semibold uppercase">Lossless</span>
-</div>
-<!-- Media Thumbnail Preview with Spec Badges -->
-<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container-lowest shadow-inner mb-space-md group">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Cinematic high contrast frame of Rick Astley retro music video in 4k remastered detail with atmospheric warm stage lighting, dark background, sharp film grain texture, pure black shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAexip-rV8FEcyKJ0rufiDj34PPfG9pJOFkWqpmqSkyysuHw4sHMhVF4ha8C7DJz3Rq3L2zgt77LtrqzIL1yntjExMx8noLhzq4oYwUtvz6IH7AS2XdP1vn38XAkcTWr-M0O3uM3muooXtV5Q134f02QIDMbSnlhpjxoakp54Iw7VPb6polKaHyRzq6TTb5k2WCgvqNk5kJ-L9KnbXMo6atmteiiM3YJbZnbEBuH6zoUfh7gYRbI88Afg"/>
-<!-- Overlays -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20 flex flex-col justify-between p-space-sm">
-<div class="flex items-center justify-between">
-<span class="px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-md text-primary font-label-sm text-label-sm tracking-widest font-bold uppercase shadow-sm">1080p 60FPS</span>
-<span class="px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-md text-on-surface font-label-sm text-label-sm tracking-wider">HDR READY</span>
-</div>
-<div class="flex items-center justify-between">
-<button aria-label="Play video preview" class="w-10 h-10 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-[0_0_16px_rgba(255,255,255,0.4)] active:scale-95 transition-transform" type="button">
-<span class="material-symbols-outlined text-[24px]">play_arrow</span>
-</button>
-<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md font-label-sm text-label-sm text-primary tracking-widest">03:32</span>
-</div>
-</div>
-</div>
-<!-- Metadata Details -->
-<div class="flex flex-col gap-1 mb-space-md">
-<h2 class="font-headline-sm text-headline-sm text-primary font-semibold line-clamp-2 leading-snug">
-        Rick Astley - Never Gonna Give You Up (Official Music Video Remastered)
-      </h2>
-<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
-<span class="text-on-surface font-medium">Rick Astley</span>
-<span>•</span>
-<span>1.5B views</span>
-<span>•</span>
-<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
-</div>
-</div>
-<!-- Direct MP4 Link Box -->
-<div class="p-space-sm rounded-xl bg-surface-container-lowest flex items-center justify-between gap-space-sm">
-<div class="min-w-0 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[20px] shrink-0">cloud_download</span>
-<div class="flex flex-col min-w-0">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Fast Direct CDN Link</span>
-<span class="font-body-sm text-body-sm text-primary truncate">https://cdn.tubevault.app/v/rick_astley_1080p.mp4</span>
-</div>
-</div>
-<button class="shrink-0 px-3 py-1.5 rounded-lg bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm uppercase tracking-wider transition-all duration-200 active:scale-95 flex items-center gap-1" id="copy-link-btn" type="button">
-<span class="material-symbols-outlined text-[16px]">content_copy</span>
-<span>Copy</span>
-</button>
-</div>
-</div>
-<!-- Quality Selector: MP4 Video Streams -->
-<div class="relative z-10 flex flex-col gap-space-sm mb-space-xl">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[20px]">movie</span>
-<span class="font-headline-sm text-headline-sm text-primary font-semibold">Video Streams (MP4)</span>
-</div>
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">No Watermark</span>
-</div>
-<!-- 1080p High Option -->
-<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm shadow-md transition-transform active:scale-[0.99]">
-<div class="flex items-center gap-space-sm min-w-0">
-<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center shrink-0">
-<span class="font-label-lg text-label-lg text-primary font-bold">1080</span>
-</div>
-<div class="flex flex-col min-w-0">
-<div class="flex items-center gap-1.5">
-<span class="font-label-lg text-label-lg text-primary font-semibold truncate">1080p Full HD</span>
-<span class="px-1.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase font-bold tracking-wider">Best</span>
-</div>
-<span class="font-body-sm text-body-sm text-on-surface-variant">MP4 • 60fps • ~45.2 MB</span>
-</div>
-</div>
-<button class="download-trigger shrink-0 px-3.5 py-2 rounded-xl bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold active:scale-95 transition-all shadow-[0_0_14px_rgba(255,255,255,0.2)]" type="button">
-        Get MP4
-      </button>
-</div>
-<!-- 720p HD Option -->
-<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm shadow-md transition-transform active:scale-[0.99]">
-<div class="flex items-center gap-space-sm min-w-0">
-<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center shrink-0">
-<span class="font-label-lg text-label-lg text-secondary font-bold">720</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-label-lg text-label-lg text-primary font-medium truncate">720p HD Standard</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">MP4 • 30fps • ~24.1 MB</span>
-</div>
-</div>
-<button class="download-trigger shrink-0 px-3.5 py-2 rounded-xl bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm uppercase tracking-wider transition-all active:scale-95" type="button">
-        Get MP4
-      </button>
-</div>
-<!-- 360p Data Saver Option -->
-<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm shadow-md transition-transform active:scale-[0.99]">
-<div class="flex items-center gap-space-sm min-w-0">
-<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center shrink-0">
-<span class="font-label-lg text-label-lg text-outline font-bold">360</span>
-</div>
-<div class="flex flex-col min-w-0">
-<div class="flex items-center gap-1.5">
-<span class="font-label-lg text-label-lg text-on-surface font-medium truncate">360p SD</span>
-<span class="px-1.5 py-0.2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Lite</span>
-</div>
-<span class="font-body-sm text-body-sm text-on-surface-variant">MP4 • Compact • ~11.8 MB</span>
-</div>
-</div>
-<button class="download-trigger shrink-0 px-3.5 py-2 rounded-xl bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm uppercase tracking-wider transition-all active:scale-95" type="button">
-        Get MP4
-      </button>
-</div>
-</div>
-<!-- Minimalist Audio Player & MP3 Extractor -->
-<div class="relative z-10 w-full rounded-2xl bg-surface-container-low p-space-md shadow-2xl mb-space-xl">
-<div class="flex items-center justify-between mb-space-sm">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[20px]">music_note</span>
-<span class="font-headline-sm text-headline-sm text-primary font-semibold">Mastered Audio (MP3)</span>
-</div>
-<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm tracking-wider font-semibold uppercase">320 KBPS</span>
-</div>
-<!-- Audio Player Visualizer Box -->
-<div class="p-space-md rounded-xl bg-surface-container-lowest flex flex-col gap-space-sm mb-space-sm">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-sm">
-<button aria-label="Play extracted audio" class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_0_18px_rgba(255,255,255,0.3)] active:scale-90 transition-transform duration-150" id="audio-play-btn" type="button">
-<span class="material-symbols-outlined text-[26px]" id="play-icon">play_arrow</span>
-</button>
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-primary font-medium">Rick Astley - Never Gonna Give You Up</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant" id="audio-time">01:14 / 03:32</span>
-</div>
-</div>
-<button aria-label="Toggle mute" class="p-2 text-on-surface-variant hover:text-primary transition-colors" id="mute-toggle" type="button">
-<span class="material-symbols-outlined text-[20px]" id="volume-icon">volume_up</span>
-</button>
-</div>
-<!-- Live Simulated Waveform -->
-<div class="h-10 w-full flex items-center justify-between gap-1 px-1 py-1" id="waveform-container">
-<!-- 24 Waveform bars -->
-<span class="w-1 rounded-full bg-primary/40 h-3 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/60 h-6 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/80 h-8 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary h-5 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/90 h-9 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary h-7 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/70 h-4 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/90 h-8 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary h-10 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/80 h-7 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/60 h-5 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/50 h-3 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/80 h-8 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary h-10 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/90 h-7 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/60 h-4 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/80 h-8 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary h-9 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/70 h-6 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/50 h-3 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/80 h-7 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary h-5 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/60 h-4 transition-all duration-150 bar"></span>
-<span class="w-1 rounded-full bg-primary/40 h-2 transition-all duration-150 bar"></span>
-</div>
-</div>
-<!-- Instant Extract Audio Button -->
-<button class="download-trigger w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-xl bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-semibold transition-all active:scale-[0.98]" type="button">
-<span class="material-symbols-outlined text-[20px]">download_for_offline</span>
-<span>Download Master MP3 (~8.4 MB)</span>
-</button>
-</div>
-<!-- How It Works Section -->
-<div class="relative z-10 flex flex-col gap-space-md mb-space-xl">
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Workflow</span>
-<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Engine In Three Beats</h3>
-</div>
-<!-- 3 Stacked Cards -->
-<div class="flex flex-col gap-space-sm">
-<!-- Step 1 -->
-<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-md">
-<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center shrink-0">
-          1
-        </div>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-primary font-semibold">Paste Any Stream URL</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-            Support for standard YouTube videos, Shorts, mobile youtu.be links, and unlisted high-bitrate media.
-          </p>
-</div>
-</div>
-<!-- Step 2 -->
-<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-md">
-<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center shrink-0">
-          2
-        </div>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-primary font-semibold">Extract &amp; Inspect Stream</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-            Real-time server-side signature extraction bypasses client throttle and presents clean video feeds.
-          </p>
-</div>
-</div>
-<!-- Step 3 -->
-<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-md">
-<div class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,255,255,0.3)]">
-          3
-        </div>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-primary font-semibold">Direct Native Download</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-            Grab uncompressed video files directly to iOS Files, Android Downloads, or your desktop local vault.
-          </p>
-</div>
-</div>
-</div>
-</div>
-<!-- Interactive Accordion FAQ Section -->
-<div class="relative z-10 flex flex-col gap-space-md mb-space-xl">
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Knowledge Base</span>
-<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Frequently Answered</h3>
-</div>
-<div class="flex flex-col gap-space-xs" id="faq-accordion">
-<!-- FAQ Item 1 -->
-<div class="faq-item rounded-2xl bg-surface-container-low overflow-hidden transition-colors">
-<button class="faq-trigger w-full p-space-md flex items-center justify-between text-left gap-2" type="button">
-<span class="font-label-lg text-label-lg text-primary font-medium">Does TubeVault support YouTube Shorts?</span>
-<span class="material-symbols-outlined text-[20px] text-on-surface-variant faq-icon transition-transform duration-200">expand_more</span>
-</button>
-<div class="faq-content hidden px-space-md pb-space-md">
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-            Yes, completely. Vertical 9:16 Shorts URLs are recognized automatically and processed with original resolution and uncompressed stereo audio track extraction.
-          </p>
-</div>
-</div>
-<!-- FAQ Item 2 -->
-<div class="faq-item rounded-2xl bg-surface-container-low overflow-hidden transition-colors">
-<button class="faq-trigger w-full p-space-md flex items-center justify-between text-left gap-2" type="button">
-<span class="font-label-lg text-label-lg text-primary font-medium">Is there any download limit or rate limit?</span>
-<span class="material-symbols-outlined text-[20px] text-on-surface-variant faq-icon transition-transform duration-200">expand_more</span>
-</button>
-<div class="faq-content hidden px-space-md pb-space-md">
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-            Each user receives up to 100 free instant extractions per 15-minute window via our distributed proxy edge. Pro tokens enable unlimited parallel downloads.
-          </p>
-</div>
-</div>
-<!-- FAQ Item 3 -->
-<div class="faq-item rounded-2xl bg-surface-container-low overflow-hidden transition-colors">
-<button class="faq-trigger w-full p-space-md flex items-center justify-between text-left gap-2" type="button">
-<span class="font-label-lg text-label-lg text-primary font-medium">How does direct MP4 streaming work?</span>
-<span class="material-symbols-outlined text-[20px] text-on-surface-variant faq-icon transition-transform duration-200">expand_more</span>
-</button>
-<div class="faq-content hidden px-space-md pb-space-md">
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-            TubeVault resolves high-throughput CDN byte-range chunks directly from YouTube edge instances and streams them uninterrupted without re-encoding delays.
-          </p>
-</div>
-</div>
-</div>
-</div>
-<!-- Interactive Client Behavior Scripts -->
-<script>
-// ============ MULTI-API FALLBACK ENGINE ============
-const API_LIST = {
-  mp3: [
-    (url) => `https://eliteprotech-apis.zone.id/ytdown?url=${url}&format=mp3`,
-    (url) => `https://api.vreden.my.id/api/ytmp3?url=${url}`,
-    (url) => `https://api.yupra.my.id/api/downloader/ytmp3?url=${url}`,
-    (url) => `https://okatsu-rolezapiiz.vercel.app/downloader/ytmp3?url=${url}`,
-    (url) => `https://api.alyachan.pro/api/ytmp3?url=${url}&apikey=G7I6X7`
-  ],
-  mp4: [
-    (url) => `https://eliteprotech-apis.zone.id/ytdown?url=${url}&format=mp4`,
-    (url) => `https://api.vreden.my.id/api/ytmp4?url=${url}`,
-    (url) => `https://okatsu-rolezapiiz.vercel.app/downloader/ytmp4?url=${url}`
-  ]
-};
-
-async function fetchWithFallback(ytUrl, type) {
-  const encoded = encodeURIComponent(ytUrl);
-  const apis = API_LIST[type];
-
-  for (let i = 0; i < apis.length; i++) {
-    const apiUrl = apis[i](encoded);
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 10000);
-
-    try {
-      console.log(`[${type}] Trying API ${i + 1}...`);
-      const proxied = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
-      const res = await fetch(proxied, { signal: controller.signal });
-      clearTimeout(timer);
-
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const json = await res.json();
-      const clean = normalizeResponse(json, type);
-      if (!clean || !clean.downloadUrl) throw new Error('No download link');
-
-      console.log(`[${type}] ✅ API ${i + 1} worked!`);
-      return clean;
-    } catch (err) {
-      clearTimeout(timer);
-      console.warn(`[${type}] ❌ API ${i + 1} failed:`, err.message);
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>OSINT PRO // Mobile Intelligence Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS RESET & VARIABLES */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
-  }
-  throw new Error(`Saari ${type.toUpperCase()} APIs fail ho gayi 😭`);
-}
 
-function normalizeResponse(json, type) {
-  const d = json.data || json.result || json;
-  const title = d.title || d.name || json.title || 'Unknown Title';
-  const thumbnail = d.thumbnail || d.thumb || d.image || json.thumbnail || '';
-  const duration = d.duration || d.length || '';
+    :root {
+      --bg: #000000;
+      --surface-1: #0a0a0a;
+      --surface-2: #111111;
+      --surface-3: #161616;
+      --border: #1a1a1a;
+      --border-focus: #333333;
+      --text-primary: #ffffff;
+      --text-muted: #888888;
+      --text-dim: #555555;
+      --accent-primary: #ffffff;
+      --accent-info: #4a9eff;
+      --accent-yuki: #a78bfa;
+      --accent-yuki-dim: rgba(167, 139, 250, 0.15);
+      --danger: #ef4444;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
 
-  let downloadUrl = null;
-  if (type === 'mp3') {
-    downloadUrl = d.download?.url || d.download_url || d.mp3 || d.audio || d.url
-                || (typeof d.download === 'string' ? d.download : null);
-  } else {
-    downloadUrl = d.download?.url || d.download_url || d.mp4 || d.video || d.url
-                || (typeof d.download === 'string' ? d.download : null);
-  }
-  if (!downloadUrl && Array.isArray(d.formats)) {
-    downloadUrl = d.formats[0]?.url;
-  }
-  return { title, thumbnail, duration, downloadUrl };
-}
-// ===================================================
-    // Particle Canvas Animation
-    (function initParticles() {
-      const canvas = document.getElementById('particle-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let width = (canvas.width = canvas.offsetWidth);
-      let height = (canvas.height = canvas.offsetHeight);
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-ui);
+      font-size: 15px;
+      line-height: 1.5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
 
-      const particles = Array.from({ length: 28 }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.5 + 0.5,
-        dx: (Math.random() - 0.5) * 0.4,
-        dy: (Math.random() - 0.5) * 0.4,
-        opacity: Math.random() * 0.5 + 0.1
-      }));
+    /* BACKGROUND CANVAS PARTICLES */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-      function render() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach((p) => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-          ctx.fill();
+    /* APP CONTAINER */
+    .app-viewport {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
 
-          p.x += p.dx;
-          p.y += p.dy;
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-          if (p.y < 0) p.y = height;
-          if (p.y > height) p.y = 0;
-        });
-        requestAnimationFrame(render);
+    /* TOP BAR */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      height: 56px;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-logo {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+    }
+
+    .pro-badge {
+      background: #1a1a1a;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #262626;
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-muted);
+      padding: 4px 9px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pill-btn:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: var(--text-primary);
+      transform: scale(1.02);
+    }
+
+    .pill-btn:active {
+      transform: scale(0.97);
+    }
+
+    .pill-btn.active {
+      background: var(--text-primary);
+      color: #000000;
+      border-color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .pill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* TAB NAVIGATION */
+    .tab-bar-container {
+      position: sticky;
+      top: 56px;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 8px 16px 12px;
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+    }
+
+    .tab-pill-box {
+      position: relative;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      display: flex;
+      padding: 3px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .tab-indicator {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      width: calc((100% - 6px) / 4);
+      background: #ffffff;
+      border-radius: var(--radius-full);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s;
+      z-index: 1;
+      pointer-events: none;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .tab-indicator.yuki-indicator {
+      background: var(--accent-yuki);
+      box-shadow: 0 2px 14px rgba(167, 139, 250, 0.4);
+    }
+
+    .tab-btn {
+      position: relative;
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 8px 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      z-index: 2;
+      text-align: center;
+      transition: color 0.2s;
+    }
+
+    .tab-btn.active {
+      color: #000000;
+      font-weight: 700;
+    }
+
+    .tab-btn.yuki-tab.active {
+      color: #000000;
+    }
+
+    /* MAIN CONTENT VIEWPORT */
+    .tab-content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .tab-pane {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-pane.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SECTION 1: STATS STRIP */
+    .stats-strip-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stats-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .stats-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .stat-card {
+      flex: 0 0 92px;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.015);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      border-color: #2a2a2a;
+      transform: translateY(-1px);
+    }
+
+    .stat-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    /* SEARCH CARD SECTION */
+    .search-card-box {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 24px rgba(255, 255, 255, 0.02);
+      transition: border-color 0.2s;
+    }
+
+    .search-card-box:focus-within {
+      border-color: var(--border-focus);
+    }
+
+    .input-field-pill {
+      display: flex;
+      align-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      height: 52px;
+      padding: 4px 6px 4px 14px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .input-field-pill:focus-within {
+      border-color: #ffffff;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+    }
+
+    .input-field-pill.shake-error {
+      animation: shakeInput 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      border-color: var(--danger) !important;
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.3) !important;
+    }
+
+    @keyframes shakeInput {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+      40%, 60% { transform: translate3d(3px, 0, 0); }
+    }
+
+    .search-icon-svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-dim);
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .search-input::placeholder {
+      font-family: var(--font-ui);
+      color: var(--text-dim);
+      font-size: 13.5px;
+    }
+
+    .scan-btn {
+      background: var(--accent-primary);
+      color: #000000;
+      border: none;
+      outline: none;
+      padding: 0 16px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    .scan-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+    }
+
+    .scan-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* QUICK FILTER CHIPS */
+    .quick-chips-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .quick-chips-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .filter-chip:hover, .filter-chip.active {
+      border-color: #333333;
+      color: var(--text-primary);
+      background: var(--surface-3);
+    }
+
+    /* LIST SECTION & CARDS */
+    .list-section {
+      margin-bottom: 22px;
+    }
+
+    .link-action {
+      font-size: 11px;
+      color: var(--accent-info);
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .link-action:hover {
+      text-decoration: underline;
+    }
+
+    .query-item-card {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .query-item-card:hover {
+      border-color: #2a2a2a;
+      background: var(--surface-2);
+      transform: translateX(2px);
+    }
+
+    .query-item-card:active {
+      transform: scale(0.99);
+    }
+
+    .query-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--surface-3);
+      border: 1px solid #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+    }
+
+    .query-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .query-title {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+
+    .query-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .badge-count {
+      background: var(--surface-3);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-family: var(--font-mono);
+    }
+
+    /* HORIZONTAL POPULAR LOOKUPS CARDS */
+    .horizontal-scroll-deck {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .horizontal-scroll-deck::-webkit-scrollbar {
+      display: none;
+    }
+
+    .popular-card {
+      flex: 0 0 230px;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .popular-card:hover {
+      border-color: #2a2a2a;
+      transform: translateY(-2px);
+    }
+
+    .pop-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pop-icon-pin {
+      width: 14px;
+      height: 14px;
+      color: var(--accent-info);
+    }
+
+    .pop-region {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .pop-stat-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .sparkline-svg {
+      width: 100%;
+      height: 26px;
+      stroke: var(--text-primary);
+      stroke-width: 1.5;
+      fill: none;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+    /* LOADING SKELETON */
+    .skeleton-container {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .skeleton-box {
+      background: linear-gradient(90deg, #0e0e0e 25%, #181818 50%, #0e0e0e 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* SCAN RESULTS CONTAINER */
+    .scan-results-box {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+      animation: fadeInResults 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInResults {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SUMMARY CARD */
+    .summary-card {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 24px rgba(255, 255, 255, 0.02);
+    }
+
+    .summary-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .summary-num-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .summary-big-num {
+      font-family: var(--font-mono);
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .summary-num-lbl {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .live-status-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #111;
+      border: 1px solid #222;
+      padding: 4px 8px;
+      border-radius: var(--radius-full);
+      font-size: 10px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: #fff;
+    }
+
+    .pulsing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 6px #ffffff;
+      animation: pulseDot 1.4s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .carrier-tags-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .carrier-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+    }
+
+    /* RECORD CARDS */
+    .record-card {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      animation: slideUpRecord 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes slideUpRecord {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .record-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .record-id {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dim);
+    }
+
+    .record-time {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    .field-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .field-label {
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .field-connector {
+      flex: 1;
+      border-bottom: 1px dotted #262626;
+      margin: 0 4px;
+      transform: translateY(-4px);
+    }
+
+    .field-val {
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      font-weight: 500;
+      font-size: 13px;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    .record-actions {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+
+    .action-btn-sm {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .action-btn-sm:hover {
+      border-color: #333;
+      color: #fff;
+    }
+
+    .action-btn-sm.copied {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+
+    /* COLLAPSIBLE RAW JSON */
+    .raw-json-panel {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .raw-json-header {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: var(--surface-2);
+      user-select: none;
+    }
+
+    .raw-json-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .raw-json-chevron {
+      transition: transform 0.25s;
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+    }
+
+    .raw-json-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    .raw-json-body {
+      display: none;
+      padding: 14px;
+      background: #050505;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-muted);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .raw-json-body .key { color: var(--text-muted); }
+    .raw-json-body .val-str { color: #ffffff; }
+    .raw-json-body .val-num { color: #4a9eff; }
+
+    /* RESET QUERY BUTTON */
+    .reset-query-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px dashed var(--border);
+      color: var(--text-dim);
+      padding: 10px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: all 0.2s;
+    }
+
+    .reset-query-btn:hover {
+      border-color: #333;
+      color: var(--text-primary);
+    }
+
+    /* TAB 4: YUKI CHAT SPECIAL LAYOUT */
+    .yuki-chat-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 140px);
+      min-height: 480px;
+    }
+
+    .yuki-session-chip {
+      align-self: center;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .yuki-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-yuki);
+      box-shadow: 0 0 8px var(--accent-yuki);
+    }
+
+    .chat-messages-feed {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-bottom: 12px;
+    }
+
+    .msg-group {
+      display: flex;
+      flex-direction: column;
+      max-width: 86%;
+      animation: msgFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes msgFadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg-group.yuki {
+      align-self: flex-start;
+    }
+
+    .msg-group.user {
+      align-self: flex-end;
+    }
+
+    .msg-bubble {
+      padding: 12px 15px;
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .msg-group.yuki .msg-bubble {
+      background: var(--surface-1);
+      border: 1px solid rgba(167, 139, 250, 0.35);
+      color: var(--accent-yuki);
+      border-radius: 16px 16px 16px 4px;
+      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.05);
+    }
+
+    .msg-group.user .msg-bubble {
+      background: var(--accent-yuki);
+      color: #000000;
+      font-weight: 500;
+      border-radius: 16px 16px 4px 16px;
+      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.2);
+    }
+
+    .msg-timestamp {
+      font-size: 10px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      margin-top: 4px;
+      padding: 0 4px;
+    }
+
+    .msg-group.user .msg-timestamp {
+      text-align: right;
+    }
+
+    .yuki-prompt-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .prompt-chip-btn {
+      background: var(--surface-2);
+      border: 1px dashed rgba(167, 139, 250, 0.3);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .prompt-chip-btn:hover {
+      border-color: var(--accent-yuki);
+      color: #ffffff;
+      background: var(--accent-yuki-dim);
+    }
+
+    .yuki-typing-indicator {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--accent-yuki);
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .typing-dots span {
+      width: 4px;
+      height: 4px;
+      background: var(--accent-yuki);
+      border-radius: 50%;
+      animation: blinkDots 1.4s infinite both;
+    }
+
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blinkDots {
+      0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+      40% { opacity: 1; transform: scale(1.1); }
+    }
+
+    .chat-input-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 6px 8px 6px 12px;
+      margin-top: 10px;
+    }
+
+    .chat-text-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-family: var(--font-ui);
+      font-size: 14px;
+    }
+
+    .chat-text-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .chat-send-btn {
+      background: var(--accent-yuki);
+      color: #000000;
+      border: none;
+      outline: none;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .chat-send-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 14px rgba(167, 139, 250, 0.4);
+    }
+
+    .chat-send-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* FOOTER DISCLAIMER */
+    .compliance-footer {
+      padding: 24px 16px 36px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+      text-align: center;
+      background: #000000;
+    }
+
+    .disclaimer-txt {
+      font-size: 10.5px;
+      line-height: 1.6;
+      color: var(--text-dim);
+      max-width: 420px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING PARTICLES CANVAS -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- VIEWPORT CONTAINER -->
+  <div class="app-viewport">
+    
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <div class="brand-wrap">
+        <span class="brand-logo">OSINT</span>
+        <span class="pro-badge">PRO</span>
+      </div>
+      <div class="top-controls">
+        <button class="pill-btn" id="sfx-toggle" title="Toggle Sound FX">
+          <span class="pill-dot"></span>
+          <span>SFX</span>
+        </button>
+        <button class="pill-btn active" id="particles-toggle" title="Toggle Particle Flux">
+          <span class="pill-dot"></span>
+          <span>PARTICLES</span>
+        </button>
+        <button class="pill-btn" id="chats-quicklink" title="Jump to Yuki AI Chat">
+          <span>CHATS</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- TAB BAR -->
+    <nav class="tab-bar-container">
+      <div class="tab-pill-box">
+        <div class="tab-indicator" id="tab-indicator"></div>
+        <button class="tab-btn active" data-tab="osint">OSINT</button>
+        <button class="tab-btn" data-tab="email">EMAIL</button>
+        <button class="tab-btn" data-tab="vehicle">VEHICLE</button>
+        <button class="tab-btn yuki-tab" data-tab="yuki">YUKI</button>
+      </div>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <main class="tab-content-area">
+
+      <!-- ========================================== -->
+      <!-- TAB 1: OSINT (MOBILE NUMBER LOOKUP)        -->
+      <!-- ========================================== -->
+      <section class="tab-pane active" id="tab-osint">
+        
+        <!-- SECTION 1: STATS STRIP -->
+        <div class="stats-strip-wrapper">
+          <div class="section-label">
+            <span>Network Telemetry</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);">REGION: AP-SOUTH-1</span>
+          </div>
+          <div class="stats-strip">
+            <div class="stat-card">
+              <span class="stat-label">RECORDS</span>
+              <span class="stat-val" data-counter="12.4M">12.4M</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">SOURCES</span>
+              <span class="stat-val" data-counter="47">47</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">UPTIME</span>
+              <span class="stat-val" data-counter="99.2%">99.2%</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">AVG TIME</span>
+              <span class="stat-val" data-counter="1.2s">1.2s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: SEARCH CARD -->
+        <div class="search-card-box" id="osint-search-card">
+          <div class="input-field-pill" id="osint-input-pill">
+            <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="tel" class="search-input" id="osint-query-input" placeholder="Enter 10-digit mobile number" maxlength="10" autocomplete="off" value="9845012849">
+            <button class="scan-btn" id="osint-scan-btn">
+              <span>SCAN</span>
+            </button>
+          </div>
+          <div class="quick-chips-row">
+            <button class="filter-chip active" data-prefill="9845012849">Recent: 9845012849</button>
+            <button class="filter-chip" data-prefill="9810294812">Saved: 9810294812</button>
+            <button class="filter-chip" data-prefill="9988112233">Trending: 9988112233</button>
+          </div>
+        </div>
+
+        <!-- SKELETON LOADER -->
+        <div class="skeleton-container" id="osint-skeleton">
+          <div class="skeleton-box" style="height: 110px;"></div>
+          <div class="skeleton-box" style="height: 180px;"></div>
+          <div class="skeleton-box" style="height: 180px;"></div>
+        </div>
+
+        <!-- RESULTS CONTAINER (REPLACES SECTION 2 WHEN ACTIVE) -->
+        <div class="scan-results-box" id="osint-results-box">
+          <!-- SUMMARY CARD -->
+          <div class="summary-card">
+            <div class="summary-top-row">
+              <div class="summary-num-wrap">
+                <span class="summary-big-num" id="osint-record-count">3</span>
+                <span class="summary-num-lbl">records found</span>
+              </div>
+              <div class="live-status-pill">
+                <span class="pulsing-dot"></span>
+                <span>LIVE RECORD</span>
+              </div>
+            </div>
+            <div style="font-size: 11.5px; color: var(--text-dim); font-family: var(--font-mono);">
+              QUERY: <span style="color: #fff;" id="osint-display-query">9845012849</span> // LATENCY: <span id="osint-latency">24ms</span>
+            </div>
+            <div class="carrier-tags-row" id="osint-carrier-tags">
+              <span class="carrier-chip">Airtel 5G</span>
+              <span class="carrier-chip">Jio Telecom</span>
+              <span class="carrier-chip">Vi Cellular</span>
+            </div>
+          </div>
+
+          <!-- RECORD CARDS CONTAINER (DYNAMIC) -->
+          <div id="osint-records-container"></div>
+
+          <!-- RAW JSON VIEWER -->
+          <div class="raw-json-panel">
+            <div class="raw-json-header" onclick="toggleRawJson('osint-json-body', 'osint-chevron')">
+              <span class="raw-json-title">
+                <span>{ } RAW JSON RESPONSE</span>
+              </span>
+              <svg class="raw-json-chevron" id="osint-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="raw-json-body" id="osint-json-body"></div>
+          </div>
+
+          <button class="reset-query-btn" id="osint-reset-btn">← Perform Another Scan</button>
+        </div>
+
+        <!-- SECTION 3: RECENT SEARCHES (PRE-POPULATED) -->
+        <div class="list-section" id="osint-recent-section">
+          <div class="section-label">
+            <span>Recent Queries</span>
+            <span class="link-action" id="clear-osint-recents">Clear all</span>
+          </div>
+
+          <div class="query-item-card" data-query="9810294812">
+            <div class="query-left">
+              <div class="avatar-circle">9</div>
+              <div class="query-details">
+                <span class="query-title">9810294812</span>
+                <span class="query-sub">Delhi NCR · 2 min ago</span>
+              </div>
+            </div>
+            <span class="badge-count">3 records</span>
+          </div>
+
+          <div class="query-item-card" data-query="9988112233">
+            <div class="query-left">
+              <div class="avatar-circle">9</div>
+              <div class="query-details">
+                <span class="query-title">9988112233</span>
+                <span class="query-sub">Mumbai Metro · 14 min ago</span>
+              </div>
+            </div>
+            <span class="badge-count">1 record</span>
+          </div>
+
+          <div class="query-item-card" data-query="9845012849">
+            <div class="query-left">
+              <div class="avatar-circle">9</div>
+              <div class="query-details">
+                <span class="query-title">9845012849</span>
+                <span class="query-sub">Karnataka Circle · 45 min ago</span>
+              </div>
+            </div>
+            <span class="badge-count">5 records</span>
+          </div>
+
+          <div class="query-item-card" data-query="9711002288">
+            <div class="query-left">
+              <div class="avatar-circle">9</div>
+              <div class="query-details">
+                <span class="query-title">9711002288</span>
+                <span class="query-sub">Punjab Central · 2 hrs ago</span>
+              </div>
+            </div>
+            <span class="badge-count">2 records</span>
+          </div>
+        </div>
+
+        <!-- SECTION 4: TRENDING / POPULAR (PRE-POPULATED) -->
+        <div class="list-section">
+          <div class="section-label">
+            <span>Popular Lookups</span>
+            <span style="font-size: 11px; color: var(--text-dim);">BY VOLUME</span>
+          </div>
+          <div class="horizontal-scroll-deck">
+            <div class="popular-card">
+              <div class="pop-top">
+                <svg class="pop-icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span class="pop-region">Delhi NCR</span>
+              </div>
+              <span class="pop-stat-desc">2,847 lookups this week</span>
+              <svg class="sparkline-svg" viewBox="0 0 100 25">
+                <path d="M0,18 Q15,4 30,12 T60,8 T90,2 T100,5"></path>
+              </svg>
+            </div>
+
+            <div class="popular-card">
+              <div class="pop-top">
+                <svg class="pop-icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span class="pop-region">Mumbai West</span>
+              </div>
+              <span class="pop-stat-desc">1,920 lookups this week</span>
+              <svg class="sparkline-svg" viewBox="0 0 100 25">
+                <path d="M0,22 Q20,10 40,16 T70,5 T95,12 T100,10"></path>
+              </svg>
+            </div>
+
+            <div class="popular-card">
+              <div class="pop-top">
+                <svg class="pop-icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span class="pop-region">Bengaluru Urban</span>
+              </div>
+              <span class="pop-stat-desc">3,410 lookups this week</span>
+              <svg class="sparkline-svg" viewBox="0 0 100 25">
+                <path d="M0,15 Q25,2 50,18 T75,4 T95,1 T100,3"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: EMAIL (BREACH RADAR)                -->
+      <!-- ========================================== -->
+      <section class="tab-pane" id="tab-email">
+        
+        <!-- SECTION 1: STATS STRIP -->
+        <div class="stats-strip-wrapper">
+          <div class="section-label">
+            <span>Global Compromise Index</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);">MONITOR: ACTIVE</span>
+          </div>
+          <div class="stats-strip">
+            <div class="stat-card">
+              <span class="stat-label">BREACHES</span>
+              <span class="stat-val" data-counter="3,847">3,847</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">EMAILS</span>
+              <span class="stat-val" data-counter="89.2M">89.2M</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">SOURCES</span>
+              <span class="stat-val" data-counter="214">214</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">UPTIME</span>
+              <span class="stat-val" data-counter="98.7%">98.7%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: SEARCH CARD -->
+        <div class="search-card-box" id="email-search-card">
+          <div class="input-field-pill" id="email-input-pill">
+            <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <input type="email" class="search-input" id="email-query-input" placeholder="Enter email address" autocomplete="off" value="alexander.frost@domain.com">
+            <button class="scan-btn" id="email-scan-btn">
+              <span>SCAN</span>
+            </button>
+          </div>
+          <div class="quick-chips-row">
+            <button class="filter-chip active" data-email="target@proton.me">Have I Been Pwned</button>
+            <button class="filter-chip" data-email="alexander.frost@domain.com">Recent: alexander.frost</button>
+            <button class="filter-chip" data-email="corp@finance-leak.org">Domain: @finance</button>
+          </div>
+        </div>
+
+        <!-- EMAIL SKELETON -->
+        <div class="skeleton-container" id="email-skeleton">
+          <div class="skeleton-box" style="height: 110px;"></div>
+          <div class="skeleton-box" style="height: 170px;"></div>
+          <div class="skeleton-box" style="height: 170px;"></div>
+        </div>
+
+        <!-- EMAIL RESULTS CONTAINER -->
+        <div class="scan-results-box" id="email-results-box">
+          <div class="summary-card">
+            <div class="summary-top-row">
+              <div class="summary-num-wrap">
+                <span class="summary-big-num" id="email-breach-count">3</span>
+                <span class="summary-num-lbl">visible breaches</span>
+              </div>
+              <div class="live-status-pill">
+                <span class="pulsing-dot"></span>
+                <span id="email-status-label">COMPROMISED</span>
+              </div>
+            </div>
+            <div style="font-size: 11.5px; color: var(--text-dim); font-family: var(--font-mono);" id="email-summary-detail">
+              162 hidden shards · 174 total compromises indexed
+            </div>
+            <div class="carrier-tags-row" id="email-severity-tags">
+              <span class="carrier-chip" style="color: #fff; background: #1a1a1a;">SEVERITY: HIGH</span>
+              <span class="carrier-chip">MED (48)</span>
+              <span class="carrier-chip">LOW (114)</span>
+            </div>
+          </div>
+
+          <!-- BREACH CARDS CONTAINER (DYNAMIC) -->
+          <div id="email-records-container"></div>
+
+          <div class="raw-json-panel">
+            <div class="raw-json-header" onclick="toggleRawJson('email-json-body', 'email-chevron')">
+              <span class="raw-json-title">{ } RAW BREACH TELEMETRY</span>
+              <svg class="raw-json-chevron" id="email-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="raw-json-body" id="email-json-body"></div>
+          </div>
+
+          <button class="reset-query-btn" id="email-reset-btn">← Perform Another Scan</button>
+        </div>
+
+        <!-- SECTION 3: RECENT EMAIL QUERIES -->
+        <div class="list-section" id="email-recent-section">
+          <div class="section-label">
+            <span>Recent Lookups</span>
+            <span class="link-action" id="clear-email-recents">Clear all</span>
+          </div>
+
+          <div class="query-item-card" data-email="target@proton.me">
+            <div class="query-left">
+              <div class="avatar-circle">T</div>
+              <div class="query-details">
+                <span class="query-title">target@proton.me</span>
+                <span class="query-sub">Checked 5 min ago</span>
+              </div>
+            </div>
+            <span class="badge-count">14 breaches</span>
+          </div>
+
+          <div class="query-item-card" data-email="alexander.frost@domain.com">
+            <div class="query-left">
+              <div class="avatar-circle">A</div>
+              <div class="query-details">
+                <span class="query-title">alexander.frost@domain.com</span>
+                <span class="query-sub">Checked 22 min ago</span>
+              </div>
+            </div>
+            <span class="badge-count">3 breaches</span>
+          </div>
+
+          <div class="query-item-card" data-email="s.gupta@enterprise.in">
+            <div class="query-left">
+              <div class="avatar-circle">S</div>
+              <div class="query-details">
+                <span class="query-title">s.gupta@enterprise.in</span>
+                <span class="query-sub">Checked 1 hr ago</span>
+              </div>
+            </div>
+            <span class="badge-count">0 breaches</span>
+          </div>
+
+          <div class="query-item-card" data-email="root@securenet.io">
+            <div class="query-left">
+              <div class="avatar-circle">R</div>
+              <div class="query-details">
+                <span class="query-title">root@securenet.io</span>
+                <span class="query-sub">Checked 3 hrs ago</span>
+              </div>
+            </div>
+            <span class="badge-count">29 breaches</span>
+          </div>
+        </div>
+
+        <!-- SECTION 4: TOP BREACHES -->
+        <div class="list-section">
+          <div class="section-label">
+            <span>Top Indexed Breaches</span>
+            <span style="font-size: 11px; color: var(--text-dim);">HISTORICAL</span>
+          </div>
+          <div class="horizontal-scroll-deck">
+            <div class="popular-card">
+              <div class="pop-top">
+                <span class="pop-region">LinkedIn 2021</span>
+              </div>
+              <span class="pop-stat-desc">700M records indexed</span>
+              <div style="font-size: 11px; color: var(--text-dim); margin-top: auto;">Scrape / Public & Private</div>
+            </div>
+
+            <div class="popular-card">
+              <div class="pop-top">
+                <span class="pop-region">Collection #1</span>
+              </div>
+              <span class="pop-stat-desc">773M records indexed</span>
+              <div style="font-size: 11px; color: var(--text-dim); margin-top: auto;">Combo Credential Dump</div>
+            </div>
+
+            <div class="popular-card">
+              <div class="pop-top">
+                <span class="pop-region">Adobe 2013</span>
+              </div>
+              <span class="pop-stat-desc">153M records indexed</span>
+              <div style="font-size: 11px; color: var(--text-dim); margin-top: auto;">Database Compromise</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: VEHICLE (RC LOOKUP)                 -->
+      <!-- ========================================== -->
+      <section class="tab-pane" id="tab-vehicle">
+        
+        <!-- SECTION 1: STATS STRIP -->
+        <div class="stats-strip-wrapper">
+          <div class="section-label">
+            <span>Vahan RC Registry Telemetry</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);">ALL STATES</span>
+          </div>
+          <div class="stats-strip">
+            <div class="stat-card">
+              <span class="stat-label">RC RECORDS</span>
+              <span class="stat-val" data-counter="28.4M">28.4M</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">RTOS</span>
+              <span class="stat-val" data-counter="1,247">1,247</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">STATES</span>
+              <span class="stat-val" data-counter="36">36</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">UPTIME</span>
+              <span class="stat-val" data-counter="99.1%">99.1%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: SEARCH CARD -->
+        <div class="search-card-box" id="vehicle-search-card">
+          <div class="input-field-pill" id="vehicle-input-pill">
+            <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+            <input type="text" class="search-input" id="vehicle-query-input" placeholder="Enter vehicle number (DL01AB1234)" maxlength="12" autocomplete="off" value="DL01AB1234" style="text-transform: uppercase;">
+            <button class="scan-btn" id="vehicle-scan-btn">
+              <span>SCAN</span>
+            </button>
+          </div>
+          <div class="quick-chips-row">
+            <button class="filter-chip active" data-v="DL01AB1234">Cars</button>
+            <button class="filter-chip" data-v="MH02CD5678">Bikes</button>
+            <button class="filter-chip" data-v="KA05EF9012">Commercial</button>
+          </div>
+        </div>
+
+        <!-- VEHICLE SKELETON -->
+        <div class="skeleton-container" id="vehicle-skeleton">
+          <div class="skeleton-box" style="height: 480px;"></div>
+        </div>
+
+        <!-- VEHICLE RESULTS CONTAINER -->
+        <div class="scan-results-box" id="vehicle-results-box">
+          <div class="record-card" style="padding: 20px;">
+            <div class="record-header">
+              <div>
+                <span style="font-family: var(--font-mono); font-size: 22px; font-weight: 800; color: #fff;" id="vehicle-display-reg">DL01AB1234</span>
+                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;" id="vehicle-rto-label">DELHI RTO 01 · REGISTRATION CERTIFICATE</div>
+              </div>
+              <span class="carrier-chip" style="background: #ffffff; color: #000; font-weight: 800;">VERIFIED</span>
+            </div>
+
+            <!-- SECTION A: OWNER -->
+            <div style="margin-top: 6px;">
+              <div class="field-label" style="margin-bottom: 6px; color: var(--accent-info);">// OWNER DETAILS</div>
+              <div class="field-row"><span class="field-label">owner name</span><span class="field-connector"></span><span class="field-val" id="veh-owner-name">—</span></div>
+              <div class="field-row"><span class="field-label">father name</span><span class="field-connector"></span><span class="field-val" id="veh-father-name">—</span></div>
+              <div class="field-row"><span class="field-label">phone</span><span class="field-connector"></span><span class="field-val" id="veh-phone">—</span></div>
+              <div class="field-row"><span class="field-label">email</span><span class="field-connector"></span><span class="field-val" id="veh-email">—</span></div>
+              <div class="field-row"><span class="field-label">address</span><span class="field-connector"></span><span class="field-val" id="veh-address">—</span></div>
+              <div class="field-row"><span class="field-label">city</span><span class="field-connector"></span><span class="field-val" id="veh-city">—</span></div>
+              <div class="field-row"><span class="field-label">state</span><span class="field-connector"></span><span class="field-val" id="veh-state">—</span></div>
+              <div class="field-row"><span class="field-label">pincode</span><span class="field-connector"></span><span class="field-val" id="veh-pincode">—</span></div>
+            </div>
+
+            <!-- SECTION B: VEHICLE SPEC -->
+            <div style="margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px;">
+              <div class="field-label" style="margin-bottom: 6px; color: var(--accent-info);">// VEHICLE SPECIFICATIONS</div>
+              <div class="field-row"><span class="field-label">maker</span><span class="field-connector"></span><span class="field-val" id="veh-maker">—</span></div>
+              <div class="field-row"><span class="field-label">model</span><span class="field-connector"></span><span class="field-val" id="veh-model">—</span></div>
+              <div class="field-row"><span class="field-label">fuel type</span><span class="field-connector"></span><span class="field-val" id="veh-fuel">—</span></div>
+              <div class="field-row"><span class="field-label">vehicle class</span><span class="field-connector"></span><span class="field-val" id="veh-class">—</span></div>
+              <div class="field-row"><span class="field-label">registration date</span><span class="field-connector"></span><span class="field-val" id="veh-reg-date">—</span></div>
+              <div class="field-row"><span class="field-label">registered RTO</span><span class="field-connector"></span><span class="field-val" id="veh-rto">—</span></div>
+              <div class="field-row"><span class="field-label">chassis number</span><span class="field-connector"></span><span class="field-val" id="veh-chassis">—</span></div>
+              <div class="field-row"><span class="field-label">engine number</span><span class="field-connector"></span><span class="field-val" id="veh-engine">—</span></div>
+            </div>
+
+            <!-- SECTION C: INSURANCE & COMPLIANCE -->
+            <div style="margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px;">
+              <div class="field-label" style="margin-bottom: 6px; color: var(--accent-info);">// INSURANCE &amp; VALIDITY</div>
+              <div class="field-row"><span class="field-label">fitness upto</span><span class="field-connector"></span><span class="field-val" id="veh-fitness">—</span></div>
+              <div class="field-row"><span class="field-label">insurance company</span><span class="field-connector"></span><span class="field-val" id="veh-insurer">—</span></div>
+              <div class="field-row"><span class="field-label">insurance number</span><span class="field-connector"></span><span class="field-val" id="veh-ins-num">—</span></div>
+              <div class="field-row"><span class="field-label">insurance upto</span><span class="field-connector"></span><span class="field-val" id="veh-ins-upto">—</span></div>
+              <div class="field-row"><span class="field-label">PUC number</span><span class="field-connector"></span><span class="field-val" id="veh-puc">—</span></div>
+              <div class="field-row"><span class="field-label">PUC upto</span><span class="field-connector"></span><span class="field-val" id="veh-puc-upto">—</span></div>
+              <div class="field-row"><span class="field-label">tax upto</span><span class="field-connector"></span><span class="field-val" id="veh-tax">—</span></div>
+            </div>
+
+            <div class="record-actions">
+              <button class="action-btn-sm copy-btn" data-copy="DL01AB1234" id="veh-copy-btn">
+                <span>Copy RC Number</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="raw-json-panel">
+            <div class="raw-json-header" onclick="toggleRawJson('vehicle-json-body', 'vehicle-chevron')">
+              <span class="raw-json-title">{ } RAW VAHAN PAYLOAD</span>
+              <svg class="raw-json-chevron" id="vehicle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="raw-json-body" id="vehicle-json-body"></div>
+          </div>
+
+          <button class="reset-query-btn" id="vehicle-reset-btn">← Perform Another Scan</button>
+        </div>
+
+        <!-- SECTION 3: RECENT VEHICLES -->
+        <div class="list-section" id="vehicle-recent-section">
+          <div class="section-label">
+            <span>Recent Vehicles</span>
+            <span class="link-action" id="clear-vehicle-recents">Clear all</span>
+          </div>
+
+          <div class="query-item-card" data-v="DL01AB1234">
+            <div class="query-left">
+              <div class="avatar-circle">DL</div>
+              <div class="query-details">
+                <span class="query-title">DL01AB1234</span>
+                <span class="query-sub">Hyundai Creta · R***h K***r</span>
+              </div>
+            </div>
+            <span class="badge-count">10m ago</span>
+          </div>
+
+          <div class="query-item-card" data-v="MH02CD5678">
+            <div class="query-left">
+              <div class="avatar-circle">MH</div>
+              <div class="query-details">
+                <span class="query-title">MH02CD5678</span>
+                <span class="query-sub">Royal Enfield Classic · A***t S***h</span>
+              </div>
+            </div>
+            <span class="badge-count">35m ago</span>
+          </div>
+
+          <div class="query-item-card" data-v="KA05EF9012">
+            <div class="query-left">
+              <div class="avatar-circle">KA</div>
+              <div class="query-details">
+                <span class="query-title">KA05EF9012</span>
+                <span class="query-sub">Tata Nexon EV · P***a M***a</span>
+              </div>
+            </div>
+            <span class="badge-count">1h ago</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: YUKI (AI CHAT UI)                   -->
+      <!-- ========================================== -->
+      <section class="tab-pane" id="tab-yuki">
+        <div class="yuki-chat-container">
+          
+          <div class="yuki-session-chip">
+            <span class="yuki-pulse-dot"></span>
+            <span>YUKI v1.0 · Neural Research Terminal</span>
+          </div>
+
+          <div class="chat-messages-feed" id="chat-feed">
+            <!-- GREETING -->
+            <div class="msg-group yuki">
+              <div class="msg-bubble">
+                Hi! I'm Yuki 💜 Ask me anything about OSINT, carrier registries, breach databases, or compliance methodology.
+              </div>
+              <span class="msg-timestamp">YUKI · 12:00:01</span>
+            </div>
+
+            <!-- PROMPTS -->
+            <div class="yuki-prompt-chips" id="yuki-initial-prompts">
+              <button class="prompt-chip-btn" data-chat="How to find public records?">✦ How to find public records?</button>
+              <button class="prompt-chip-btn" data-chat="Explain breach data shards">✦ Explain breach data shards</button>
+              <button class="prompt-chip-btn" data-chat="OSINT best practices & ethics">✦ OSINT best practices & ethics</button>
+            </div>
+          </div>
+
+          <!-- TYPING INDICATOR -->
+          <div class="yuki-typing-indicator" id="yuki-typing">
+            <span>Yuki is typing</span>
+            <div class="typing-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- CHAT INPUT BAR -->
+          <div class="chat-input-bar">
+            <input type="text" class="chat-text-input" id="chat-input" placeholder="Type a message to Yuki..." autocomplete="off">
+            <button class="chat-send-btn" id="chat-send-btn" title="Send message">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- COMPLIANCE FOOTER -->
+    <footer class="compliance-footer">
+      <p class="disclaimer-txt">
+        This website is built strictly for educational and research purposes only. It does not promote, encourage, or support any illegal activity. All data displayed is sourced from publicly available records and simulated datasets. Users are solely responsible for their own actions. The owner and developers take no liability for any misuse or consequences.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- CLIENT-SIDE ARCHITECTURE JAVASCRIPT -->
+  <script>
+    // GLOBAL STATE & DATA STORAGE
+    window.yukiHistory = [];
+    window.sfxEnabled = false;
+    window.particlesEnabled = true;
+
+    // API ENDPOINTS
+    const API = {
+      EMAIL: 'https://leak-api-databreach-adibhai.vercel.app/api/email?mail=',
+      VEHICLE: 'https://nitin-api-free-user-1k-spacial.vercel.app/api?type=vehicle&search=',
+      NUMBER: 'https://info.apikendra.cc/search/any?q=',
+      YUKI: 'https://ai-gf-api-pfqo.vercel.app/api/chat'
+    };
+
+    // AUDIO SYNTHESIZER (WEB AUDIO API)
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      },
+      click() {
+        if (!window.sfxEnabled) return;
+        this.init();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(900, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, this.ctx.currentTime + 0.04);
+        gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.04);
+      },
+      success() {
+        if (!window.sfxEnabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.setValueAtTime(880, now + 0.08);
+        gain.gain.setValueAtTime(0.07, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(now + 0.25);
+      },
+      error() {
+        if (!window.sfxEnabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.linearRampToValueAtTime(80, now + 0.2);
+        gain.gain.setValueAtTime(0.1, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(now + 0.2);
       }
-      render();
+    };
 
-      window.addEventListener('resize', () => {
-        width = canvas.width = canvas.offsetWidth;
-        height = canvas.height = canvas.offsetHeight;
-      });
-    })();
+    // FLOATING PARTICLES CANVAS SYSTEM
+    const ParticlesEngine = {
+      canvas: document.getElementById('particles-canvas'),
+      ctx: null,
+      dots: [],
+      numDots: 65,
+      animId: null,
+      isPaused: false,
 
-    // Toast Utility
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-message');
-      if (!toast || !toastMsg) return;
-      toastMsg.textContent = msg;
-      toast.classList.remove('opacity-0', '-translate-y-2');
-      toast.classList.add('opacity-100', 'translate-y-0');
-      setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', '-translate-y-2');
-      }, 2600);
-    }
+      init() {
+        this.ctx = this.canvas.getContext('2d');
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
 
-    // Input Actions
-    const clearBtn = document.getElementById('clear-btn');
-    const urlInput = document.getElementById('url-input');
-    const fetchBtn = document.getElementById('fetch-btn');
-    const btnSpinner = document.getElementById('btn-spinner');
-    const btnLabel = document.getElementById('btn-label');
-
-    if (clearBtn && urlInput) {
-      clearBtn.addEventListener('click', () => {
-        urlInput.value = '';
-        urlInput.focus();
-      });
-    }
-
-   if (fetchBtn) {
-  fetchBtn.addEventListener('click', async () => {
-    const ytUrl = urlInput.value.trim();
-    if (!ytUrl) return showToast('Pehle YouTube link daalo bhai');
-    if (!/(youtube\.com|youtu\.be)/.test(ytUrl)) {
-      return showToast('Ye YouTube link nahi lag rahi');
-    }
-
-    btnLabel.classList.add('hidden');
-    btnSpinner.classList.remove('hidden');
-
-    try {
-      const results = await Promise.allSettled([
-        fetchWithFallback(ytUrl, 'mp4'),
-        fetchWithFallback(ytUrl, 'mp3')
-      ]);
-
-      const mp4 = results[0].status === 'fulfilled' ? results[0].value : null;
-      const mp3 = results[1].status === 'fulfilled' ? results[1].value : null;
-
-      if (!mp4 && !mp3) throw new Error('Sab API fail. Thodi der baad try karo.');
-
-      const data = mp4 || mp3;
-
-      const titleEl = document.querySelector('h2.font-headline-sm');
-      if (titleEl) titleEl.textContent = data.title;
-
-      const thumbEl = document.querySelector('.aspect-video img');
-      if (thumbEl && data.thumbnail) thumbEl.src = data.thumbnail;
-
-      if (mp4) {
-        const linkText = document.querySelector('.p-space-sm .truncate');
-        if (linkText) linkText.textContent = mp4.downloadUrl;
-        if (copyLinkBtn) copyLinkBtn.dataset.url = mp4.downloadUrl;
-      }
-
-      const mp4Btns = document.querySelectorAll('.download-trigger');
-      mp4Btns.forEach((b, i) => {
-        if (i < 3 && mp4) b.dataset.url = mp4.downloadUrl;
-      });
-      if (mp3 && mp4Btns[3]) mp4Btns[3].dataset.url = mp3.downloadUrl;
-
-      showToast('Stream ready! 🚀');
-    } catch (err) {
-      showToast(err.message || 'Kuch galat ho gaya');
-    } finally {
-      btnSpinner.classList.add('hidden');
-      btnLabel.classList.remove('hidden');
-    }
-  });
-}
-
-   // Copy direct link trigger
-const copyLinkBtn = document.getElementById('copy-link-btn');
-if (copyLinkBtn) {
-  copyLinkBtn.addEventListener('click', () => {
-    const realUrl = copyLinkBtn.dataset.url;
-    if (!realUrl) return showToast('Pehle video fetch karo');
-    navigator.clipboard?.writeText(realUrl);
-    showToast('Real MP4 link copied! ✅');
-  });
-}
-
-// Download buttons — real download trigger
-document.querySelectorAll('.download-trigger').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const realUrl = btn.dataset.url;
-    if (!realUrl) return showToast('Pehle video fetch karo');
-
-    const a = document.createElement('a');
-    a.href = realUrl;
-    a.download = 'tubevault-download';
-    a.target = '_blank';
-    a.rel = 'noopener';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    showToast('Download shuru 🚀');
-  });
-});
-
-    // Audio Play / Waveform Animation
-    const audioPlayBtn = document.getElementById('audio-play-btn');
-    const playIcon = document.getElementById('play-icon');
-    const bars = document.querySelectorAll('#waveform-container .bar');
-    let isPlaying = false;
-    let waveInterval = null;
-
-    if (audioPlayBtn && playIcon) {
-      audioPlayBtn.addEventListener('click', () => {
-        isPlaying = !isPlaying;
-        if (isPlaying) {
-          playIcon.textContent = 'pause';
-          waveInterval = setInterval(() => {
-            bars.forEach((b) => {
-              const randH = Math.floor(Math.random() * 24) + 6;
-              b.style.height = randH + 'px';
-            });
-          }, 120);
-        } else {
-          playIcon.textContent = 'play_arrow';
-          clearInterval(waveInterval);
-          bars.forEach((b, idx) => {
-            b.style.height = (idx % 3 === 0 ? 16 : 8) + 'px';
+        this.dots = [];
+        for (let i = 0; i < this.numDots; i++) {
+          this.dots.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            radius: Math.random() * 1.2 + 0.8,
+            alpha: Math.random() * 0.12 + 0.04
           });
         }
-      });
-    }
+        this.loop();
 
-    // Volume icon toggle
-    const muteToggle = document.getElementById('mute-toggle');
-    const volumeIcon = document.getElementById('volume-icon');
-    let isMuted = false;
-    if (muteToggle && volumeIcon) {
-      muteToggle.addEventListener('click', () => {
-        isMuted = !isMuted;
-        volumeIcon.textContent = isMuted ? 'volume_off' : 'volume_up';
-        showToast(isMuted ? 'Muted audio preview' : 'Volume restored');
-      });
-    }
+        // Pause when tab hidden to conserve power
+        document.addEventListener('visibilitychange', () => {
+          this.isPaused = document.hidden;
+        });
+      },
 
-    // FAQ Accordion Toggle
-    document.querySelectorAll('.faq-trigger').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const content = btn.nextElementSibling;
-        const icon = btn.querySelector('.faq-icon');
-        const isOpen = !content.classList.contains('hidden');
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      },
 
-        // Close all
-        document.querySelectorAll('.faq-content').forEach((c) => c.classList.add('hidden'));
-        document.querySelectorAll('.faq-icon').forEach((i) => i.classList.remove('rotate-180'));
+      loop() {
+        if (!this.isPaused && window.particlesEnabled) {
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          this.ctx.fillStyle = '#ffffff';
 
-        if (!isOpen) {
-          content.classList.remove('hidden');
-          icon.classList.add('rotate-180');
+          for (let i = 0; i < this.dots.length; i++) {
+            const d = this.dots[i];
+            d.x += d.vx;
+            d.y += d.vy;
+
+            if (d.x < 0) d.x = this.canvas.width;
+            if (d.x > this.canvas.width) d.x = 0;
+            if (d.y < 0) d.y = this.canvas.height;
+            if (d.y > this.canvas.height) d.y = 0;
+
+            this.ctx.globalAlpha = d.alpha;
+            this.ctx.beginPath();
+            this.ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
+            this.ctx.fill();
+          }
         }
+        this.animId = requestAnimationFrame(() => this.loop());
+      }
+    };
+
+    ParticlesEngine.init();
+
+    // TAB CONTROLLER
+    const TabEngine = {
+      indicator: document.getElementById('tab-indicator'),
+      tabBtns: document.querySelectorAll('.tab-btn'),
+      panes: document.querySelectorAll('.tab-pane'),
+
+      init() {
+        this.tabBtns.forEach((btn, index) => {
+          btn.addEventListener('click', () => {
+            AudioEngine.click();
+            this.switchTab(btn.dataset.tab, index);
+          });
+        });
+      },
+
+      switchTab(tabId, index) {
+        this.tabBtns.forEach(b => b.classList.remove('active'));
+        const targetBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        // Move Indicator
+        this.indicator.style.transform = `translateX(${index * 100}%)`;
+        if (tabId === 'yuki') {
+          this.indicator.classList.add('yuki-indicator');
+        } else {
+          this.indicator.classList.remove('yuki-indicator');
+        }
+
+        // Show Pane
+        this.panes.forEach(pane => {
+          pane.classList.remove('active');
+          if (pane.id === `tab-${tabId}`) {
+            pane.classList.add('active');
+          }
+        });
+      }
+    };
+
+    TabEngine.init();
+
+    // TOP BAR TOGGLES
+    const sfxBtn = document.getElementById('sfx-toggle');
+    sfxBtn.addEventListener('click', () => {
+      window.sfxEnabled = !window.sfxEnabled;
+      sfxBtn.classList.toggle('active', window.sfxEnabled);
+      if (window.sfxEnabled) AudioEngine.success();
+    });
+
+    const particlesBtn = document.getElementById('particles-toggle');
+    particlesBtn.addEventListener('click', () => {
+      window.particlesEnabled = !window.particlesEnabled;
+      particlesBtn.classList.toggle('active', window.particlesEnabled);
+      AudioEngine.click();
+      if (!window.particlesEnabled) {
+        ParticlesEngine.ctx.clearRect(0, 0, ParticlesEngine.canvas.width, ParticlesEngine.canvas.height);
+      }
+    });
+
+    const chatsQuicklink = document.getElementById('chats-quicklink');
+    chatsQuicklink.addEventListener('click', () => {
+      AudioEngine.click();
+      TabEngine.switchTab('yuki', 3);
+    });
+
+    // RAW JSON TOGGLE UTILITY
+    window.toggleRawJson = function(bodyId, chevronId) {
+      AudioEngine.click();
+      const body = document.getElementById(bodyId);
+      const chevron = document.getElementById(chevronId);
+      if (body.style.display === 'block') {
+        body.style.display = 'none';
+        chevron.classList.remove('open');
+      } else {
+        body.style.display = 'block';
+        chevron.classList.add('open');
+      }
+    };
+
+    // COPY BUTTON DELEGATION
+    document.addEventListener('click', (e) => {
+      const copyBtn = e.target.closest('.copy-btn');
+      if (copyBtn) {
+        const textToCopy = copyBtn.dataset.copy;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          AudioEngine.success();
+          const origText = copyBtn.innerHTML;
+          copyBtn.classList.add('copied');
+          copyBtn.innerHTML = `<span>✓ Copied</span>`;
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.innerHTML = origText;
+          }, 1500);
+        });
+      }
+    });
+
+    // ==========================================
+    // TAB 1: OSINT NUMBER LOOKUP LOGIC (API WIRED)
+    // ==========================================
+    const osintInput = document.getElementById('osint-query-input');
+    const osintInputPill = document.getElementById('osint-input-pill');
+    const osintScanBtn = document.getElementById('osint-scan-btn');
+    const osintSearchCard = document.getElementById('osint-search-card');
+    const osintSkeleton = document.getElementById('osint-skeleton');
+    const osintResultsBox = document.getElementById('osint-results-box');
+    const osintRecentSection = document.getElementById('osint-recent-section');
+    const osintResetBtn = document.getElementById('osint-reset-btn');
+    const osintDisplayQuery = document.getElementById('osint-display-query');
+    const osintRecordsContainer = document.getElementById('osint-records-container');
+    const osintJsonBody = document.getElementById('osint-json-body');
+    const osintRecordCount = document.getElementById('osint-record-count');
+    const osintLatency = document.getElementById('osint-latency');
+    const osintCarrierTags = document.getElementById('osint-carrier-tags');
+
+    async function runOsintScan(num) {
+      const cleanNum = (num || osintInput.value).replace(/\D/g, '');
+      if (cleanNum.length !== 10) {
+        AudioEngine.error();
+        osintInputPill.classList.add('shake-error');
+        setTimeout(() => osintInputPill.classList.remove('shake-error'), 400);
+        return;
+      }
+
+      AudioEngine.click();
+      osintDisplayQuery.textContent = cleanNum;
+      osintSearchCard.style.display = 'none';
+      osintRecentSection.style.display = 'none';
+      osintSkeleton.style.display = 'flex';
+      osintResultsBox.style.display = 'none';
+      osintRecordsContainer.innerHTML = '';
+
+      const startTime = Date.now();
+
+      try {
+        const res = await fetch(API.NUMBER + cleanNum);
+        const data = await res.json();
+        const latency = Date.now() - startTime;
+        osintLatency.textContent = latency + 'ms';
+
+        // Clear skeleton, show results
+        osintSkeleton.style.display = 'none';
+        osintResultsBox.style.display = 'flex';
+        AudioEngine.success();
+
+        // Try to extract records from various API response shapes
+        let records = [];
+        if (Array.isArray(data)) records = data;
+        else if (data && Array.isArray(data.data)) records = data.data;
+        else if (data && Array.isArray(data.results)) records = data.results;
+        else if (data && Array.isArray(data.records)) records = data.records;
+        else if (data && typeof data === 'object') records = [data];
+
+        osintRecordCount.textContent = records.length;
+
+        // Update carrier tags from first record if available
+        if (records.length > 0) {
+          const r = records[0];
+          const carriers = [];
+          if (r.circle || r.operator || r.carrier) {
+            carriers.push(r.circle || r.operator || r.carrier);
+          }
+          if (r.alt || r.alternate) carriers.push('ALT: ' + r.alt);
+          if (carriers.length === 0) carriers.push('Airtel', 'Jio', 'Vi');
+          osintCarrierTags.innerHTML = carriers.map(c => `<span class="carrier-chip">${escapeHtml(String(c))}</span>`).join('');
+        }
+
+        // Render record cards dynamically
+        if (records.length === 0) {
+          osintRecordsContainer.innerHTML = `<div class="record-card"><div class="field-row"><span class="field-val" style="color: var(--text-muted);">No records found for this number.</span></div></div>`;
+        } else {
+          records.forEach((rec, idx) => {
+            const card = document.createElement('div');
+            card.className = 'record-card';
+            const fields = [];
+            const name = rec.name || rec.full_name || rec.owner || 'Unknown';
+            const mobile = rec.mobile || rec.phone || rec.number || cleanNum;
+            const father = rec.father || rec.father_name || rec.fname || '—';
+            const address = rec.address || rec.addr || rec.location || '—';
+            const circle = rec.circle || rec.operator || rec.carrier || '—';
+            const id = rec.id || rec.uid || rec.aadhaar || '—';
+            const alt = rec.alt || rec.alternate || rec.alt_mobile || '—';
+
+            fields.push({ label: 'name', val: name });
+            fields.push({ label: 'mobile', val: '+91 ' + mobile });
+            fields.push({ label: 'father', val: father });
+            fields.push({ label: 'address', val: address });
+            fields.push({ label: 'circle', val: circle });
+            if (alt !== '—') fields.push({ label: 'alt', val: '+91 ' + alt });
+            if (id !== '—') fields.push({ label: 'id', val: id });
+
+            const copyJson = JSON.stringify({ name, mobile, circle, father, address, id }).replace(/'/g, '&#39;');
+
+            card.innerHTML = `
+              <div class="record-header">
+                <span class="record-id">#${String(idx + 1).padStart(2, '0')} ${idx === 0 ? 'PRIMARY DOSSIER' : 'LINKED RECORD'}</span>
+                <span class="record-time">SYNCED JUST NOW</span>
+              </div>
+              ${fields.map(f => `
+                <div class="field-row">
+                  <span class="field-label">${escapeHtml(f.label)}</span>
+                  <span class="field-connector"></span>
+                  <span class="field-val">${escapeHtml(String(f.val))}</span>
+                </div>
+              `).join('')}
+              <div class="record-actions">
+                <button class="action-btn-sm copy-btn" data-copy='${copyJson}'>
+                  <span>Copy JSON</span>
+                </button>
+                <button class="action-btn-sm copy-btn" data-copy="${escapeHtml(String(mobile))}">
+                  <span>Copy Number</span>
+                </button>
+              </div>
+            `;
+            osintRecordsContainer.appendChild(card);
+          });
+        }
+
+        // Raw JSON
+        osintJsonBody.textContent = JSON.stringify(data, null, 2);
+
+      } catch (err) {
+        osintSkeleton.style.display = 'none';
+        osintResultsBox.style.display = 'flex';
+        AudioEngine.error();
+        osintRecordCount.textContent = '0';
+        osintRecordsContainer.innerHTML = `<div class="record-card"><div class="field-row"><span class="field-val" style="color: var(--danger);">API Error: ${escapeHtml(err.message)}</span></div></div>`;
+        osintJsonBody.textContent = JSON.stringify({ error: err.message }, null, 2);
+      }
+    }
+
+    osintScanBtn.addEventListener('click', () => runOsintScan());
+    osintInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') runOsintScan();
+    });
+
+    osintResetBtn.addEventListener('click', () => {
+      AudioEngine.click();
+      osintResultsBox.style.display = 'none';
+      osintSearchCard.style.display = 'block';
+      osintRecentSection.style.display = 'block';
+      osintInput.focus();
+    });
+
+    // Quick filter chips click
+    document.querySelectorAll('#osint-search-card .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#osint-search-card .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        osintInput.value = chip.dataset.prefill;
+        runOsintScan(chip.dataset.prefill);
       });
     });
+
+    // Recent queries tap
+    document.querySelectorAll('#osint-recent-section .query-item-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const q = card.dataset.query;
+        osintInput.value = q;
+        runOsintScan(q);
+      });
+    });
+
+    document.getElementById('clear-osint-recents').addEventListener('click', () => {
+      AudioEngine.click();
+      document.querySelectorAll('#osint-recent-section .query-item-card').forEach(c => c.style.display = 'none');
+    });
+
+    // ==========================================
+    // TAB 2: EMAIL BREACH LOOKUP LOGIC (API WIRED)
+    // ==========================================
+    const emailInput = document.getElementById('email-query-input');
+    const emailInputPill = document.getElementById('email-input-pill');
+    const emailScanBtn = document.getElementById('email-scan-btn');
+    const emailSearchCard = document.getElementById('email-search-card');
+    const emailSkeleton = document.getElementById('email-skeleton');
+    const emailResultsBox = document.getElementById('email-results-box');
+    const emailRecentSection = document.getElementById('email-recent-section');
+    const emailResetBtn = document.getElementById('email-reset-btn');
+    const emailJsonBody = document.getElementById('email-json-body');
+    const emailRecordsContainer = document.getElementById('email-records-container');
+    const emailBreachCount = document.getElementById('email-breach-count');
+    const emailStatusLabel = document.getElementById('email-status-label');
+    const emailSummaryDetail = document.getElementById('email-summary-detail');
+    const emailSeverityTags = document.getElementById('email-severity-tags');
+
+    async function runEmailScan(emailVal) {
+      const q = (emailVal || emailInput.value).trim();
+      if (!q.includes('@') || !q.includes('.')) {
+        AudioEngine.error();
+        emailInputPill.classList.add('shake-error');
+        setTimeout(() => emailInputPill.classList.remove('shake-error'), 400);
+        return;
+      }
+
+      AudioEngine.click();
+      emailSearchCard.style.display = 'none';
+      emailRecentSection.style.display = 'none';
+      emailSkeleton.style.display = 'flex';
+      emailResultsBox.style.display = 'none';
+      emailRecordsContainer.innerHTML = '';
+
+      try {
+        const res = await fetch(API.EMAIL + encodeURIComponent(q));
+        const data = await res.json();
+
+        emailSkeleton.style.display = 'none';
+        emailResultsBox.style.display = 'flex';
+        AudioEngine.success();
+
+        // Parse response structure - try common shapes
+        let breaches = [];
+        let totalBreaches = 0;
+
+        if (Array.isArray(data)) {
+          breaches = data;
+          totalBreaches = data.length;
+        } else if (data && Array.isArray(data.breaches)) {
+          breaches = data.breaches;
+          totalBreaches = data.total || data.breaches.length;
+        } else if (data && Array.isArray(data.data)) {
+          breaches = data.data;
+          totalBreaches = data.total || data.data.length;
+        } else if (data && Array.isArray(data.results)) {
+          breaches = data.results;
+          totalBreaches = data.total || data.results.length;
+        } else if (data && typeof data === 'object') {
+          breaches = [data];
+          totalBreaches = 1;
+        }
+
+        emailBreachCount.textContent = breaches.length;
+        emailStatusLabel.textContent = breaches.length > 0 ? 'COMPROMISED' : 'CLEAN';
+        emailSummaryDetail.textContent = `${breaches.length} visible · ${totalBreaches} total indexed`;
+
+        // Severity tags
+        emailSeverityTags.innerHTML = `
+          <span class="carrier-chip" style="color: #fff; background: #1a1a1a;">SEVERITY: ${breaches.length > 3 ? 'HIGH' : breaches.length > 0 ? 'MED' : 'LOW'}</span>
+          <span class="carrier-chip">TOTAL (${totalBreaches})</span>
+        `;
+
+        if (breaches.length === 0) {
+          emailRecordsContainer.innerHTML = `<div class="record-card"><div class="field-row"><span class="field-val" style="color: var(--text-muted);">No breaches found for this email. Good hygiene!</span></div></div>`;
+        } else {
+          breaches.forEach((b, idx) => {
+            const card = document.createElement('div');
+            card.className = 'record-card';
+            const name = b.name || b.breach || b.title || b.domain || `Breach #${idx + 1}`;
+            const attackDate = b.attack_date || b.date || b.breach_date || '—';
+            const uploadDate = b.upload_date || b.added_date || b.pwned_date || '—';
+            const rows = b.count || b.records || b.compromised_rows || b.pwn_count || '—';
+            const dataTypes = b.data_types || b.data || b.types || [];
+
+            card.innerHTML = `
+              <div class="record-header">
+                <span class="record-id" style="color: #fff;">${escapeHtml(String(name))}</span>
+                <span class="carrier-chip" style="background: #ffffff; color: #000; font-weight:700;">${breaches.length > 0 ? 'ACTIVE' : 'CLEAN'}</span>
+              </div>
+              <div class="field-row">
+                <span class="field-label">Attack Date</span>
+                <span class="field-connector"></span>
+                <span class="field-val">${escapeHtml(String(attackDate))}</span>
+              </div>
+              <div class="field-row">
+                <span class="field-label">Upload Date</span>
+                <span class="field-connector"></span>
+                <span class="field-val">${escapeHtml(String(uploadDate))}</span>
+              </div>
+              <div class="field-row">
+                <span class="field-label">Compromised Rows</span>
+                <span class="field-connector"></span>
+                <span class="field-val">${escapeHtml(String(rows))}</span>
+              </div>
+              ${Array.isArray(dataTypes) && dataTypes.length > 0 ? `
+                <div class="carrier-tags-row" style="margin-top: 4px; flex-wrap: wrap;">
+                  ${dataTypes.slice(0, 6).map(t => `<span class="carrier-chip">${escapeHtml(String(t))}</span>`).join('')}
+                </div>
+              ` : ''}
+            `;
+            emailRecordsContainer.appendChild(card);
+          });
+        }
+
+        emailJsonBody.textContent = JSON.stringify(data, null, 2);
+
+      } catch (err) {
+        emailSkeleton.style.display = 'none';
+        emailResultsBox.style.display = 'flex';
+        AudioEngine.error();
+        emailBreachCount.textContent = '0';
+        emailStatusLabel.textContent = 'ERROR';
+        emailRecordsContainer.innerHTML = `<div class="record-card"><div class="field-row"><span class="field-val" style="color: var(--danger);">API Error: ${escapeHtml(err.message)}</span></div></div>`;
+        emailJsonBody.textContent = JSON.stringify({ error: err.message }, null, 2);
+      }
+    }
+
+    emailScanBtn.addEventListener('click', () => runEmailScan());
+    emailInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') runEmailScan();
+    });
+
+    emailResetBtn.addEventListener('click', () => {
+      AudioEngine.click();
+      emailResultsBox.style.display = 'none';
+      emailSearchCard.style.display = 'block';
+      emailRecentSection.style.display = 'block';
+      emailInput.focus();
+    });
+
+    document.querySelectorAll('#email-search-card .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#email-search-card .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        emailInput.value = chip.dataset.email;
+        runEmailScan(chip.dataset.email);
+      });
+    });
+
+    document.querySelectorAll('#email-recent-section .query-item-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const q = card.dataset.email;
+        emailInput.value = q;
+        runEmailScan(q);
+      });
+    });
+
+    document.getElementById('clear-email-recents').addEventListener('click', () => {
+      AudioEngine.click();
+      document.querySelectorAll('#email-recent-section .query-item-card').forEach(c => c.style.display = 'none');
+    });
+
+    // ==========================================
+    // TAB 3: VEHICLE RC LOOKUP LOGIC (API WIRED)
+    // ==========================================
+    const vehicleInput = document.getElementById('vehicle-query-input');
+    const vehicleInputPill = document.getElementById('vehicle-input-pill');
+    const vehicleScanBtn = document.getElementById('vehicle-scan-btn');
+    const vehicleSearchCard = document.getElementById('vehicle-search-card');
+    const vehicleSkeleton = document.getElementById('vehicle-skeleton');
+    const vehicleResultsBox = document.getElementById('vehicle-results-box');
+    const vehicleRecentSection = document.getElementById('vehicle-recent-section');
+    const vehicleResetBtn = document.getElementById('vehicle-reset-btn');
+    const vehicleDisplayReg = document.getElementById('vehicle-display-reg');
+    const vehicleJsonBody = document.getElementById('vehicle-json-body');
+    const vehicleRtoLabel = document.getElementById('vehicle-rto-label');
+    const vehCopyBtn = document.getElementById('veh-copy-btn');
+
+    // Field mapping helper
+    const vehFields = {
+      'veh-owner-name': ['owner_name', 'owner', 'name'],
+      'veh-father-name': ['father_name', 'father', 'fname'],
+      'veh-phone': ['phone', 'mobile', 'contact'],
+      'veh-email': ['email', 'mail'],
+      'veh-address': ['address', 'addr', 'permanent_address'],
+      'veh-city': ['city', 'district'],
+      'veh-state': ['state'],
+      'veh-pincode': ['pincode', 'pin', 'zip'],
+      'veh-maker': ['maker', 'manufacturer', 'make'],
+      'veh-model': ['model', 'vehicle_model', 'maker_model'],
+      'veh-fuel': ['fuel_type', 'fuel'],
+      'veh-class': ['vehicle_class', 'class', 'vehicle_type'],
+      'veh-reg-date': ['registration_date', 'reg_date', 'regdate'],
+      'veh-rto': ['registered_rto', 'rto', 'rto_name'],
+      'veh-chassis': ['chassis_number', 'chassis', 'chassis_no'],
+      'veh-engine': ['engine_number', 'engine', 'engine_no'],
+      'veh-fitness': ['fitness_upto', 'fitness', 'fitness_valid_upto'],
+      'veh-insurer': ['insurance_company', 'insurer', 'insurance_provider'],
+      'veh-ins-num': ['insurance_number', 'policy_number', 'ins_number'],
+      'veh-ins-upto': ['insurance_upto', 'insurance_valid_upto', 'ins_valid_upto'],
+      'veh-puc': ['puc_number', 'puc_no', 'puc'],
+      'veh-puc-upto': ['puc_upto', 'puc_valid_upto'],
+      'veh-tax': ['tax_upto', 'tax', 'tax_valid_upto']
+    };
+
+    function getNestedValue(obj, keys) {
+      for (const key of keys) {
+        if (obj[key] !== undefined && obj[key] !== null && obj[key] !== '') return obj[key];
+      }
+      // Search nested objects
+      for (const k in obj) {
+        if (typeof obj[k] === 'object' && obj[k] !== null) {
+          for (const key of keys) {
+            if (obj[k][key] !== undefined && obj[k][key] !== null && obj[k][key] !== '') return obj[k][key];
+          }
+        }
+      }
+      return '—';
+    }
+
+    async function runVehicleScan(rcVal) {
+      const q = (rcVal || vehicleInput.value).replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+      if (q.length < 8 || q.length > 12) {
+        AudioEngine.error();
+        vehicleInputPill.classList.add('shake-error');
+        setTimeout(() => vehicleInputPill.classList.remove('shake-error'), 400);
+        return;
+      }
+
+      AudioEngine.click();
+      vehicleDisplayReg.textContent = q;
+      vehicleSearchCard.style.display = 'none';
+      vehicleRecentSection.style.display = 'none';
+      vehicleSkeleton.style.display = 'flex';
+      vehicleResultsBox.style.display = 'none';
+      vehCopyBtn.dataset.copy = q;
+
+      try {
+        const res = await fetch(API.VEHICLE + encodeURIComponent(q));
+        const data = await res.json();
+
+        vehicleSkeleton.style.display = 'none';
+        vehicleResultsBox.style.display = 'flex';
+        AudioEngine.success();
+
+        // Extract vehicle record from response
+        let record = data;
+        if (data && typeof data === 'object') {
+          if (data.data && typeof data.data === 'object') record = data.data;
+          else if (data.result && typeof data.result === 'object') record = data.result;
+          else if (data.records && Array.isArray(data.records) && data.records.length > 0) record = data.records[0];
+          else if (data.vehicle && typeof data.vehicle === 'object') record = data.vehicle;
+        }
+
+        // Update RTO label
+        const rto = getNestedValue(record, ['registered_rto', 'rto', 'rto_name', 'rto_code']);
+        vehicleRtoLabel.textContent = (rto !== '—' ? String(rto).toUpperCase() : q.slice(0, 4)) + ' · REGISTRATION CERTIFICATE';
+
+        // Populate all fields
+        for (const [elId, keys] of Object.entries(vehFields)) {
+          const el = document.getElementById(elId);
+          if (el) {
+            let val = getNestedValue(record, keys);
+            if (typeof val === 'string' && (keys.includes('date') || keys.includes('upto') || keys.includes('valid'))) {
+              // Format dates if possible
+              const d = new Date(val);
+              if (!isNaN(d.getTime())) val = d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+            }
+            el.textContent = val !== '—' && val !== '' ? String(val) : '—';
+          }
+        }
+
+        vehicleJsonBody.textContent = JSON.stringify(data, null, 2);
+
+      } catch (err) {
+        vehicleSkeleton.style.display = 'none';
+        vehicleResultsBox.style.display = 'flex';
+        AudioEngine.error();
+        vehicleJsonBody.textContent = JSON.stringify({ error: err.message }, null, 2);
+      }
+    }
+
+    vehicleScanBtn.addEventListener('click', () => runVehicleScan());
+    vehicleInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') runVehicleScan();
+    });
+
+    vehicleResetBtn.addEventListener('click', () => {
+      AudioEngine.click();
+      vehicleResultsBox.style.display = 'none';
+      vehicleSearchCard.style.display = 'block';
+      vehicleRecentSection.style.display = 'block';
+      vehicleInput.focus();
+    });
+
+    document.querySelectorAll('#vehicle-search-card .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#vehicle-search-card .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        vehicleInput.value = chip.dataset.v;
+        runVehicleScan(chip.dataset.v);
+      });
+    });
+
+    document.querySelectorAll('#vehicle-recent-section .query-item-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const q = card.dataset.v;
+        vehicleInput.value = q;
+        runVehicleScan(q);
+      });
+    });
+
+    document.getElementById('clear-vehicle-recents').addEventListener('click', () => {
+      AudioEngine.click();
+      document.querySelectorAll('#vehicle-recent-section .query-item-card').forEach(c => c.style.display = 'none');
+    });
+
+    // ==========================================
+    // TAB 4: YUKI AI CHAT LOGIC (API WIRED)
+    // ==========================================
+    const chatFeed = document.getElementById('chat-feed');
+    const chatInput = document.getElementById('chat-input');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+    const yukiTyping = document.getElementById('yuki-typing');
+    const initialPrompts = document.getElementById('yuki-initial-prompts');
+
+    function getTimeStamp() {
+      const now = new Date();
+      return now.toTimeString().split(' ')[0];
+    }
+
+    function appendUserMessage(text) {
+      const wrap = document.createElement('div');
+      wrap.className = 'msg-group user';
+      wrap.innerHTML = `
+        <div class="msg-bubble">${escapeHtml(text)}</div>
+        <span class="msg-timestamp">YOU · ${getTimeStamp()}</span>
+      `;
+      chatFeed.appendChild(wrap);
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+
+      window.yukiHistory.push({ role: 'user', content: text, timestamp: new Date().toISOString() });
+      if (window.yukiHistory.length > 20) window.yukiHistory.shift();
+    }
+
+    function appendYukiMessage(text) {
+      const wrap = document.createElement('div');
+      wrap.className = 'msg-group yuki';
+      wrap.innerHTML = `
+        <div class="msg-bubble">${escapeHtml(text)}</div>
+        <span class="msg-timestamp">YUKI · ${getTimeStamp()}</span>
+      `;
+      chatFeed.appendChild(wrap);
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+
+      window.yukiHistory.push({ role: 'assistant', content: text, timestamp: new Date().toISOString() });
+      if (window.yukiHistory.length > 20) window.yukiHistory.shift();
+    }
+
+    async function handleChatSend(textOverride) {
+      const msg = (textOverride || chatInput.value).trim();
+      if (!msg) return;
+
+      AudioEngine.click();
+      if (initialPrompts) initialPrompts.style.display = 'none';
+      appendUserMessage(msg);
+      chatInput.value = '';
+
+      // Show typing indicator
+      yukiTyping.style.display = 'flex';
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+
+      try {
+        const res = await fetch(API.YUKI, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: msg,
+            history: window.yukiHistory
+          })
+        });
+
+        let replyText = '';
+        const contentType = res.headers.get('content-type') || '';
+
+        if (contentType.includes('application/json')) {
+          const data = await res.json();
+          replyText = data.reply || data.response || data.message || data.text || data.answer || JSON.stringify(data);
+        } else {
+          replyText = await res.text();
+        }
+
+        yukiTyping.style.display = 'none';
+        AudioEngine.success();
+        appendYukiMessage(replyText || 'No response from Yuki.');
+
+      } catch (err) {
+        // Try GET fallback if POST fails
+        try {
+          const res2 = await fetch(API.YUKI + '?message=' + encodeURIComponent(msg));
+          const text = await res2.text();
+          yukiTyping.style.display = 'none';
+          AudioEngine.success();
+          appendYukiMessage(text || 'No response from Yuki.');
+        } catch (err2) {
+          yukiTyping.style.display = 'none';
+          AudioEngine.error();
+          appendYukiMessage('Error connecting to Yuki AI: ' + err2.message);
+        }
+      }
+    }
+
+    chatSendBtn.addEventListener('click', () => handleChatSend());
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleChatSend();
+    });
+
+    document.querySelectorAll('.prompt-chip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        handleChatSend(btn.dataset.chat);
+      });
+    });
+
+    function escapeHtml(string) {
+      const p = document.createElement('p');
+      p.appendChild(document.createTextNode(string));
+      return p.innerHTML;
+    }
   </script>
-</div><footer class="mt-space-xl px-gutter-mobile pb-space-lg pt-space-md text-center flex flex-col items-center gap-space-sm text-on-surface-variant"><div class="flex items-center gap-space-md font-label-md text-label-md"><span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface">API v2.4</span><span class="hover:text-primary transition-colors cursor-pointer">DOCS</span><span class="hover:text-primary transition-colors cursor-pointer">STATUS</span></div><p class="font-body-sm text-body-sm text-outline">© 2025 TubeVault Inc. AMOLED ARCHIVE ENGINE.</p></footer></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-black/90 backdrop-blur-2xl shadow-[0_-4px_24px_rgba(0,0,0,0.9)]" data-active-classes="text-primary scale-105"><div class="flex justify-around items-center h-16 px-gutter-mobile"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] transition-all text-primary scale-105" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">download</span><span class="font-label-sm text-label-sm uppercase">Vault</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="active-queue" href="#"><span class="material-symbols-outlined text-[22px]">stream</span><span class="font-label-sm text-label-sm uppercase">Queue</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="storage-archive" href="#"><span class="material-symbols-outlined text-[22px]">folder_zip</span><span class="font-label-sm text-label-sm uppercase">Archive</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="terminal-logs" href="#"><span class="material-symbols-outlined text-[22px]">terminal</span><span class="font-label-sm text-label-sm uppercase">Logs</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="settings" href="#"><span class="material-symbols-outlined text-[22px]">tune</span><span class="font-label-sm text-label-sm uppercase">Config</span></a></div></nav></body></html>
+</body>
+</html>
