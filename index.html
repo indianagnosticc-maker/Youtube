@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YT to MP3 Downloader</title>
+  <title>YT to MP3 Converter</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,81 +12,89 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     body {
-      background: #0f172a;
+      background: #090d16;
       color: #f8fafc;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 20px;
+      padding: 16px;
     }
     .card {
-      background: #1e293b;
-      padding: 30px 24px;
+      background: #131b2e;
+      padding: 30px 20px;
       border-radius: 16px;
       width: 100%;
-      max-width: 440px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      max-width: 400px;
+      border: 1px solid #1e293b;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
       text-align: center;
     }
     h1 {
-      font-size: 1.5rem;
-      margin-bottom: 8px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
     p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #94a3b8;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
     input {
       width: 100%;
-      padding: 14px 16px;
+      padding: 14px;
       border-radius: 10px;
       border: 1px solid #334155;
-      background: #0f172a;
+      background: #090d16;
       color: #fff;
       font-size: 0.95rem;
       outline: none;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
     }
     input:focus {
       border-color: #38bdf8;
     }
     button {
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       border-radius: 10px;
       border: none;
       background: #38bdf8;
-      color: #0f172a;
+      color: #090d16;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: opacity 0.2s;
     }
     button:hover {
-      background: #7dd3fc;
+      opacity: 0.9;
     }
     button:disabled {
-      background: #475569;
-      color: #94a3b8;
+      background: #1e293b;
+      color: #64748b;
       cursor: not-allowed;
     }
     .status-box {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      line-height: 1.5;
+      margin-top: 18px;
+      min-height: 46px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.88rem;
     }
     .status-text {
       color: #38bdf8;
     }
     .error-text {
       color: #f87171;
+      word-break: break-word;
     }
     .download-btn {
       display: inline-block;
-      margin-top: 14px;
-      padding: 12px 20px;
+      margin-top: 10px;
+      padding: 12px 22px;
       background: #22c55e;
       color: #ffffff;
       text-decoration: none;
@@ -103,9 +111,9 @@
 
   <div class="card">
     <h1>YT to MP3 Converter</h1>
-    <p>Paste any YouTube video link to extract audio</p>
+    <p>Paste any YouTube link to convert & download MP3</p>
 
-    <input type="text" id="ytUrl" placeholder="https://youtube.com/watch?v=..." />
+    <input type="text" id="ytUrl" placeholder="https://youtu.be/..." />
     <button id="convertBtn" onclick="startDownload()">Convert to MP3</button>
 
     <div class="status-box" id="statusContainer"></div>
@@ -118,32 +126,32 @@
       const urlInput = document.getElementById("ytUrl");
       const convertBtn = document.getElementById("convertBtn");
       const statusDiv = document.getElementById("statusContainer");
-      const url = urlInput.value.trim();
+      const rawUrl = urlInput.value.trim();
 
-      if (!url) {
-        statusDiv.innerHTML = `<span class="error-text">Please enter a valid link!</span>`;
+      if (!rawUrl) {
+        statusDiv.innerHTML = `<span class="error-text">Please enter a valid YouTube link!</span>`;
         return;
       }
 
-      // UI state reset
       convertBtn.disabled = true;
-      statusDiv.innerHTML = `<span class="status-text">Submitting request...</span>`;
+      statusDiv.innerHTML = `<span class="status-text">Starting server task...</span>`;
 
       try {
         const response = await fetch(`${API_BASE}/download`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ url: url, format: "mp3" })
+          body: JSON.stringify({ url: rawUrl, format: "mp3" })
         });
 
         if (!response.ok) {
-          throw new Error("Failed to start download task.");
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.detail || "Server rejected request.");
         }
 
         const data = await response.json();
         const jobId = data.job_id;
 
-        statusDiv.innerHTML = `<span class="status-text">Converting audio... (Please wait ~20-40s)</span>`;
+        statusDiv.innerHTML = `<span class="status-text">Converting audio... (wait ~20-40s)</span>`;
         pollForFile(jobId);
 
       } catch (err) {
@@ -157,29 +165,30 @@
       const convertBtn = document.getElementById("convertBtn");
       const fileUrl = `${API_BASE}/file/${jobId}`;
       let attempts = 0;
-      const maxAttempts = 30; // Max ~60 seconds wait
+      const maxAttempts = 35; // ~70 seconds timeout
 
       const interval = setInterval(async () => {
         attempts++;
         try {
-          const res = await fetch(fileUrl, { method: "HEAD" });
+          // Check if file is available using GET
+          const res = await fetch(fileUrl, { method: "GET" });
 
-          if (res.ok) {
+          if (res.status === 200) {
             clearInterval(interval);
             statusDiv.innerHTML = `
-              <p style="color: #4ade80; margin-bottom: 5px;">Your MP3 is ready!</p>
-              <a href="${fileUrl}" class="download-btn" download>Download MP3</a>
+              <p style="color: #4ade80; margin-bottom: 6px;">Audio Ready!</p>
+              <a href="${fileUrl}" class="download-btn" target="_blank" download="audio.mp3">Download MP3</a>
             `;
             convertBtn.disabled = false;
           } else if (attempts >= maxAttempts) {
             clearInterval(interval);
-            statusDiv.innerHTML = `<span class="error-text">Conversion timeout. Server is slow or video is too long.</span>`;
+            statusDiv.innerHTML = `<span class="error-text">Timeout: File taking too long or server failed.</span>`;
             convertBtn.disabled = false;
           }
         } catch (e) {
           if (attempts >= maxAttempts) {
             clearInterval(interval);
-            statusDiv.innerHTML = `<span class="error-text">Failed to fetch file.</span>`;
+            statusDiv.innerHTML = `<span class="error-text">Network error while checking status.</span>`;
             convertBtn.disabled = false;
           }
         }
