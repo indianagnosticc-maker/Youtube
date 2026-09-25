@@ -618,14 +618,33 @@
   .editor-lines {
     width: 44px; padding: 12px 6px; text-align: right; font-family: 'JetBrains Mono', monospace;
     font-size: 12px; line-height: 20px; color: var(--text-4); background: var(--surface-1);
-    border-right: 1px solid var(--border-1); user-select: none;
+    border-right: 1px solid var(--border-1); user-select: none; overflow: hidden;
   }
-  .editor-textarea-container { flex: 1; position: relative; }
+  .editor-textarea-container { flex: 1; position: relative; min-width: 0; }
+  .editor-highlight,
   .editor-textarea {
-    width: 100%; height: 100%; background: transparent; border: none; outline: none;
-    padding: 12px 14px; color: var(--editor-code); font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; line-height: 20px; resize: none; white-space: pre; caret-color: var(--text);
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    margin: 0; border: none; outline: none;
+    padding: 12px 14px; font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 20px; tab-size: 2;
+    white-space: pre; overflow: hidden;
   }
+  .editor-highlight {
+    z-index: 1; pointer-events: none; color: var(--editor-code);
+    background: transparent;
+  }
+  .editor-textarea {
+    z-index: 2; background: transparent; color: transparent;
+    -webkit-text-fill-color: transparent; caret-color: var(--text);
+    resize: none; white-space: pre; overflow: auto;
+  }
+  .editor-textarea::selection { background: rgba(100, 150, 255, 0.28); }
+  .syntax-tag { color: #7dd3fc; }
+  .syntax-keyword { color: #c084fc; }
+  .syntax-string { color: #86efac; }
+  .syntax-comment { color: #64748b; font-style: italic; }
+  .syntax-number { color: #fbbf24; }
+  .syntax-operator { color: #f9a8d4; }
   .editor-bottombar {
     display: flex; justify-content: space-between; align-items: center; padding: 8px 14px;
     background: var(--surface-2); border-top: 1px solid var(--border-1);
@@ -1020,6 +1039,7 @@
 <div class="editor-workspace">
 <div class="editor-lines" id="editor-lines">1</div>
 <div class="editor-textarea-container">
+<pre class="editor-highlight" id="editor-highlight" aria-hidden="true"></pre>
 <textarea class="editor-textarea" id="code-input" placeholder="// Write or paste code here..." spellcheck="false"></textarea>
 </div>
 </div>
@@ -1478,6 +1498,7 @@ const LANG_LABELS = {
 let audio, snow;
 const codeInput = document.getElementById('code-input');
 const editorLines = document.getElementById('editor-lines');
+const editorHighlight = document.getElementById('editor-highlight');
 const charStat = document.getElementById('char-stat');
 const lineStat = document.getElementById('line-stat');
 const fileTitle = document.getElementById('file-title');
@@ -1741,6 +1762,37 @@ function onLanguageSelect(lang, notify = true) {
   if (notify && audio) audio.play('toggle');
 }
 
+function escapeEditorHtml(value) {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function highlightEditorCode(value) {
+  const tokenPattern = /(<!--[\s\S]*?-->|\/\*[\s\S]*?\*\/|\/\/[^\n]*|#[^\n]*|<\/?[A-Za-z][^>]*>|\b(?:const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|new|class|extends|try|catch|finally|throw|async|await|import|from|export|default|true|false|null|undefined|def|in|and|or|not|print|public|private|static|void|int|float|bool|using|namespace|fn|mut|package|func|echo)\b|(?:\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`)|\b\d+(?:\.\d+)?\b|===|!==|=>|==|!=|<=|>=|&&|\|\||[+*%!=<>?:-])/g;
+  let output = '';
+  let lastIndex = 0;
+  let match;
+  while ((match = tokenPattern.exec(value)) !== null) {
+    output += escapeEditorHtml(value.slice(lastIndex, match.index));
+    const token = match[0];
+    let className = 'syntax-operator';
+    if (/^<!--|^\/\*|^\/\//.test(token) || (currentLang === 'python' && /^#/.test(token))) className = 'syntax-comment';
+    else if (/^<\/?[A-Za-z]/.test(token)) className = 'syntax-tag';
+    else if (/^[\"'`]/.test(token)) className = 'syntax-string';
+    else if (/^\d/.test(token)) className = 'syntax-number';
+    else if (/^[A-Za-z_]/.test(token)) className = 'syntax-keyword';
+    output += `<span class="${className}">${escapeEditorHtml(token)}</span>`;
+    lastIndex = tokenPattern.lastIndex;
+  }
+  output += escapeEditorHtml(value.slice(lastIndex));
+  return output || ' ';
+}
+
+function syncEditorScroll() {
+  editorHighlight.scrollTop = codeInput.scrollTop;
+  editorHighlight.scrollLeft = codeInput.scrollLeft;
+  editorLines.scrollTop = codeInput.scrollTop;
+}
+
 function updateEditorStats() {
   const val = codeInput.value;
   charStat.innerText = `${val.length} chars`;
@@ -1752,7 +1804,8 @@ function updateEditorStats() {
     numHtml += i + '<br>';
   }
   editorLines.innerHTML = numHtml;
-  editorLines.scrollTop = codeInput.scrollTop;
+  editorHighlight.innerHTML = highlightEditorCode(val);
+  syncEditorScroll();
 }
 
 codeInput.addEventListener('input', () => {
@@ -1760,9 +1813,7 @@ codeInput.addEventListener('input', () => {
   if (audio) audio.play('key');
 }, { passive: true });
 
-codeInput.addEventListener('scroll', () => {
-  editorLines.scrollTop = codeInput.scrollTop;
-}, { passive: true });
+codeInput.addEventListener('scroll', syncEditorScroll, { passive: true });
 
 codeInput.addEventListener('keydown', (e) => {
   if (e.key === 'Tab') {
