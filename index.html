@@ -74,16 +74,23 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Silky smooth Theme Transition Animation CSS with uniform steady pacing */
+  /* Smooth theme transition: scoped to theme surfaces, without overriding
+     every component's own transition timing or causing layout-wide jank. */
   html.theme-transitioning,
-  html.theme-transitioning *,
-  html.theme-transitioning *::before,
-  html.theme-transitioning *::after {
-    transition: background-color 750ms linear,
-                border-color 750ms linear,
-                color 750ms linear,
-                box-shadow 750ms linear !important;
-    transition-delay: 0s !important;
+  html.theme-transitioning body,
+  html.theme-transitioning body::before,
+  html.theme-transitioning body::after {
+    transition: background-color 420ms cubic-bezier(.22, 1, .36, 1),
+                color 420ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.theme-transitioning,
+    html.theme-transitioning body,
+    html.theme-transitioning body::before,
+    html.theme-transitioning body::after {
+      transition-duration: 1ms !important;
+    }
   }
 
   /* GPU-Accelerated Circular Ripple Wave Canvas */
@@ -903,7 +910,7 @@
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
 <span>OSINT</span>
 </a>
-<a class="banner-pill-btn" href="http://yuki-chats.vercel.app" onclick="handleBannerClick(event, 'CHATS', 'kwkwkwkw')" rel="noopener noreferrer" target="_blank">
+<a class="banner-pill-btn" href="https://yuki-chats.vercel.app" onclick="handleBannerClick(event, 'CHATS', 'kwkwkwkw')" rel="noopener noreferrer" target="_blank">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
 <span>CHATS</span>
 </a>
@@ -1488,17 +1495,18 @@ function nowStr() { return new Date().toTimeString().split(' ')[0]; }
 ============================================================ */
 function triggerThemeChange(targetTheme, event) {
   if (isThemeTransitioning) return;
-  const currentIsLight = document.documentElement.classList.contains('light');
+
+  const root = document.documentElement;
+  const currentIsLight = root.classList.contains('light');
   const targetIsLight = targetTheme === 'light';
   if (currentIsLight === targetIsLight) return;
 
   isThemeTransitioning = true;
   if (audio) audio.play('toggle');
 
-  // Calculate coordinates of trigger
   let x = window.innerWidth - 70;
   let y = 32;
-  if (event && event.clientX !== undefined && event.clientY !== undefined) {
+  if (event && Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
     x = event.clientX;
     y = event.clientY;
   } else {
@@ -1510,40 +1518,57 @@ function triggerThemeChange(targetTheme, event) {
     }
   }
 
-  // Feature detection for native document.startViewTransition
-  if (document.startViewTransition) {
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
+  const reducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const transition = document.startViewTransition(() => {
-      applyThemeState(targetIsLight);
-    });
+  if (reducedMotion) {
+    applyThemeState(targetIsLight);
+    isThemeTransitioning = false;
+    return;
+  }
 
-    transition.ready.then(() => {
-      const anim = document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`
-          ]
-        },
-        {
-          duration: 750,
-          easing: 'linear',
-          pseudoElement: '::view-transition-new(root)'
-        }
-      );
-      anim.onfinish = () => {
-        isThemeTransitioning = false;
-      };
-    }).catch(() => {
-      // Fallback if transition fails
+  const endRadius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y)
+  );
+  const duration = 680;
+  const easing = 'cubic-bezier(.22, 1, .36, 1)';
+
+  if (typeof document.startViewTransition === 'function') {
+    let transition;
+    try {
+      transition = document.startViewTransition(() => {
+        applyThemeState(targetIsLight);
+      });
+
+      transition.ready.then(() => {
+        const anim = document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`
+            ]
+          },
+          {
+            duration,
+            easing,
+            fill: 'both',
+            pseudoElement: '::view-transition-new(root)'
+          }
+        );
+
+        anim.finished.then(() => {
+          isThemeTransitioning = false;
+        }).catch(() => {
+          isThemeTransitioning = false;
+        });
+      }).catch(() => {
+        runCanvasCircleAnimation(x, y, targetIsLight);
+      });
+    } catch (error) {
       runCanvasCircleAnimation(x, y, targetIsLight);
-    });
+    }
   } else {
-    // Canvas Fallback for 100% cross-browser silky circle expansion
     runCanvasCircleAnimation(x, y, targetIsLight);
   }
 }
@@ -1556,44 +1581,56 @@ function runCanvasCircleAnimation(x, y, targetIsLight) {
     return;
   }
 
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) {
+    applyThemeState(targetIsLight);
+    isThemeTransitioning = false;
+    return;
+  }
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.round(width * dpr);
+  canvas.height = Math.round(height * dpr);
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
   const targetBg = targetIsLight ? '#ffffff' : '#000000';
   const maxRadius = Math.hypot(
-    Math.max(x, window.innerWidth - x),
-    Math.max(y, window.innerHeight - y)
+    Math.max(x, width - x),
+    Math.max(y, height - y)
   );
-
-  const duration = 750;
+  const duration = 680;
   const startTime = performance.now();
+  let themeApplied = false;
 
-  // Add smooth global CSS transition to smoothly interpolate borders/texts
   document.documentElement.classList.add('theme-transitioning');
 
+  // Reveal the new theme beneath the expanding circle. Switching at the
+  // midpoint prevents the old theme from visibly flashing at the edges.
   function draw(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    // Smooth, uniform steady progression without abrupt deceleration or end jerk
-    const eased = progress;
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
     const radius = eased * maxRadius;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (!themeApplied && progress >= 0.42) {
+      applyThemeState(targetIsLight);
+      themeApplied = true;
+    }
+
+    ctx.clearRect(0, 0, width, height);
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2);
     ctx.fillStyle = targetBg;
     ctx.fill();
 
-    // Switch theme halfway so everything updates cleanly under the circle
-    if (progress >= 0.5 && document.documentElement.classList.contains('light') !== targetIsLight) {
-      applyThemeState(targetIsLight);
-    }
-
     if (progress < 1) {
       requestAnimationFrame(draw);
     } else {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!themeApplied) applyThemeState(targetIsLight);
+      ctx.clearRect(0, 0, width, height);
       document.documentElement.classList.remove('theme-transitioning');
       isThemeTransitioning = false;
     }
