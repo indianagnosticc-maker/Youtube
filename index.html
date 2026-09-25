@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html class="dark" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
-<title>YUKI-VIEW • INTELLIGENCE CODE-VIEWER</title>
+<title>YUKI-VIEW • CODE-VIEWER</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
   :root {
     --bg: #000000;
@@ -33,7 +34,6 @@
     --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 22px;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
     --fast: 140ms; --med: 220ms; --slow: 380ms;
-    --snow-color: 255, 255, 255;
   }
 
   html.light {
@@ -58,7 +58,6 @@
     --indicator-bg: #000000;
     --dot-color: #ef4444;
     --dot-glow: rgba(239, 68, 68, 0.75);
-    --snow-color: 0, 0, 0;
   }
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
@@ -77,95 +76,45 @@
     transition: background-color var(--med) var(--ease), color var(--med) var(--ease);
   }
 
-  /* Dedicated Theme Transition Overlay */
   #theme-transition-overlay {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 99999;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.08);
-    transform: translateZ(0);
-    will-change: opacity;
+    position: fixed; inset: 0; pointer-events: none; z-index: 99999;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    opacity: 0; background: rgba(0, 0, 0, 0.08);
+    transform: translateZ(0); will-change: opacity;
     transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  #theme-transition-overlay.active {
-    opacity: 1;
-  }
+  #theme-transition-overlay.active { opacity: 1; }
 
   #snow-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.75;
-    transform: translateZ(0);
-    will-change: transform;
+    position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none;
+    z-index: 1; opacity: 0.75; transform: translateZ(0); will-change: transform;
     transition: opacity var(--slow) var(--ease);
   }
   #snow-canvas.off { opacity: 0; }
 
   /* Header */
   .app-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    width: 100%;
-    background: var(--header-bg);
-    backdrop-filter: blur(24px) saturate(180%);
+    position: sticky; top: 0; z-index: 50; width: 100%;
+    background: var(--header-bg); backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-bottom: 1px solid var(--border-1);
     transform: translateZ(0);
     transition: background var(--med) var(--ease), border-color var(--med) var(--ease);
   }
   .header-inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 18px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    max-width: 1080px; margin: 0 auto; padding: 0 18px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
   }
   .brand-group { display: flex; align-items: center; gap: 11px; }
   .brand-avatar {
-    position: relative;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    border: 1.5px solid var(--border-3);
-    background: var(--surface-solid);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 38px; height: 38px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    border: 1.5px solid var(--border-3); background: var(--surface-solid);
+    display: flex; align-items: center; justify-content: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-    transform: translateZ(0);
-    transition: border-color var(--med) var(--ease), box-shadow var(--med) var(--ease);
   }
-  .brand-avatar-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transform: scale(1.12) translateZ(0);
-    display: block;
-    border-radius: 50%;
-  }
+  .brand-avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .brand-meta { display: flex; flex-direction: column; min-width: 0; }
-  .brand-name {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text);
-  }
+  .brand-name { font-size: 13px; font-weight: 700; letter-spacing: 1.2px; font-family: 'JetBrains Mono', monospace; color: var(--text); }
   .brand-name .dim { color: var(--text-3); font-weight: 500; }
   .brand-tag { font-size: 9px; color: var(--text-3); font-family: 'JetBrains Mono', monospace; letter-spacing: 1.4px; }
   
@@ -173,1028 +122,590 @@
   .telem { display: flex; align-items: center; gap: 6px; color: var(--text); }
   .telem .muted { color: var(--text-3); }
   .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--dot-color);
-    box-shadow: 0 0 8px var(--dot-glow);
-    animation: dotPulse 2.6s var(--ease) infinite;
-    transform: translateZ(0);
-    transition: background 200ms var(--ease), box-shadow 200ms var(--ease);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--dot-color);
+    box-shadow: 0 0 8px var(--dot-glow); animation: dotPulse 2.6s var(--ease) infinite;
   }
   @keyframes dotPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.85); } }
 
   .header-actions { display: flex; align-items: center; gap: 6px; }
   .icon-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--r-sm);
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-2);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateZ(0);
-    transition: transform var(--fast) var(--ease), color var(--fast) var(--ease), background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+    width: 36px; height: 36px; border-radius: var(--r-sm); background: transparent;
+    border: 1px solid transparent; color: var(--text-2); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all var(--fast) var(--ease);
   }
   .icon-btn svg { width: 17px; height: 17px; }
-  .icon-btn:hover { color: var(--text); background: var(--surface-2); border-color: var(--border-2); transform: translateY(-1px) translateZ(0); }
-  .icon-btn:active { transform: scale(0.95) translateZ(0); }
+  .icon-btn:hover { color: var(--text); background: var(--surface-2); border-color: var(--border-2); }
+  .icon-btn:active { transform: scale(0.95); }
 
   /* Settings Drawer */
   .drawer-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 900;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateZ(0);
-    will-change: opacity;
-    transition: opacity var(--med) var(--ease);
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    z-index: 900; opacity: 0; pointer-events: none; transition: opacity var(--med) var(--ease);
   }
   .drawer-backdrop.open { opacity: 1; pointer-events: auto; }
   
   .drawer-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    max-width: 390px;
-    z-index: 999;
-    padding: 12px;
-    pointer-events: none;
-    display: flex;
+    position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 390px;
+    z-index: 999; padding: 12px; pointer-events: none; display: flex;
   }
   .drawer {
-    width: 100%;
-    height: 100%;
-    border-radius: var(--r-xl);
-    background: rgba(14, 14, 17, 0.88);
-    backdrop-filter: blur(36px) saturate(190%);
+    width: 100%; height: 100%; border-radius: var(--r-xl);
+    background: rgba(14, 14, 17, 0.88); backdrop-filter: blur(36px) saturate(190%);
     -webkit-backdrop-filter: blur(36px) saturate(190%);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: -12px 0 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.05);
-    display: flex;
-    flex-direction: column;
-    pointer-events: auto;
-    transform: translate3d(115%, 0, 0);
-    will-change: transform;
-    transition: transform var(--slow) var(--ease);
+    box-shadow: -12px 0 50px rgba(0, 0, 0, 0.6);
+    display: flex; flex-direction: column; pointer-events: auto;
+    transform: translate3d(115%, 0, 0); transition: transform var(--slow) var(--ease);
     overflow: hidden;
   }
-  html.light .drawer {
-    background: #ffffff;
-    border: 1px solid #cccccc;
-    box-shadow: -12px 0 50px rgba(0, 0, 0, 0.12), 0 0 0 1px #e5e5e5;
-  }
+  html.light .drawer { background: #ffffff; border: 1px solid #cccccc; }
   .drawer-container.open .drawer { transform: translate3d(0, 0, 0); }
 
-  .drawer-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 22px 16px;
-    border-bottom: 1px solid var(--border-1);
-  }
-  .drawer-brand { display: flex; flex-direction: column; gap: 2px; }
-  .drawer-title { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; font-family: 'JetBrains Mono', monospace; color: var(--text); }
-  .drawer-sub { font-size: 10px; color: var(--text-3); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.8px; }
-  
+  .drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 20px 22px 16px; border-bottom: 1px solid var(--border-1); }
+  .drawer-title { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; font-family: 'JetBrains Mono', monospace; }
+  .drawer-sub { font-size: 10px; color: var(--text-3); font-family: 'JetBrains Mono', monospace; }
   .drawer-close {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-2);
-    color: var(--text-2);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateZ(0);
-    transition: all var(--fast) var(--ease);
+    width: 32px; height: 32px; border-radius: 8px; background: var(--surface-2);
+    border: 1px solid var(--border-2); color: var(--text-2); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
   }
   .drawer-close svg { width: 14px; height: 14px; }
-  .drawer-close:hover { color: var(--text); border-color: var(--border-3); transform: rotate(90deg) translateZ(0); }
-
-  .drawer-scroll-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
-  }
-
+  .drawer-scroll-body { flex: 1; overflow-y: auto; padding: 20px 22px; display: flex; flex-direction: column; gap: 24px; }
   .drawer-section { display: flex; flex-direction: column; gap: 12px; }
   .drawer-group-label {
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-3);
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--text-3);
+    letter-spacing: 1.6px; text-transform: uppercase; font-weight: 600; display: flex; align-items: center; gap: 6px;
   }
   .drawer-group-label::after { content: ""; flex: 1; height: 1px; background: var(--border-1); }
 
-  .theme-selector-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    background: var(--surface-2);
-    padding: 4px;
-    border-radius: var(--r-md);
-    border: 1px solid var(--border-1);
-  }
+  .theme-selector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: var(--surface-2); padding: 4px; border-radius: var(--r-md); border: 1px solid var(--border-1); }
   .theme-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: var(--r-sm);
-    background: transparent;
-    border: none;
-    color: var(--text-3);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11.5px;
-    font-weight: 600;
-    cursor: pointer;
-    transform: translateZ(0);
-    transition: all var(--fast) var(--ease);
+    display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px;
+    border-radius: var(--r-sm); background: transparent; border: none; color: var(--text-3);
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600; cursor: pointer;
   }
   .theme-btn svg { width: 14px; height: 14px; }
-  .theme-btn.active {
-    background: var(--surface-solid);
-    color: var(--text);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border: 1px solid var(--border-2);
-  }
-  html.light .theme-btn.active {
-    background: #000000;
-    color: #ffffff;
-    border-color: #000000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
+  .theme-btn.active { background: var(--surface-solid); color: var(--text); border: 1px solid var(--border-2); }
+  html.light .theme-btn.active { background: #000; color: #fff; }
 
-  .drawer-card {
-    background: var(--surface-1);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-md);
-    padding: 12px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .drawer-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    color: var(--text-2);
-    letter-spacing: 0.6px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .drawer-item .item-title { display: flex; flex-direction: column; }
+  .drawer-card { background: var(--surface-1); border: 1px solid var(--border-1); border-radius: var(--r-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
+  .drawer-item { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-2); font-family: 'JetBrains Mono', monospace; }
   .drawer-item .item-sub { font-size: 9.5px; color: var(--text-3); font-weight: 400; }
 
   .switch { position: relative; display: inline-block; width: 40px; height: 22px; flex-shrink: 0; }
   .switch input { opacity: 0; width: 0; height: 0; }
   .slider {
-    position: absolute;
-    inset: 0;
-    cursor: pointer;
-    background: var(--surface-3);
-    border: 1px solid var(--border-2);
-    border-radius: 22px;
-    transform: translateZ(0);
-    transition: background var(--med) var(--ease), border-color var(--med) var(--ease);
+    position: absolute; inset: 0; cursor: pointer; background: var(--surface-3);
+    border: 1px solid var(--border-2); border-radius: 22px; transition: background var(--med) var(--ease);
   }
   .slider:before {
-    content: "";
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background: var(--text-3);
-    border-radius: 50%;
-    transform: translate3d(0,0,0);
-    will-change: transform;
-    transition: transform var(--med) var(--ease), background var(--med) var(--ease);
+    content: ""; position: absolute; height: 16px; width: 16px; left: 2px; bottom: 2px;
+    background: var(--text-3); border-radius: 50%; transition: transform var(--med) var(--ease);
   }
   input:checked + .slider { background: var(--text); border-color: var(--text); }
   input:checked + .slider:before { transform: translate3d(18px, 0, 0); background: var(--bg); }
 
   .volume-row { display: flex; flex-direction: column; gap: 8px; }
-  .volume-head {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-3);
-    letter-spacing: 1px;
-  }
-  .volume-head span:last-child { color: var(--text); font-weight: 600; }
-  .vol-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 99px;
-    background: var(--surface-3);
-    outline: none;
-    cursor: pointer;
-  }
-  .vol-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: var(--text);
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    transform: translateZ(0);
-    transition: transform var(--fast) var(--ease);
-  }
-  .vol-slider::-webkit-slider-thumb:hover { transform: scale(1.2) translateZ(0); }
+  .volume-head { display: flex; justify-content: space-between; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-3); }
+  .vol-slider { -webkit-appearance: none; width: 100%; height: 4px; border-radius: 99px; background: var(--surface-3); outline: none; }
+  .vol-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 15px; height: 15px; border-radius: 50%; background: var(--text); cursor: pointer; }
 
   .drawer-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    border-radius: var(--r-sm);
-    background: var(--surface-2);
-    border: 1px solid var(--border-1);
-    color: var(--text);
-    text-decoration: none;
-    font-size: 11.5px;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.6px;
-    transform: translateZ(0);
-    transition: transform var(--fast) var(--ease), background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+    display: flex; align-items: center; justify-content: space-between; padding: 10px 14px;
+    border-radius: var(--r-sm); background: var(--surface-2); border: 1px solid var(--border-1);
+    color: var(--text); text-decoration: none; font-size: 11.5px; font-family: 'JetBrains Mono', monospace;
   }
-  .drawer-link:hover { background: var(--surface-3); border-color: var(--border-3); transform: translate3d(3px, 0, 0); }
 
   /* Main Layout */
   .layout {
-    position: relative;
-    z-index: 10;
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 20px 18px 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    overflow-y: visible;
+    position: relative; z-index: 10; max-width: 920px; margin: 0 auto;
+    padding: 20px 18px 80px; display: flex; flex-direction: column; gap: 18px;
   }
 
   .banner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    background: var(--surface-1);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-md);
-    padding: 10px 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-    transform: translateZ(0);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    background: var(--surface-1); backdrop-filter: blur(20px); border: 1px solid var(--border-1);
+    border-radius: var(--r-md); padding: 10px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
   }
-  .banner-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
   .banner-chips { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
   .chip { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); }
   .chip .val { color: var(--text); font-weight: 600; }
-  
-  .banner-actions {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-left: auto;
-    flex-wrap: wrap;
-  }
+  .banner-actions { display: flex; align-items: center; gap: 7px; margin-left: auto; flex-wrap: wrap; }
   .banner-pill-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 11px;
-    border-radius: 99px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-2);
-    color: var(--text);
-    text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    cursor: pointer;
-    transform: translateZ(0);
-    transition: transform var(--fast) var(--ease), background var(--fast) var(--ease), border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
-    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 99px;
+    background: var(--surface-2); border: 1px solid var(--border-2); color: var(--text); text-decoration: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600;
   }
-  .banner-pill-btn:hover {
-    background: var(--surface-3);
-    border-color: var(--border-3);
-    transform: translateY(-1px) translateZ(0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  .banner-pill-btn:active { transform: scale(0.95) translateZ(0); }
-  .banner-pill-btn svg { width: 12px; height: 12px; stroke-width: 2.2; flex-shrink: 0; }
+  .banner-pill-btn svg { width: 12px; height: 12px; stroke-width: 2.2; }
   .banner-tag { font-size: 9.5px; color: var(--text-4); letter-spacing: 1.2px; padding-left: 2px; }
 
-  /* Fitted Segmented Tabs Bar (No blank space on Telemetry side) */
-  .tabs-wrapper {
-    position: relative;
-    width: fit-content;
-    max-width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-  }
+  /* Tabs Bar */
+  .tabs-wrapper { position: relative; width: fit-content; margin: 0 auto; display: flex; justify-content: center; }
   .tabs {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--surface-1);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-md);
-    padding: 4px;
-    position: relative;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
-    flex-wrap: nowrap;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    transform: translateZ(0);
+    display: inline-flex; align-items: center; gap: 4px; background: var(--surface-1);
+    backdrop-filter: blur(20px); border: 1px solid var(--border-1); border-radius: var(--r-md);
+    padding: 4px; position: relative; white-space: nowrap;
   }
-  .tabs::-webkit-scrollbar { display: none; }
-
   .tab-indicator {
-    position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 0;
-    background: var(--indicator-bg);
-    border: 1px solid var(--border-2);
-    border-radius: var(--r-sm);
-    pointer-events: none;
-    transform: translate3d(0, 0, 0);
-    will-change: transform, width;
+    position: absolute; top: 4px; bottom: 4px; left: 0; background: var(--indicator-bg);
+    border: 1px solid var(--border-2); border-radius: var(--r-sm); pointer-events: none;
     transition: transform var(--med) var(--ease), width var(--med) var(--ease);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
-  html.light .tab-indicator {
-    background: #000000;
-    border-color: transparent;
-  }
+  html.light .tab-indicator { background: #000; border-color: transparent; }
   .tab-btn {
-    flex: 0 0 auto;
-    min-height: 38px;
-    background: transparent;
-    border: none;
-    color: var(--text-3);
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    padding: 6px 18px;
-    border-radius: var(--r-sm);
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
-    transform: translateZ(0);
-    transition: color var(--fast) var(--ease);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    min-height: 38px; background: transparent; border: none; color: var(--text-3);
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.8px;
+    padding: 6px 18px; border-radius: var(--r-sm); cursor: pointer; position: relative; z-index: 2;
   }
-  .tab-btn:hover { color: var(--text-2); }
-  .tab-btn.active { color: #ffffff; font-weight: 600; }
-  html:not(.light) .tab-btn.active { color: #ffffff; }
+  .tab-btn.active { color: #ffffff; }
 
   /* Console Container */
   .console {
-    background: var(--surface-1);
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-lg);
-    padding: 26px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    transform: translateZ(0);
-  }
-  .console::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-2), transparent);
+    background: var(--surface-1); backdrop-filter: blur(28px); border: 1px solid var(--border-1);
+    border-radius: var(--r-lg); padding: 26px; position: relative;
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.35);
   }
   .page { display: none; flex-direction: column; }
-  .page.active {
-    display: flex;
-    animation: pageIn 240ms var(--ease) both;
-    transform: translateZ(0);
-    will-change: opacity, transform;
-  }
-  @keyframes pageIn {
-    0% { opacity: 0; transform: translate3d(0, 5px, 0); }
-    100% { opacity: 1; transform: translate3d(0, 0, 0); }
-  }
+  .page.active { display: flex; animation: pageIn 240ms var(--ease) both; }
+  @keyframes pageIn { from { opacity: 0; transform: translate3d(0, 5px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
 
-  /* Panel Headings */
   .panel-head { margin-bottom: 16px; display: flex; flex-direction: column; gap: 4px; }
   .breadcrumb { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--text-3); letter-spacing: 1.4px; text-transform: uppercase; }
   .panel-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .panel-title { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .panel-title { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; font-family: 'Inter', sans-serif; text-transform: uppercase; }
   .panel-badge {
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 4px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-2);
-    color: var(--text-2);
-    letter-spacing: 1px;
-    white-space: nowrap;
+    font-size: 11px; font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    padding: 4px 10px; border-radius: 4px; background: var(--surface-2);
+    border: 1px solid var(--border-2); color: var(--text-2); letter-spacing: 1.2px;
   }
-  .info {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-1);
-    border-left: 2px solid var(--text-2);
-    border-radius: var(--r-sm);
-    padding: 10px 14px;
+
+  /* Clean Helper Banner (IMAGE_2 inspired) */
+  .helper-box-arranged {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--border-2);
+    border-radius: 12px;
+    padding: 14px 16px;
     margin-bottom: 18px;
-    font-size: 12px;
+    font-size: 13.5px;
     color: var(--text-2);
-    line-height: 1.55;
-  }
-
-  /* Buttons & Controls */
-  .btn {
-    position: relative;
-    overflow: hidden;
-    background: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
-    border: none;
-    border-radius: var(--r-sm);
-    font-family: 'Inter', sans-serif;
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    padding: 10px 20px;
-    min-height: 40px;
-    cursor: pointer;
-    flex-shrink: 0;
-    transform: translateZ(0);
-    transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease), opacity var(--fast) var(--ease);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    display: inline-flex;
+    line-height: 1.6;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+  }
+  html.light .helper-box-arranged { background: #f8f8f8; border-color: #d1d5db; color: #374151; }
+  .helper-box-icon { color: var(--text-3); display: flex; flex-shrink: 0; }
+
+  /* Presets Bar Arranged (IMAGE_2) */
+  .presets-section-row {
+    display: flex;
+    align-items: center;
     gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
   }
-  .btn:hover { transform: translateY(-1px) translateZ(0); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
-  .btn:active { transform: scale(0.97) translateZ(0); }
-  .btn:disabled { opacity: 0.85; cursor: wait; }
-
-  /* In-Button Loading Spinner */
-  .btn-spinner {
-    width: 14px;
-    height: 14px;
-    border: 2px solid rgba(0, 0, 0, 0.25);
-    border-top-color: #000000;
-    border-radius: 50%;
-    animation: btnSpin 0.75s linear infinite;
-    display: none;
-  }
-  html.light .btn-spinner {
-    border-color: rgba(255, 255, 255, 0.35);
-    border-top-color: #ffffff;
-  }
-  @keyframes btnSpin {
-    to { transform: rotate(360deg); }
-  }
-  .btn.is-running .btn-spinner {
-    display: inline-block;
-  }
-  .btn.is-running svg {
-    display: none;
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border-2);
-    border-radius: var(--r-sm);
-    font-family: 'Inter', sans-serif;
-    font-size: 11.5px;
+  .presets-section-row::-webkit-scrollbar { display: none; }
+  .presets-heading-label {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
-    letter-spacing: 1.2px;
-    padding: 0 16px;
-    min-height: 40px;
-    cursor: pointer;
-    transform: translateZ(0);
-    transition: transform var(--fast) var(--ease), background var(--fast) var(--ease), border-color var(--fast) var(--ease);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    color: var(--text-3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    flex-shrink: 0;
   }
-  .btn-ghost:hover { background: var(--surface-2); border-color: var(--border-3); transform: translateY(-1px) translateZ(0); }
-  .btn-ghost:disabled { opacity: 0.3; cursor: not-allowed; transform: translateZ(0); }
+  .preset-capsule {
+    background: var(--surface-2);
+    border: 1px solid var(--border-2);
+    color: var(--text-2);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--fast) var(--ease);
+  }
+  .preset-capsule:hover {
+    background: var(--surface-3);
+    color: var(--text);
+    border-color: var(--border-3);
+    transform: translateY(-1px);
+  }
 
-  .select-ctrl {
+  /* Custom Dropdown Trigger & Auto-compile (IMAGE_1 + IMAGE_2 Arranged) */
+  .editor-mid-controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 50;
+  }
+
+  .custom-dropdown-container {
+    position: relative;
+    display: inline-block;
+    min-width: 280px;
+    max-width: 100%;
+  }
+
+  .custom-dropdown-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+    border-radius: 10px;
     background: var(--surface-2);
     border: 1px solid var(--border-2);
     color: var(--text);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    padding: 8px 12px;
-    border-radius: var(--r-sm);
-    outline: none;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
+    transition: all var(--fast) var(--ease);
   }
-  .select-ctrl option { background: var(--surface-solid); color: var(--text); }
+  .custom-dropdown-trigger:hover {
+    background: var(--surface-3);
+    border-color: var(--border-3);
+  }
+  .custom-dropdown-trigger .chev-arrow {
+    display: flex;
+    transition: transform var(--fast) var(--ease);
+    color: var(--text-3);
+  }
+  .custom-dropdown-container.open .chev-arrow {
+    transform: rotate(180deg);
+    color: var(--text);
+  }
 
-  .accessory-bar {
+  /* Modern Dropdown Menu matching IMAGE_1 */
+  .custom-dropdown-popover {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 320px;
+    max-width: 95vw;
+    background: #0f1014;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 100;
+    animation: popMenu 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  html.light .custom-dropdown-popover {
+    background: #ffffff;
+    border-color: #d1d5db;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+  @keyframes popMenu {
+    from { opacity: 0; transform: scale(0.96) translateY(-6px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .custom-dropdown-container.open .custom-dropdown-popover {
+    display: flex;
+  }
+
+  .dropdown-option-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--fast) var(--ease);
+  }
+  .dropdown-option-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+  }
+  html.light .dropdown-option-row:hover {
+    background: #f1f1f1;
+  }
+  .dropdown-option-row.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    font-weight: 600;
+  }
+  html.light .dropdown-option-row.active {
+    background: #e5e5e5;
+  }
+
+  /* Radio circle indicator (IMAGE_1) */
+  .radio-circle-indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    flex-shrink: 0;
+    transition: all var(--fast) var(--ease);
+  }
+  html.light .radio-circle-indicator { border-color: rgba(0, 0, 0, 0.3); }
+  .dropdown-option-row.active .radio-circle-indicator {
+    border-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  }
+  html.light .dropdown-option-row.active .radio-circle-indicator {
+    border-color: #000000;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+  .dropdown-option-row.active .radio-circle-indicator::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text);
+  }
+
+  .auto-compile-cluster {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-3);
+  }
+
+  /* Keys Bar Arranged (IMAGE_2) */
+  .keys-section-row {
     display: flex;
     align-items: center;
     gap: 6px;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 4px;
-    margin-bottom: 12px;
     scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-bottom: 14px;
   }
-  .accessory-bar::-webkit-scrollbar { display: none; }
-  .tag-label {
-    font-size: 10px;
+  .keys-section-row::-webkit-scrollbar { display: none; }
+  .keys-heading-label {
+    font-size: 11px;
     font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
     color: var(--text-3);
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-right: 4px;
     flex-shrink: 0;
   }
-  .acc-pill {
+  .key-capsule {
     background: var(--surface-2);
-    border: 1px solid var(--border-1);
+    border: 1px solid var(--border-2);
     color: var(--text-2);
-    padding: 4px 10px;
-    border-radius: var(--r-sm);
+    min-width: 34px;
+    height: 30px;
+    border-radius: 6px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    cursor: pointer;
-    white-space: nowrap;
-    transform: translateZ(0);
-    transition: background var(--fast) var(--ease), color var(--fast) var(--ease), border-color var(--fast) var(--ease), transform var(--fast) var(--ease);
-  }
-  .acc-pill:hover { background: var(--surface-3); color: var(--text); border-color: var(--border-2); }
-  .acc-pill:active { transform: scale(0.95) translateZ(0); }
-
-  .key-pill {
-    background: var(--surface-2);
-    border: 1px solid var(--border-1);
-    color: var(--text-2);
-    min-width: 32px;
-    height: 28px;
-    border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transform: translateZ(0);
-    transition: background var(--fast) var(--ease), color var(--fast) var(--ease), border-color var(--fast) var(--ease), transform var(--fast) var(--ease);
+    transition: all var(--fast) var(--ease);
   }
-  .key-pill:hover { color: var(--text); background: var(--surface-3); border-color: var(--border-2); }
-  .key-pill:active { background: var(--text); color: var(--bg); }
+  .key-capsule:hover {
+    color: var(--text);
+    background: var(--surface-3);
+    border-color: var(--border-3);
+  }
+  .key-capsule:active {
+    background: var(--text);
+    color: var(--bg);
+  }
 
   /* Editor Shell */
   .editor-shell {
-    background: var(--editor-bg);
-    border: 1px solid var(--border-2);
-    border-radius: var(--r-md);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    background: var(--editor-bg); border: 1px solid var(--border-2); border-radius: var(--r-md);
+    overflow: hidden; display: flex; flex-direction: column;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    transform: translateZ(0);
   }
   .editor-topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 9px 14px;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border-1);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-3);
+    display: flex; justify-content: space-between; align-items: center; padding: 9px 14px;
+    background: var(--surface-2); border-bottom: 1px solid var(--border-1);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3);
   }
   .editor-file { display: flex; align-items: center; gap: 6px; color: var(--text); font-weight: 600; }
   .editor-file::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--dot-color);
-    box-shadow: 0 0 6px var(--dot-glow);
-    transition: background 200ms var(--ease);
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--dot-color); box-shadow: 0 0 6px var(--dot-glow);
   }
   .editor-stats { display: flex; align-items: center; gap: 12px; }
-  .editor-workspace { display: flex; min-height: 280px; max-height: 480px; position: relative; background: var(--editor-bg); }
+  .editor-workspace { display: flex; min-height: 280px; max-height: 480px; background: var(--editor-bg); }
   .editor-lines {
-    width: 44px;
-    padding: 12px 6px;
-    text-align: right;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    line-height: 20px;
-    color: var(--text-4);
-    background: var(--surface-1);
-    border-right: 1px solid var(--border-1);
-    user-select: none;
-    overflow: hidden;
+    width: 44px; padding: 12px 6px; text-align: right; font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 20px; color: var(--text-4); background: var(--surface-1);
+    border-right: 1px solid var(--border-1); user-select: none;
   }
-  .editor-textarea-container { flex: 1; position: relative; overflow: hidden; }
+  .editor-textarea-container { flex: 1; position: relative; }
   .editor-textarea {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 12px 14px;
-    color: var(--editor-code);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    line-height: 20px;
-    resize: none;
-    white-space: pre;
-    tab-size: 2;
-    caret-color: var(--text);
+    width: 100%; height: 100%; background: transparent; border: none; outline: none;
+    padding: 12px 14px; color: var(--editor-code); font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 20px; resize: none; white-space: pre; caret-color: var(--text);
   }
   .editor-bottombar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 14px;
-    background: var(--surface-2);
-    border-top: 1px solid var(--border-1);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    color: var(--text-3);
+    display: flex; justify-content: space-between; align-items: center; padding: 8px 14px;
+    background: var(--surface-2); border-top: 1px solid var(--border-1);
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-3);
   }
   .editor-actions-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
 
-  /* Broad Full-Width Preview Frame (Eliminates bottom white gap & responsive for mobile) */
+  /* Buttons */
+  .btn {
+    position: relative; overflow: hidden; background: var(--btn-primary-bg); color: var(--btn-primary-text);
+    border: none; border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 11.5px;
+    font-weight: 600; letter-spacing: 1.2px; padding: 10px 20px; min-height: 40px; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15); display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+  .btn:active { transform: scale(0.97); }
+  .btn:disabled { opacity: 0.85; cursor: wait; }
+
+  .btn-spinner {
+    width: 14px; height: 14px; border: 2px solid rgba(0, 0, 0, 0.25);
+    border-top-color: #000000; border-radius: 50%; animation: btnSpin 0.75s linear infinite; display: none;
+  }
+  html.light .btn-spinner { border-color: rgba(255, 255, 255, 0.35); border-top-color: #ffffff; }
+  @keyframes btnSpin { to { transform: rotate(360deg); } }
+  .btn.is-running .btn-spinner { display: inline-block; }
+  .btn.is-running svg { display: none; }
+
+  .btn-ghost {
+    background: transparent; color: var(--text); border: 1px solid var(--border-2);
+    border-radius: var(--r-sm); font-family: 'Inter', sans-serif; font-size: 11.5px;
+    font-weight: 600; letter-spacing: 1.2px; padding: 0 16px; min-height: 40px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    transition: all var(--fast) var(--ease);
+  }
+  .btn-ghost:hover { background: var(--surface-2); border-color: var(--border-3); transform: translateY(-1px); }
+
+  /* Preview Wrapper Broad */
   .preview-wrapper {
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-md);
-    overflow: hidden;
-    background: #0d0d0d;
-    margin-top: 14px;
-    transform: translateZ(0);
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    border: 1px solid var(--border-1); border-radius: var(--r-md); overflow: hidden;
+    background: #0d0d0d; margin-top: 14px; position: relative; width: 100%; display: flex; flex-direction: column;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
   }
+  .preview-iframe { width: 100%; height: 520px; border: none; background: #ffffff; display: block; }
+  .preview-iframe.expanded { height: 780px; }
 
-  .preview-iframe {
-    width: 100%;
-    height: 520px;
-    border: none;
-    background: #ffffff;
-    display: block;
-    transform: none;
-    transition: height var(--med) var(--ease);
-  }
-
-  .preview-iframe.expanded {
-    height: 780px;
-  }
-
-  /* Full Screen View Overlay */
+  /* Full Screen Preview */
   .fullscreen-preview-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    background: #000000;
-    display: none;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    position: fixed; inset: 0; z-index: 999999; background: #000000; display: none; flex-direction: column; width: 100vw; height: 100vh;
   }
-  .fullscreen-preview-overlay.open {
-    display: flex;
-  }
+  .fullscreen-preview-overlay.open { display: flex; }
   .fs-topbar {
-    height: 52px;
-    background: #0d0d0d;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
+    height: 52px; background: #0d0d0d; border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
     font-family: 'JetBrains Mono', monospace;
   }
-  .fs-title-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-  }
-  .fs-badge {
-    background: rgba(126, 231, 135, 0.15);
-    color: #7ee787;
-    border: 1px solid rgba(126, 231, 135, 0.4);
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 10px;
-  }
+  .fs-title-group { display: flex; align-items: center; gap: 10px; color: #ffffff; font-size: 12px; font-weight: 600; }
+  .fs-badge { background: rgba(126, 231, 135, 0.15); color: #7ee787; border: 1px solid rgba(126, 231, 135, 0.4); padding: 3px 8px; border-radius: 4px; font-size: 10px; }
   .fs-close-btn {
-    background: rgba(255,255,255,0.1);
-    color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 160ms var(--ease);
+    background: rgba(255,255,255,0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;
   }
-  .fs-close-btn:hover {
-    background: #ffffff;
-    color: #000000;
-  }
-  .fs-iframe-container {
-    flex: 1;
-    width: 100%;
-    height: calc(100vh - 52px);
-    background: #ffffff;
-  }
-  .fs-iframe-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: #ffffff;
-    display: block;
-  }
+  .fs-iframe-container { flex: 1; width: 100%; height: calc(100vh - 52px); background: #ffffff; }
+  .fs-iframe-container iframe { width: 100%; height: 100%; border: none; background: #ffffff; display: block; }
 
-  /* Output Dossiers, Cards, & Metrics */
+  /* Output & Telemetry */
   .card {
-    position: relative;
-    background: var(--card-bg);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-md);
-    margin-bottom: 12px;
-    overflow: hidden;
-    animation: cardIn 240ms var(--ease) both;
+    position: relative; background: var(--card-bg); border: 1px solid var(--border-1);
+    border-radius: var(--r-md); margin-bottom: 12px; overflow: hidden;
     box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.15);
-    transform: translateZ(0);
   }
-  @keyframes cardIn { 0% { opacity: 0; transform: translate3d(0, 6px, 0); } 100% { opacity: 1; transform: translate3d(0, 0, 0); } }
   .card .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 11px 16px;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border-1);
-    font-size: 11px;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    letter-spacing: 1.4px;
-    color: var(--text);
+    display: flex; justify-content: space-between; align-items: center; padding: 11px 16px;
+    background: var(--surface-2); border-bottom: 1px solid var(--border-1); font-size: 11px;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text);
   }
   .card .head .badge {
-    font-size: 10px;
-    color: var(--text-2);
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 3px 8px;
-    border-radius: 99px;
-    background: var(--surface-1);
-    border: 1px solid var(--border-1);
-    letter-spacing: 1px;
+    font-size: 10px; color: var(--text-2); display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 8px; border-radius: 99px; background: var(--surface-1); border: 1px solid var(--border-1);
   }
-  .card .head .badge::before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--dot-color);
-    transition: background 200ms var(--ease);
-  }
+  .card .head .badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--dot-color); }
   .card .body { padding: 12px 16px; display: flex; flex-direction: column; }
-  .row { display: grid; grid-template-columns: 140px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-1); align-items: baseline; font-size: 12.5px; }
+  .row { display: grid; grid-template-columns: 140px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-1); font-size: 12.5px; }
   .row:last-child { border-bottom: none; }
-  .row .k { color: var(--text-3); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.8px; }
-  .row .v { color: var(--text); word-break: break-word; font-weight: 500; }
+  .row .k { color: var(--text-3); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-transform: uppercase; }
+  .row .v { color: var(--text); font-weight: 500; }
   .row .v.hi { font-weight: 600; }
 
   pre.raw {
-    background: var(--surface-solid);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-sm);
-    padding: 14px;
-    font-size: 11.5px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-2);
-    max-height: 260px;
-    overflow: auto;
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.6;
+    background: var(--surface-solid); border: 1px solid var(--border-1); border-radius: var(--r-sm);
+    padding: 14px; font-size: 11.5px; font-family: 'JetBrains Mono', monospace; color: var(--text-2);
+    max-height: 260px; overflow: auto; white-space: pre-wrap; line-height: 1.6;
   }
   .terminal-tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--border-1); padding-bottom: 8px; margin-bottom: 12px; }
   .term-btn {
-    padding: 5px 12px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-sm);
-    color: var(--text-3);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    cursor: pointer;
+    padding: 5px 12px; background: var(--surface-2); border: 1px solid var(--border-1);
+    border-radius: var(--r-sm); color: var(--text-3); font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer;
   }
   .term-btn.active { background: var(--surface-3); color: var(--text); border-color: var(--border-2); font-weight: 600; }
 
-  /* Search & Stdin */
   .search {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-md);
-    padding: 6px 12px;
-    transition: border-color var(--med) var(--ease), background var(--med) var(--ease), box-shadow var(--med) var(--ease);
+    display: flex; align-items: center; gap: 8px; background: var(--surface-2); border: 1px solid var(--border-1);
+    border-radius: var(--r-md); padding: 6px 12px;
   }
-  .search:focus-within {
-    border-color: var(--border-3);
-    background: var(--surface-3);
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
-  }
-  .prompt { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-3); font-weight: 600; flex-shrink: 0; }
+  .prompt { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-3); font-weight: 600; }
   .search textarea {
-    flex: 1;
-    min-width: 0;
-    background: transparent;
-    border: 0;
-    outline: 0;
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12.5px;
-    padding: 9px 4px;
-    caret-color: var(--text);
+    flex: 1; background: transparent; border: 0; outline: 0; color: var(--text);
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; padding: 9px 4px;
   }
-  .search textarea::placeholder { color: var(--text-4); }
 
-  /* Secondary Live Telemetry */
   .secondary {
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-md);
-    background: var(--surface-1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    overflow: hidden;
-    transform: translateZ(0);
+    border: 1px solid var(--border-1); border-radius: var(--r-md); background: var(--surface-1);
+    backdrop-filter: blur(20px); overflow: hidden;
   }
   .secondary-toggle {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 13px 18px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-2);
-    letter-spacing: 1.2px;
-    transition: background var(--fast) var(--ease), color var(--fast) var(--ease);
+    width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 13px 18px;
+    background: transparent; border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; color: var(--text-2);
   }
-  .secondary-toggle:hover { background: var(--surface-2); color: var(--text); }
-  .sec-left { display: flex; align-items: center; gap: 8px; }
-  .chev {
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform var(--med) var(--ease);
-  }
-  .secondary.open .chev { transform: rotate(180deg) translateZ(0); }
+  .secondary.open .chev { transform: rotate(180deg); }
   .secondary-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--border-1); }
-  .secondary.open .secondary-body { display: block; animation: accordionReveal 220ms var(--ease) both; }
-  @keyframes accordionReveal {
-    from { opacity: 0; transform: translate3d(0, -4px, 0); }
-    to { opacity: 1; transform: translate3d(0, 0, 0); }
-  }
-
+  .secondary.open .secondary-body { display: block; }
   .log {
-    background: var(--surface-solid);
-    border: 1px solid var(--border-1);
-    border-radius: var(--r-sm);
-    padding: 12px 14px;
-    height: 130px;
-    overflow-y: auto;
-    margin-top: 14px;
-    font-size: 11px;
-    font-family: 'JetBrains Mono', monospace;
-    line-height: 1.65;
-    color: var(--text-2);
+    background: var(--surface-solid); border: 1px solid var(--border-1); border-radius: var(--r-sm);
+    padding: 12px 14px; height: 130px; overflow-y: auto; margin-top: 14px; font-size: 11px;
+    font-family: 'JetBrains Mono', monospace; line-height: 1.65; color: var(--text-2);
   }
-  .log-row { display: flex; gap: 10px; }
-  .log-time { color: var(--text-4); flex-shrink: 0; }
-  .log-tag { color: var(--text); font-weight: 700; flex-shrink: 0; }
-  .log-txt { color: var(--text-2); word-break: break-all; }
   .accordion { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
-  .acc-item { background: var(--surface-2); border: 1px solid var(--border-1); border-radius: var(--r-sm); overflow: hidden; transform: translateZ(0); }
+  .acc-item { background: var(--surface-2); border: 1px solid var(--border-1); border-radius: var(--r-sm); overflow: hidden; }
   .acc-head {
-    padding: 11px 14px;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11.5px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text-2);
-    letter-spacing: 0.6px;
-    transition: background var(--fast) var(--ease), color var(--fast) var(--ease);
+    padding: 11px 14px; cursor: pointer; display: flex; justify-content: space-between;
+    align-items: center; font-size: 11.5px; font-family: 'JetBrains Mono', monospace; color: var(--text-2);
   }
-  .acc-head:hover { background: var(--surface-3); color: var(--text); }
-  .acc-arrow {
-    color: var(--text-3);
-    font-size: 10px;
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform var(--med) var(--ease), color var(--med) var(--ease);
-  }
-  .acc-item.open .acc-arrow { transform: rotate(90deg) translateZ(0); color: var(--text); }
+  .acc-item.open .acc-arrow { transform: rotate(90deg); color: var(--text); }
   .acc-body { display: none; padding: 12px 14px; font-size: 12px; line-height: 1.6; color: var(--text-2); border-top: 1px solid var(--border-1); background: var(--surface-1); }
-  .acc-item.open .acc-body { display: block; animation: accordionReveal 180ms var(--ease) both; }
+  .acc-item.open .acc-body { display: block; }
 
-  /* Footer */
   .app-footer {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 0 18px 36px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-size: 10.5px;
-    color: var(--text-3);
-    font-family: 'JetBrains Mono', monospace;
-    border-top: 1px solid var(--border-1);
-    padding-top: 20px;
-    letter-spacing: 1px;
-    position: relative;
-    z-index: 10;
+    max-width: 920px; margin: 0 auto; padding: 20px 18px 36px; display: flex; justify-content: space-between;
+    align-items: center; gap: 16px; flex-wrap: wrap; font-size: 10.5px; color: var(--text-3);
+    font-family: 'JetBrains Mono', monospace; border-top: 1px solid var(--border-1);
   }
   .foot-disc { max-width: 580px; line-height: 1.6; }
 
@@ -1202,24 +713,18 @@
     .header-telemetry { display: none; }
     .layout { padding: 14px 12px 60px; gap: 14px; }
     .console { padding: 18px 14px; }
-    .banner { padding: 10px 12px; gap: 8px; }
-    .banner-actions { width: 100%; justify-content: flex-start; gap: 6px; margin-top: 4px; }
-    .banner-pill-btn { flex: 1 1 auto; justify-content: center; padding: 5px 8px; font-size: 10px; }
-    .banner-tag { width: 100%; text-align: right; margin-top: 2px; }
+    .editor-mid-controls-row { flex-direction: column; align-items: stretch; gap: 12px; }
+    .custom-dropdown-container { width: 100%; }
+    .custom-dropdown-popover { width: 100%; min-width: unset; }
     .editor-actions-row { flex-direction: column; }
     .editor-actions-row .btn, .editor-actions-row .btn-ghost { width: 100%; }
-    .row { grid-template-columns: 110px 1fr; gap: 10px; }
-    .app-footer { flex-direction: column; text-align: center; gap: 8px; }
     .preview-iframe { height: 420px; }
   }
 </style>
 </head>
 <body>
-<!-- Theme Transition Overlay -->
 <div id="theme-transition-overlay"></div>
 <canvas id="snow-canvas"></canvas>
-
-<!-- Header Architecture -->
 <header class="app-header">
 <div class="header-inner">
 <div class="brand-group">
@@ -1237,18 +742,12 @@
 <div class="telem"><span class="muted">SESSION</span><span id="clock">00:00:00</span></div>
 </div>
 <div class="header-actions">
-<!-- Quick Theme Toggle in Header -->
 <button class="icon-btn" id="btn-theme-quick" title="Toggle Theme">
 <svg fill="none" id="theme-icon-dark" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<circle cx="12" cy="12" r="5"></circle>
-<line x1="12" x2="12" y1="1" y2="3"></line>
-<line x1="12" x2="12" y1="21" y2="23"></line>
-<line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line>
-<line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
-<line x1="1" x2="3" y1="12" y2="12"></line>
-<line x1="21" x2="23" y1="12" y2="12"></line>
-<line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line>
-<line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line>
+<circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line>
+<line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
+<line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line>
+<line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line>
 </svg>
 <svg fill="none" id="theme-icon-light" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" style="display:none;" viewbox="0 0 24 24">
 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -1269,21 +768,17 @@
 </div>
 </div>
 </header>
-
-<!-- Settings Drawer -->
+<!-- Drawer -->
 <div class="drawer-backdrop" id="drawer-backdrop"></div>
 <div class="drawer-container" id="drawer-container">
 <aside class="drawer" id="drawer">
 <div class="drawer-head">
-<div class="drawer-brand">
+<div>
 <div class="drawer-title">SYSTEM PREFERENCES</div>
 <div class="drawer-sub">CONTROL PLANE &amp; SENSORY KERNEL</div>
 </div>
-<button aria-label="Close Settings" class="drawer-close" id="btn-close-drawer">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
-<line x1="18" x2="6" y1="6" y2="18"></line>
-<line x1="6" x2="18" y1="6" y2="18"></line>
-</svg>
+<button class="drawer-close" id="btn-close-drawer">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
 </button>
 </div>
 <div class="drawer-scroll-body">
@@ -1291,26 +786,17 @@
 <div class="drawer-group-label">DISPLAY &amp; THEME</div>
 <div class="theme-selector-grid">
 <button class="theme-btn active" id="theme-btn-dark" onclick="setThemeWithBlur('dark')">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
-<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-</svg>
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 <span>DARK MODE</span>
 </button>
 <button class="theme-btn" id="theme-btn-light" onclick="setThemeWithBlur('light')">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
-<circle cx="12" cy="12" r="5"></circle>
-<line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line>
-<line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
-</svg>
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line></svg>
 <span>LIGHT MODE</span>
 </button>
 </div>
 <div class="drawer-card">
 <div class="drawer-item">
-<div class="item-title">
-<span>ATMOSPHERIC SNOW</span>
-<span class="item-sub">Dynamic physics canvas particle field</span>
-</div>
+<div><span>ATMOSPHERIC SNOW</span><div class="item-sub">Dynamic physics canvas particle field</div></div>
 <label class="switch"><input checked="" id="tg-snow" type="checkbox"/><span class="slider"></span></label>
 </div>
 </div>
@@ -1319,24 +805,15 @@
 <div class="drawer-group-label">AUDIO FX &amp; SENSORY</div>
 <div class="drawer-card">
 <div class="drawer-item">
-<div class="item-title">
-<span>SOUND FX SYNTH</span>
-<span class="item-sub">Triad frequency feedback on actions</span>
-</div>
+<div><span>SOUND FX SYNTH</span><div class="item-sub">Triad frequency feedback on actions</div></div>
 <label class="switch"><input checked="" id="tg-sound" type="checkbox"/><span class="slider"></span></label>
 </div>
 <div class="drawer-item">
-<div class="item-title">
-<span>TACTILE KEY CLICKS</span>
-<span class="item-sub">Mechanical typewriter acoustic simulation</span>
-</div>
+<div><span>TACTILE KEY CLICKS</span><div class="item-sub">Mechanical typewriter acoustic simulation</div></div>
 <label class="switch"><input checked="" id="tg-keys" type="checkbox"/><span class="slider"></span></label>
 </div>
 <div class="volume-row">
-<div class="volume-head">
-<span>MASTER GAIN</span>
-<span id="vol-val">60%</span>
-</div>
+<div class="volume-head"><span>MASTER GAIN</span><span id="vol-val">60%</span></div>
 <input class="vol-slider" id="vol-slider" max="100" min="0" type="range" value="60"/>
 </div>
 </div>
@@ -1344,24 +821,15 @@
 <div class="drawer-section">
 <div class="drawer-group-label">NETWORK RELAYS</div>
 <div style="display:flex; flex-direction:column; gap:8px;">
-<a class="drawer-link" href="https://yuki-terminal.vercel.app/old.html" rel="noopener" target="_blank">
-<span>OLD YUKI-OSINT</span><span>↗</span>
-</a>
-<a class="drawer-link" href="https://t.me/Yuki_k_chats" rel="noopener" target="_blank">
-<span>TELEGRAM</span><span>↗</span>
-</a>
-<a class="drawer-link" href="https://t.me/Yukii_contact_bot" rel="noopener" target="_blank">
-<span>CONTACT US</span><span>↗</span>
-</a>
+<a class="drawer-link" href="https://yuki-terminal.vercel.app/old.html" rel="noopener" target="_blank"><span>OLD OSINT</span><span>↗</span></a>
+<a class="drawer-link" href="https://t.me/Yukii_contact_bot" rel="noopener" target="_blank"><span>CONTACT US</span><span>↗</span></a>
 </div>
 </div>
 </div>
 </aside>
 </div>
-
-<!-- Main Container -->
+<!-- Main Layout -->
 <div class="layout">
-<!-- Top Banner -->
 <section class="banner">
 <div class="banner-left">
 <div class="banner-chips">
@@ -1372,32 +840,75 @@
 </div>
 </div>
 <div class="banner-actions">
-<a class="banner-pill-btn" href="https://t.me/YukiiKeCodes" onclick="handleBannerClick(event, 'TELEGRAM', 'https://t.me/YukiiKeCodes')" rel="noopener noreferrer" target="_blank" title="Open Telegram Enclave">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
-<line x1="22" x2="11" y1="2" y2="13"></line>
-<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-</svg>
+<a class="banner-pill-btn" href="https://t.me/YukiiKeCodes" onclick="handleBannerClick(event, 'TELEGRAM', 'kekekekeke')" rel="noopener noreferrer" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24"><line x1="22" x2="11" y1="2" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
 <span>TELEGRAM</span>
 </a>
-<a class="banner-pill-btn" href="https://yuki-terminal.vercel.app" onclick="handleBannerClick(event, 'OSINT', 'https://yuki-terminal.vercel.app')" rel="noopener noreferrer" target="_blank" title="Open OSINT Terminal">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
-<circle cx="11" cy="11" r="8"></circle>
-<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
-</svg>
+<a class="banner-pill-btn" href="https://yuki-terminal.vercel.app" onclick="handleBannerClick(event, 'OSINT', 'ekejejw')" rel="noopener noreferrer" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
 <span>OSINT</span>
 </a>
-<a class="banner-pill-btn" href="http://yuki-chats.vercel.app" onclick="handleBannerClick(event, 'CHATS', 'http://yuki-chats.vercel.app')" rel="noopener noreferrer" target="_blank" title="Open Secure Chats Relay">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
-<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-</svg>
+<a class="banner-pill-btn" href="http://yuki-chats.vercel.app" onclick="handleBannerClick(event, 'CHATS', 'kwkwkwkw')" rel="noopener noreferrer" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
 <span>CHATS</span>
 </a>
 <div class="banner-tag">ZERO-RETENTION</div>
 </div>
 </section>
+<!-- Tabs -->
+<style>
+.tabs-wrapper {
+  position: relative;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
 
-<!-- Fitted Segmented Tabs Bar -->
-<div class="tabs-wrapper">
+.tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface-1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-1);
+  border-radius: var(--r-md);
+  padding: 4px;
+  position: relative;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  width: max-content;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+@media (max-width: 680px) {
+  .tabs-wrapper {
+    justify-content: flex-start !important;
+    padding: 2px 4px 6px;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  .tabs {
+    width: max-content;
+    flex-shrink: 0;
+  }
+  .tab-btn {
+    padding: 6px 14px;
+    font-size: 11.5px;
+    flex: 0 0 auto;
+  }
+}
+</style><div class="tabs-wrapper">
 <nav class="tabs" id="tabs">
 <div class="tab-indicator" id="tab-indicator"></div>
 <button class="tab-btn active" data-tab="editor">EDITOR</button>
@@ -1406,8 +917,28 @@
 <button class="tab-btn" data-tab="stdin">STDIN</button>
 <button class="tab-btn" data-tab="telemetry">TELEMETRY</button>
 </nav>
-</div>
-
+<script>
+(() => {
+  const tabsEl = document.getElementById('tabs');
+  const tabsWrapperEl = document.querySelector('.tabs-wrapper');
+  if (tabsEl) {
+    tabsEl.addEventListener('scroll', () => { if (typeof updateIndicator === 'function') updateIndicator(); }, { passive: true });
+  }
+  if (tabsWrapperEl) {
+    tabsWrapperEl.addEventListener('scroll', () => { if (typeof updateIndicator === 'function') updateIndicator(); }, { passive: true });
+  }
+  const origSwitchTab = window.switchTab;
+  if (typeof origSwitchTab === 'function') {
+    window.switchTab = function(targetTab) {
+      origSwitchTab(targetTab);
+      const btn = document.querySelector(`.tab-btn[data-tab="${targetTab}"]`);
+      if (btn) {
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    };
+  }
+})();
+</script></div>
 <!-- Console Workspace -->
 <div class="console">
 <!-- TAB 1: EDITOR -->
@@ -1419,52 +950,97 @@
 <span class="panel-badge">PROTOCOL 01</span>
 </div>
 </div>
-<div class="info">Apna Code yaha pr paste kro / File upload kro and run script ko click kro</div>
-
-<div class="accessory-bar">
-<span class="tag-label">Presets:</span>
-<button class="acc-pill" onclick="loadPreset('html')">HTML5 Demo</button>
-<button class="acc-pill" onclick="loadPreset('python')">Python 3.11</button>
-<button class="acc-pill" onclick="loadPreset('cpp')">C++ GCC 13</button>
-<button class="acc-pill" onclick="loadPreset('js')">JS Canvas</button>
-<button class="acc-pill" onclick="loadPreset('rust')">Rust 1.75</button>
-<button class="acc-pill" onclick="loadPreset('bash')">Bash Script</button>
+<!-- Clean Arranged Helper Prompt Box (Reference 2) -->
+<div class="helper-box-arranged">
+<span class="helper-box-icon">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" x2="12" y1="16" y2="12"></line>
+<line x1="12" x2="12.01" y1="8" y2="8"></line>
+</svg>
+</span>
+<span>Apna Code yaha pr paste kro / File upload kro and run script ko click kro</span>
 </div>
-
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
-<select class="select-ctrl" id="lang-select" onchange="onLanguageSelect(this.value)">
-<option selected="" value="html">HTML5 / Sandboxed Web App</option>
-<option value="python">Python 3.11</option>
-<option value="cpp">C++ (GCC 13.2)</option>
-<option value="javascript">JavaScript (Node.js 18)</option>
-<option value="rust">Rust 1.75</option>
-<option value="java">Java 17 (OpenJDK)</option>
-<option value="go">Go 1.21</option>
-<option value="bash">Bash Script 5.2</option>
-</select>
-<div style="display:flex; align-items:center; gap:8px;">
-<span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3);">AUTO-COMPILE</span>
+<!-- Arranged Presets Bar (Reference 2) -->
+<div class="presets-section-row">
+<span class="presets-heading-label">PRESETS:</span>
+<button class="preset-capsule" onclick="loadPreset('html')">HTML5 Demo</button>
+<button class="preset-capsule" onclick="loadPreset('python')">Python 3.11</button>
+<button class="preset-capsule" onclick="loadPreset('cpp')">C++ GCC 13</button>
+<button class="preset-capsule" onclick="loadPreset('js')">JS Canvas</button>
+<button class="preset-capsule" onclick="loadPreset('rust')">Rust 1.75</button>
+<button class="preset-capsule" onclick="loadPreset('bash')">Bash Script</button>
+</div>
+<!-- Control Bar: Custom Dropdown Menu with Radio Circles (Reference 1 & 2) -->
+<div class="editor-mid-controls-row">
+<div class="custom-dropdown-container" id="custom-dropdown-box">
+<button class="custom-dropdown-trigger" id="lang-custom-btn" type="button">
+<span id="lang-selected-label">HTML5 / Sandboxed Web App</span>
+<span class="chev-arrow">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<polyline points="6 9 12 15 18 9"></polyline>
+</svg>
+</span>
+</button>
+<!-- Popover List matching IMAGE_1 styling with radio circles -->
+<div class="custom-dropdown-popover" id="lang-popover-menu">
+<button class="dropdown-option-row active" data-lang="html" type="button">
+<span>HTML5 / Sandboxed Web App</span>
+<span class="radio-circle-indicator"></span>
+</button>
+<button class="dropdown-option-row" data-lang="python" type="button">
+<span>Python 3.11</span>
+<span class="radio-circle-indicator"></span>
+</button>
+<button class="dropdown-option-row" data-lang="cpp" type="button">
+<span>C++ (GCC 13.2)</span>
+<span class="radio-circle-indicator"></span>
+</button>
+<button class="dropdown-option-row" data-lang="javascript" type="button">
+<span>JavaScript (Node.js 18)</span>
+<span class="radio-circle-indicator"></span>
+</button>
+<button class="dropdown-option-row" data-lang="rust" type="button">
+<span>Rust 1.75</span>
+<span class="radio-circle-indicator"></span>
+</button>
+<button class="dropdown-option-row" data-lang="java" type="button">
+<span>Java 17 (OpenJDK)</span>
+<span class="radio-circle-indicator"></span>
+</button>
+<button class="dropdown-option-row" data-lang="go" type="button">
+<span>Go 1.21</span>
+<span class="radio-circle-indicator"></span>
+</button>
+<button class="dropdown-option-row" data-lang="bash" type="button">
+<span>Bash Script 5.2</span>
+<span class="radio-circle-indicator"></span>
+</button>
+</div>
+</div>
+<div class="auto-compile-cluster">
+<span>AUTO-COMPILE</span>
 <label class="switch"><input checked="" id="tg-live" type="checkbox"/><span class="slider"></span></label>
 </div>
 </div>
-
-<div class="accessory-bar">
-<span class="tag-label">KEYS:</span>
-<button class="key-pill" onclick="insertSymbol('(')">(</button>
-<button class="key-pill" onclick="insertSymbol(')')">)</button>
-<button class="key-pill" onclick="insertSymbol('{')">{</button>
-<button class="key-pill" onclick="insertSymbol('}')">}</button>
-<button class="key-pill" onclick="insertSymbol('[')">[</button>
-<button class="key-pill" onclick="insertSymbol(']')">]</button>
-<button class="key-pill" onclick="insertSymbol(';')">;</button>
-<button class="key-pill" onclick="insertSymbol('=')">=</button>
-<button class="key-pill" onclick="insertSymbol('&lt;')">&lt;</button>
-<button class="key-pill" onclick="insertSymbol('&gt;')">&gt;</button>
-<button class="key-pill" onclick="insertSymbol('=&gt;')">=&gt;</button>
-<button class="key-pill" onclick="insertSymbol('&quot;')">"</button>
-<button class="key-pill" onclick="insertSymbol(':')">:</button>
+<!-- Arranged Keys Bar (Reference 2) -->
+<div class="keys-section-row">
+<span class="keys-heading-label">KEYS:</span>
+<button class="key-capsule" onclick="insertSymbol('(')">(</button>
+<button class="key-capsule" onclick="insertSymbol(')')">)</button>
+<button class="key-capsule" onclick="insertSymbol('{')">{</button>
+<button class="key-capsule" onclick="insertSymbol('}')">}</button>
+<button class="key-capsule" onclick="insertSymbol('[')">[</button>
+<button class="key-capsule" onclick="insertSymbol(']')">]</button>
+<button class="key-capsule" onclick="insertSymbol(';')">;</button>
+<button class="key-capsule" onclick="insertSymbol('=')">=</button>
+<button class="key-capsule" onclick="insertSymbol('&lt;')">&lt;</button>
+<button class="key-capsule" onclick="insertSymbol('&gt;')">&gt;</button>
+<button class="key-capsule" onclick="insertSymbol('=&gt;')">=&gt;</button>
+<button class="key-capsule" onclick="insertSymbol('&quot;')">"</button>
+<button class="key-capsule" onclick="insertSymbol(':')">:</button>
 </div>
-
+<!-- Editor Shell -->
 <div class="editor-shell" id="editor-box">
 <div class="editor-topbar">
 <div class="editor-file" id="file-title">index.html</div>
@@ -1484,13 +1060,10 @@
 <span id="save-pill">STANDBY</span>
 </div>
 </div>
-
 <div class="editor-actions-row">
 <button class="btn" id="btn-run" onclick="executeRuntime()">
 <span class="btn-spinner" id="run-spinner"></span>
-<svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14">
-<polygon points="5 3 19 12 5 21 5 3"></polygon>
-</svg>
+<svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
 <span id="btn-run-label">RUN SCRIPT</span>
 </button>
 <button class="btn-ghost" onclick="formatScript()">FORMAT</button>
@@ -1500,7 +1073,6 @@
 <input id="hidden-file-input" onchange="handleFile(event)" style="display:none;" type="file"/>
 </div>
 </main>
-
 <!-- TAB 2: PREVIEW -->
 <main class="page" id="page-preview">
 <div class="panel-head">
@@ -1517,24 +1089,17 @@
 <button class="btn-ghost" onclick="toggleExpandPreview()">TOGGLE SIZE</button>
 <button class="btn-ghost" id="btn-view-fs" onclick="openFullscreenPreview()" style="display:inline-flex; align-items:center; gap:6px;">
 <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
-<polyline points="15 3 21 3 21 9"></polyline>
-<polyline points="9 21 3 21 3 15"></polyline>
-<line x1="21" x2="14" y1="3" y2="10"></line>
-<line x1="3" x2="10" y1="21" y2="14"></line>
+<polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" x2="14" y1="3" y2="10"></line><line x1="3" x2="10" y1="21" y2="14"></line>
 </svg>
 <span>VIEW</span>
 </button>
 </div>
-<div id="dom-count" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3);">
-0 DOM NODES DETECTED
+<div id="dom-count" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3);">0 DOM NODES DETECTED</div>
 </div>
-</div>
-
 <div class="preview-wrapper">
 <iframe class="preview-iframe" id="live-frame" sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-downloads"></iframe>
 </div>
 </main>
-
 <!-- TAB 3: OUTPUT -->
 <main class="page" id="page-output">
 <div class="panel-head">
@@ -1544,12 +1109,8 @@
 <span class="panel-badge">ENCLAVE OUTPUT</span>
 </div>
 </div>
-<div class="info">Live standard out, memory telemetry, and isolated edge execution metrics.</div>
 <div class="card">
-<div class="head">
-<span>PROCESS TELEMETRY</span>
-<span class="badge" id="tele-status">IDLE</span>
-</div>
+<div class="head"><span>PROCESS TELEMETRY</span><span class="badge" id="tele-status">IDLE</span></div>
 <div class="body">
 <div class="row"><div class="k">DURATION</div><div class="v hi" id="tele-dur">0ms</div></div>
 <div class="row"><div class="k">MEMORY ALLOC</div><div class="v" id="tele-mem">0 KB</div></div>
@@ -1567,7 +1128,6 @@
 &gt; Execute your program or inspect preview frame.</pre>
 <pre class="raw" id="console-stderr" style="display:none; color:#ef4444;">// No execution traps or compiler warnings reported.</pre>
 </main>
-
 <!-- TAB 4: STDIN -->
 <main class="page" id="page-stdin">
 <div class="panel-head">
@@ -1577,7 +1137,6 @@
 <span class="panel-badge">STREAM INJECT</span>
 </div>
 </div>
-<div class="info">Inject parameters or standard input lines directly into the compilation process.</div>
 <div class="search" style="align-items:flex-start;">
 <span class="prompt" style="padding-top:8px;">❯</span>
 <textarea id="stdin-field" placeholder="Type standard input args for input() or cin here..." rows="6"></textarea>
@@ -1587,7 +1146,6 @@
 <button class="btn-ghost" onclick="document.getElementById('stdin-field').value=''">CLEAR STDIN</button>
 </div>
 </main>
-
 <!-- TAB 5: TELEMETRY -->
 <main class="page" id="page-telemetry">
 <div class="panel-head">
@@ -1597,12 +1155,8 @@
 <span class="panel-badge">ENCLAVE ACTIVE</span>
 </div>
 </div>
-<div class="info">Global mesh latency, isolated sandbox container memory allocation, and health checks.</div>
 <div class="card">
-<div class="head">
-<span>EDGE METRICS OVERVIEW</span>
-<span class="badge">SECURE 256</span>
-</div>
+<div class="head"><span>EDGE METRICS OVERVIEW</span><span class="badge">SECURE 256</span></div>
 <div class="body">
 <div class="row"><div class="k">CLUSTER HEALTH</div><div class="v hi">100% OPERATIONAL</div></div>
 <div class="row"><div class="k">PROXY PROTOCOL</div><div class="v">HTTP/3 QUIC ENCRYPTED</div></div>
@@ -1612,14 +1166,11 @@
 </div>
 </main>
 </div>
-
-<!-- Collapsible Secondary Live Telemetry & Compliance -->
+<!-- Collapsible Secondary Live Telemetry -->
 <section class="secondary" id="secondary">
 <button class="secondary-toggle" id="btn-secondary" type="button">
 <div class="sec-left"><span class="dot"></span><span>LIVE TELEMETRY &amp; COMPLIANCE</span></div>
-<svg class="chev" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="14">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
+<svg class="chev" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
 </button>
 <div class="secondary-body">
 <div class="log" id="log">
@@ -1644,37 +1195,30 @@
 </div>
 </section>
 </div>
-
 <!-- Full Screen Functional Interactive View Overlay -->
 <div class="fullscreen-preview-overlay" id="fs-overlay">
-  <div class="fs-topbar">
-    <div class="fs-title-group">
-      <span>FULL PREVIEW EXECUTION</span>
-      <span class="fs-badge">INTERACTIVE RUNTIME</span>
-    </div>
-    <button class="fs-close-btn" onclick="closeFullscreenPreview()">
-      <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
-        <line x1="18" x2="6" y1="6" y2="18"></line>
-        <line x1="6" x2="18" y1="6" y2="18"></line>
-      </svg>
-      <span>EXIT VIEW (ESC)</span>
-    </button>
-  </div>
-  <div class="fs-iframe-container">
-    <iframe id="fs-frame" sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-downloads"></iframe>
-  </div>
+<div class="fs-topbar">
+<div class="fs-title-group">
+<span>FULL PREVIEW EXECUTION</span>
+<span class="fs-badge">INTERACTIVE RUNTIME</span>
 </div>
-
-<!-- App Footer -->
+<button class="fs-close-btn" onclick="closeFullscreenPreview()">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+<span>EXIT VIEW (ESC)</span>
+</button>
+</div>
+<div class="fs-iframe-container">
+<iframe id="fs-frame" sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-downloads"></iframe>
+</div>
+</div>
+<!-- Footer -->
 <footer class="app-footer">
 <div class="foot-disc">This application is for educational and software engineering exploration only. The owner does not support or encourage illegal activities. Any execution of scripts is solely the user's responsibility.</div>
 <div>YUKI-VIEW ENCLAVE · v3.8</div>
 </footer>
-
 <script>
-/* ============================================================
-   AUDIO ENGINE (Synthesized Audio Engine)
-   ============================================================ */
 class AudioEngine {
   #ctx = null;
   soundOn = true;
@@ -1713,18 +1257,6 @@ class AudioEngine {
 
     switch (type) {
       case 'boot':
-        [261.63, 329.63, 392.0].forEach((f, i) => {
-          const o = ctx.createOscillator(), g = ctx.createGain();
-          o.type = 'sine';
-          const t = now + i * 0.09;
-          o.frequency.setValueAtTime(f, t);
-          g.gain.setValueAtTime(0, t);
-          g.gain.linearRampToValueAtTime(V * 0.35, t + 0.06);
-          g.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
-          o.connect(g).connect(ctx.destination);
-          o.start(t); o.stop(t + 0.62);
-        });
-        break;
       case 'tab':
       case 'toggle':
         [261.63, 329.63, 392.0].forEach((f, i) => {
@@ -1741,19 +1273,6 @@ class AudioEngine {
         break;
       case 'scan':
         beep('sine', 180, 1100, 0.42, V * 0.5);
-        break;
-      case 'error':
-        [261.63, 329.63, 392.0].forEach((f, i) => {
-          const o = ctx.createOscillator(), g = ctx.createGain();
-          o.type = 'sine';
-          const t = now + i * 0.06;
-          o.frequency.setValueAtTime(f, t);
-          g.gain.setValueAtTime(0, t);
-          g.gain.linearRampToValueAtTime(V * 0.35, t + 0.04);
-          g.gain.exponentialRampToValueAtTime(0.0001, t + 0.35);
-          o.connect(g).connect(ctx.destination);
-          o.start(t); o.stop(t + 0.37);
-        });
         break;
       case 'key':
         beep('sine', 600 + Math.random() * 60, 200, 0.014, V * 0.05);
@@ -1774,9 +1293,6 @@ class AudioEngine {
   }
 }
 
-/* ============================================================
-   CANVAS SNOWFALL ENGINE (Zero-Lag 60FPS)
-   ============================================================ */
 class SnowEngine {
   #ctx;
   #flakes = [];
@@ -1791,7 +1307,6 @@ class SnowEngine {
     if (!c) throw new Error('Canvas 2D unsupported');
     this.#ctx = c;
     this.canvas = canvas;
-
     this.#resize();
     window.addEventListener('resize', () => {
       if (!this.#resizePending) {
@@ -1841,12 +1356,10 @@ class SnowEngine {
   #loop = () => {
     requestAnimationFrame(this.#loop);
     if (!this.#enabled || !this.#visible) return;
-
     const ctx = this.#ctx;
     const w = this.#w;
     const h = this.#h;
     ctx.clearRect(0, 0, w, h);
-
     const isLight = document.documentElement.classList.contains('light');
     const color = isLight ? '0, 0, 0' : '255, 255, 255';
     const flakes = this.#flakes;
@@ -1870,9 +1383,6 @@ class SnowEngine {
   };
 }
 
-/* ============================================================
-   SNIPPETS BANK & CONSTANTS
-   ============================================================ */
 const SNIPPETS = {
   html: `<!DOCTYPE html>
 <html>
@@ -1939,14 +1449,12 @@ import math
 print("=== CODEVIEW PYTHON RUNTIME ===")
 print(f"Kernel Python: {sys.version.split()[0]}")
 
-# Reading from stdin stream
 input_data = sys.stdin.read().strip()
 if input_data:
     print(f"STDIN Stream Captured: '{input_data}'")
 else:
     print("STDIN Stream: (None)")
 
-# Compute prime sequences
 primes = [x for x in range(2, 60) if all(x % d != 0 for d in range(2, int(math.isqrt(x)) + 1))]
 print(f"Prime sequence (<60): {primes}")
 print("Status: 0 (OK)")
@@ -2000,9 +1508,17 @@ const FILE_MAP = {
   bash: 'script.sh'
 };
 
-/* ============================================================
-   APPLICATION LOGIC & INITIALIZATION
-   ============================================================ */
+const LANG_LABELS = {
+  html: 'HTML5 / Sandboxed Web App',
+  python: 'Python 3.11',
+  cpp: 'C++ (GCC 13.2)',
+  javascript: 'JavaScript (Node.js 18)',
+  rust: 'Rust 1.75',
+  java: 'Java 17 (OpenJDK)',
+  go: 'Go 1.21',
+  bash: 'Bash Script 5.2'
+};
+
 let audio, snow;
 const codeInput = document.getElementById('code-input');
 const editorLines = document.getElementById('editor-lines');
@@ -2108,9 +1624,7 @@ window.addEventListener('resize', updateIndicator, { passive: true });
 function loadPreset(type) {
   if (SNIPPETS[type]) {
     codeInput.value = SNIPPETS[type];
-    const select = document.getElementById('lang-select');
     const mapped = type === 'js' ? 'javascript' : type;
-    select.value = mapped;
     onLanguageSelect(mapped, false);
     updateEditorStats();
     if (audio) audio.play('success');
@@ -2121,6 +1635,20 @@ function onLanguageSelect(lang, notify = true) {
   currentLang = lang;
   fileTitle.innerText = FILE_MAP[lang] || 'main.txt';
   document.getElementById('tele-env').innerText = lang.toUpperCase();
+
+  // Update label on custom dropdown
+  const labelEl = document.getElementById('lang-selected-label');
+  if (labelEl) labelEl.innerText = LANG_LABELS[lang] || lang;
+
+  // Update active state in popup
+  document.querySelectorAll('.dropdown-option-row').forEach(opt => {
+    opt.classList.toggle('active', opt.dataset.lang === lang);
+  });
+
+  // Close dropdown
+  const container = document.getElementById('custom-dropdown-box');
+  if (container) container.classList.remove('open');
+
   if (notify && audio) audio.play('toggle');
 }
 
@@ -2231,6 +1759,8 @@ function closeFullscreenPreview() {
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeFullscreenPreview();
+    const container = document.getElementById('custom-dropdown-box');
+    if (container) container.classList.remove('open');
   }
 });
 
@@ -2320,7 +1850,6 @@ async function executeRuntime() {
 
   if (audio) audio.play('scan');
 
-  // Non-blocking 3.2s execution phase
   await new Promise(r => setTimeout(r, 3200));
 
   btnRun.classList.remove('is-running');
@@ -2373,7 +1902,6 @@ async function executeRuntime() {
   if (audio) audio.play('success');
 }
 
-// Bootstrap
 window.addEventListener('DOMContentLoaded', () => {
   audio = new AudioEngine();
   const canvas = document.getElementById('snow-canvas');
@@ -2382,6 +1910,30 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
+
+  // Custom Dropdown Open/Close
+  const dropBtn = document.getElementById('lang-custom-btn');
+  const dropBox = document.getElementById('custom-dropdown-box');
+  if (dropBtn && dropBox) {
+    dropBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropBox.classList.toggle('open');
+      if (audio) audio.play('toggle');
+    });
+
+    document.querySelectorAll('.dropdown-option-row').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onLanguageSelect(opt.dataset.lang);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropBox.contains(e.target)) {
+        dropBox.classList.remove('open');
+      }
+    });
+  }
 
   const drawerContainer = document.getElementById('drawer-container');
   const backdrop = document.getElementById('drawer-backdrop');
@@ -2454,10 +2006,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const logEl = document.getElementById('log');
   const samples = [
-    { tag: 'QUERY', cls: '', txt: 'Judge0 worker pool ping OK (12ms).' },
-    { tag: 'RELAY', cls: '', txt: 'Vercel edge hop synchronized.' },
-    { tag: 'CACHE', cls: '', txt: 'DOM state partition cleared.' },
-    { tag: 'STATUS', cls: '', txt: 'Isolated sandbox container active.' }
+    { tag: 'QUERY', txt: 'Judge0 worker pool ping OK (12ms).' },
+    { tag: 'RELAY', txt: 'Vercel edge hop synchronized.' },
+    { tag: 'CACHE', txt: 'DOM state partition cleared.' },
+    { tag: 'STATUS', txt: 'Isolated sandbox container active.' }
   ];
   setInterval(() => {
     if (!logEl || document.hidden) return;
