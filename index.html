@@ -1532,7 +1532,7 @@ function triggerThemeChange(targetTheme, event) {
     Math.max(y, window.innerHeight - y)
   );
   const duration = 680;
-  const easing = 'cubic-bezier(.22, 1, .36, 1)';
+  const easing = 'linear';
 
   if (typeof document.startViewTransition === 'function') {
     let transition;
@@ -1612,8 +1612,7 @@ function runCanvasCircleAnimation(x, y, targetIsLight) {
   // midpoint prevents the old theme from visibly flashing at the edges.
   function draw(now) {
     const progress = Math.min((now - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const radius = eased * maxRadius;
+    const radius = progress * maxRadius;
 
     if (!themeApplied && progress >= 0.42) {
       applyThemeState(targetIsLight);
