@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'on-secondary-container': '#b4b4bd', 'tertiary-fixed': '#e2e2e2', 'primary-container': '#e2e2e2', 'primary': '#ffffff', 'on-primary-fixed-variant': '#454747', 'surface-container-high': '#2a2a2a', 'inverse-on-surface': '#303030', 'on-surface': '#e2e2e2', 'inverse-primary': '#5d5f5f', 'on-tertiary-container': '#636565', 'error': '#ffb4ab', 'secondary': '#c6c6cf', 'tertiary-container': '#e2e2e2', 'tertiary': '#ffffff', 'secondary-fixed-dim': '#c6c6cf', 'secondary-fixed': '#e2e1eb', 'on-error-container': '#ffdad6', 'on-primary-fixed': '#1a1c1c', 'on-tertiary': '#2f3131', 'surface-tint': '#c6c6c7', 'on-primary': '#2f3131', 'on-secondary-fixed-variant': '#45464e', 'surface-bright': '#393939', 'on-background': '#e2e2e2', 'on-primary-container': '#636565', 'surface-variant': '#353535', 'surface': '#131313', 'inverse-surface': '#e2e2e2', 'primary-fixed-dim': '#c6c6c7', 'on-secondary': '#2f3037', 'secondary-container': '#45464e', 'error-container': '#93000a', 'surface-dim': '#131313', 'surface-container-highest': '#353535', 'outline': '#8e9192', 'tertiary-fixed-dim': '#c6c6c7', 'on-tertiary-fixed-variant': '#454747', 'surface-container': '#1f1f1f', 'on-surface-variant': '#c4c7c8', 'on-tertiary-fixed': '#1a1c1c', 'surface-container-low': '#1b1b1b', 'background': '#131313', 'outline-variant': '#444748', 'on-secondary-fixed': '#1a1b22', 'on-error': '#690005', 'surface-container-lowest': '#0e0e0e', 'primary-fixed': '#e2e2e2' }, borderRadius: { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, spacing: { 'margin-mobile': '1rem', 'space-md': '1rem', 'space-xl': '2.5rem', 'space-lg': '1.5rem', 'space-sm': '0.5rem', 'gutter': '1.5rem', 'gutter-mobile': '1rem', 'margin': '2rem', 'space-xs': '0.25rem' }, fontFamily: { 'body-md': ['Inter'], 'display-mobile': ['Space Grotesk'], 'headline-sm': ['Space Grotesk'], 'label-lg': ['Space Grotesk'], 'body-sm': ['Inter'], 'label-sm': ['Space Grotesk'], 'body-lg': ['Inter'], 'label-md': ['Space Grotesk'], 'headline-lg-mobile': ['Space Grotesk'], 'headline-md': ['Space Grotesk'], 'headline-lg': ['Space Grotesk'], 'display': ['Space Grotesk'] }, fontSize: { 'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0em', fontWeight: '400' }], 'display-mobile': ['36px', { lineHeight: '44px', letterSpacing: '-0.02em', fontWeight: '700' }], 'headline-sm': ['18px', { lineHeight: '24px', letterSpacing: '-0.01em', fontWeight: '500' }], 'label-lg': ['13px', { lineHeight: '16px', letterSpacing: '0.04em', fontWeight: '600' }], 'body-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.01em', fontWeight: '400' }], 'label-sm': ['10px', { lineHeight: '12px', letterSpacing: '0.08em', fontWeight: '700' }], 'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '-0.005em', fontWeight: '400' }], 'label-md': ['11px', { lineHeight: '14px', letterSpacing: '0.06em', fontWeight: '600' }], 'headline-lg-mobile': ['26px', { lineHeight: '34px', letterSpacing: '-0.01em', fontWeight: '600' }], 'headline-md': ['22px', { lineHeight: '28px', letterSpacing: '-0.015em', fontWeight: '600' }], 'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '600' }], 'display': ['48px', { lineHeight: '56px', letterSpacing: '-0.03em', fontWeight: '700' }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#000000;color:#e2e2e2;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}@keyframes subtle-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.85);}}.animate-status-ping{animation:subtle-pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;}</style></head><body class="bg-black text-on-surface font-body-md text-body-md flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-black/85 backdrop-blur-xl pt-safe shadow-[0_1px_12px_rgba(0,0,0,0.8)]"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="TubeVault Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WJiO0_-NFXAEz6Jp6uZYjTL0wd9PyVKGBNUiB0Q-756_UYkLjY3bNkmW9VJnPEPu4n2jtLHIfnL7QRfjl7zN5QK0Jy9lwlPgbjlsN-uyme46v1wcH-7TGYRDs9iy9xfbmCjFy-ZBs0MANPYl0Ubarv755amelshCYgruhjvlEWVGgfn34m-D206x8AvaedizqvFIBePz7NrahzV4Z3D0Or2aI3_5EKKA9MwOQziUQaZ-nkX3v2uW5tGBGe"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm tracking-tight text-primary font-bold uppercase">TubeVault</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-white/10 text-primary shadow-[0_0_12px_rgba(255,255,255,0.18)]">v2.4 PRO</span></div></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-1.5 px-2 py-1 rounded-full bg-surface-container-lowest"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-status-ping"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Online</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="px-gutter-mobile pb-1 flex items-center justify-between"><span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">Dashboard</span><div class="flex sm:hidden items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-status-ping"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Server Online</span></div></div></header><main class="flex-1 flex flex-col relative w-full pt-24 pb-28 bg-black"><div class="flex flex-col w-full px-gutter-mobile relative overflow-hidden">
+<!-- Toast Notification Overlay -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-[60] pointer-events-none opacity-0 transition-all duration-300 transform -translate-y-2 flex items-center gap-space-sm px-space-md py-space-sm rounded-full bg-surface-container-highest/95 backdrop-blur-xl shadow-[0_4px_24px_rgba(255,255,255,0.12)]" id="toast">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md text-primary tracking-wide" id="toast-message">Direct link copied to clipboard</span>
+</div>
+<!-- Ambient Light Atmosphere -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[340px] h-[340px] bg-primary/[0.04] blur-[120px] rounded-full pointer-events-none"></div>
+<canvas class="absolute top-0 inset-x-0 w-full h-[480px] pointer-events-none opacity-60" id="particle-canvas"></canvas>
+<!-- Hero Header Block -->
+<div class="relative z-10 flex flex-col items-center text-center mt-space-sm mb-space-lg">
+<!-- Brand Pill Tag -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest/60 backdrop-blur-md mb-space-md shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">FAST EXTRACT • YOUTUBE &amp; SHORTS</span>
+</div>
+<!-- Title & Value Prop -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-tight text-primary font-bold">
+      Download Any Video.<br/>
+<span class="text-on-surface-variant font-medium">Pure. Fast. Free.</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm max-w-[340px]">
+      Lossless 1080p Full HD MP4 streaming, direct CDN links, and 320kbps audio playback. Zero ads, zero latency.
+    </p>
+</div>
+<!-- Interactive URL Input Section -->
+<div class="relative z-10 w-full flex flex-col gap-space-sm mb-space-xl">
+<div class="relative w-full rounded-2xl p-1 bg-surface-container-low/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.8)] focus-within:shadow-[0_0_25px_rgba(255,255,255,0.18)] transition-all duration-300">
+<div class="flex items-center gap-space-xs px-space-sm py-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[22px] shrink-0">link</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-primary placeholder:text-outline focus:outline-none min-w-0" id="url-input" placeholder="Paste YouTube or Shorts URL..." type="url" value="https://youtube.com/watch?v=dQw4w9WgXcQ"/>
+<button aria-label="Clear input" class="p-1.5 text-on-surface-variant hover:text-primary transition-colors" id="clear-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+</div>
+<!-- Action Button inside Box -->
+<button class="w-full mt-1 flex items-center justify-center gap-space-xs py-3 px-space-md rounded-xl bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-semibold active:scale-[0.98] transition-transform duration-150 shadow-[0_0_20px_rgba(255,255,255,0.22)]" id="fetch-btn" type="button">
+<span class="hidden material-symbols-outlined text-[18px] animate-spin" id="btn-spinner">progress_activity</span>
+<span class="flex items-center gap-1.5" id="btn-label">
+<span>Resolve Stream</span>
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</span>
+</button>
+</div>
+<!-- Supported Sources Badges -->
+<div class="flex items-center justify-center gap-1.5 flex-wrap">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">youtube.com/watch</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">youtu.be</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">youtube.com/shorts</span>
+</div>
+</div>
+<!-- Loaded Result Preview Card -->
+<div class="relative z-10 w-full rounded-2xl bg-surface-container-low/90 backdrop-blur-2xl p-space-md shadow-2xl mb-space-xl transition-all duration-300">
+<!-- Header with Verified Badge -->
+<div class="flex items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-2 min-w-0">
+<img alt="TubeVault Logo" class="w-6 h-6 rounded-md shrink-0 bg-black object-contain p-0.5" src="https://lh3.googleusercontent.com/aida/AEtjO1WJiO0_-NFXAEz6Jp6uZYjTL0wd9PyVKGBNUiB0Q-756_UYkLjY3bNkmW9VJnPEPu4n2jtLHIfnL7QRfjl7zN5QK0Jy9lwlPgbjlsN-uyme46v1wcH-7TGYRDs9iy9xfbmCjFy-ZBs0MANPYl0Ubarv755amelshCYgruhjvlEWVGgfn34m-D206x8AvaedizqvFIBePz7NrahzV4Z3D0Or2aI3_5EKKA9MwOQziUQaZ-nkX3v2uW5tGBGe"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase truncate">Engine Resolution: OK (200)</span>
+</div>
+<span class="shrink-0 px-2 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-semibold uppercase">Lossless</span>
+</div>
+<!-- Media Thumbnail Preview with Spec Badges -->
+<div class="relative w-full aspect-video rounded-xl overflow-hidden bg-surface-container-lowest shadow-inner mb-space-md group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Cinematic high contrast frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAexip-rV8FEcyKJ0rufiDj34PPfG9pJOFkWqpmqSkyysuHw4sHMhVF4ha8C7DJz3Rq3L2zgt77LtrqzIL1yntjExMx8noLhzq4oYwUtvz6IH7AS2XdP1vn38XAkcTWr-M0O3uM3muooXtV5Q134f02QIDMbSnlhpjxoakp54Iw7VPb6polKaHyRzq6TTb5k2WCgvqNk5kJ-L9KnbXMo6atmteiiM3YJbZnbEBuH6zoUfh7gYRbI88Afg"/>
+<!-- Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20 flex flex-col justify-between p-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-md text-primary font-label-sm text-label-sm tracking-widest font-bold uppercase shadow-sm">1080p 60FPS</span>
+<span class="px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-md text-on-surface font-label-sm text-label-sm tracking-wider">HDR READY</span>
+</div>
+<div class="flex items-center justify-between">
+<button aria-label="Play video preview" class="w-10 h-10 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-[0_0_16px_rgba(255,255,255,0.4)] active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[24px]">play_arrow</span>
+</button>
+<span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur-md font-label-sm text-label-sm text-primary tracking-widest">03:32</span>
+</div>
+</div>
+</div>
+<!-- Metadata Details -->
+<div class="flex flex-col gap-1 mb-space-md">
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold line-clamp-2 leading-snug">
+        Rick Astley - Never Gonna Give You Up (Official Music Video Remastered)
+      </h2>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="text-on-surface font-medium">Rick Astley</span>
+<span>•</span>
+<span>1.5B views</span>
+<span>•</span>
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<!-- Direct MP4 Link Box -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="min-w-0 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0">cloud_download</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Fast Direct CDN Link</span>
+<span class="font-body-sm text-body-sm text-primary truncate">https://cdn.tubevault.app/v/rick_astley_1080p.mp4</span>
+</div>
+</div>
+<button class="shrink-0 px-3 py-1.5 rounded-lg bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm uppercase tracking-wider transition-all duration-200 active:scale-95 flex items-center gap-1" id="copy-link-btn" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span>Copy</span>
+</button>
+</div>
+</div>
+<!-- Quality Selector: MP4 Video Streams -->
+<div class="relative z-10 flex flex-col gap-space-sm mb-space-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">movie</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">Video Streams (MP4)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">No Watermark</span>
+</div>
+<!-- 1080p High Option -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm shadow-md transition-transform active:scale-[0.99]">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="font-label-lg text-label-lg text-primary font-bold">1080</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-lg text-label-lg text-primary font-semibold truncate">1080p Full HD</span>
+<span class="px-1.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase font-bold tracking-wider">Best</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">MP4 • 60fps • ~45.2 MB</span>
+</div>
+</div>
+<button class="download-trigger shrink-0 px-3.5 py-2 rounded-xl bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold active:scale-95 transition-all shadow-[0_0_14px_rgba(255,255,255,0.2)]" type="button">
+        Get MP4
+      </button>
+</div>
+<!-- 720p HD Option -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm shadow-md transition-transform active:scale-[0.99]">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center shrink-0">
+<span class="font-label-lg text-label-lg text-secondary font-bold">720</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary font-medium truncate">720p HD Standard</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">MP4 • 30fps • ~24.1 MB</span>
+</div>
+</div>
+<button class="download-trigger shrink-0 px-3.5 py-2 rounded-xl bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm uppercase tracking-wider transition-all active:scale-95" type="button">
+        Get MP4
+      </button>
+</div>
+<!-- 360p Data Saver Option -->
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-center justify-between gap-space-sm shadow-md transition-transform active:scale-[0.99]">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center shrink-0">
+<span class="font-label-lg text-label-lg text-outline font-bold">360</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-lg text-label-lg text-on-surface font-medium truncate">360p SD</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Lite</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">MP4 • Compact • ~11.8 MB</span>
+</div>
+</div>
+<button class="download-trigger shrink-0 px-3.5 py-2 rounded-xl bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm uppercase tracking-wider transition-all active:scale-95" type="button">
+        Get MP4
+      </button>
+</div>
+</div>
+<!-- Minimalist Audio Player & MP3 Extractor -->
+<div class="relative z-10 w-full rounded-2xl bg-surface-container-low p-space-md shadow-2xl mb-space-xl">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">music_note</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">Mastered Audio (MP3)</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm tracking-wider font-semibold uppercase">320 KBPS</span>
+</div>
+<!-- Audio Player Visualizer Box -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest flex flex-col gap-space-sm mb-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Play extracted audio" class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_0_18px_rgba(255,255,255,0.3)] active:scale-90 transition-transform duration-150" id="audio-play-btn" type="button">
+<span class="material-symbols-outlined text-[26px]" id="play-icon">play_arrow</span>
+</button>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-medium">Rick Astley - Never Gonna Give You Up</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="audio-time">01:14 / 03:32</span>
+</div>
+</div>
+<button aria-label="Toggle mute" class="p-2 text-on-surface-variant hover:text-primary transition-colors" id="mute-toggle" type="button">
+<span class="material-symbols-outlined text-[20px]" id="volume-icon">volume_up</span>
+</button>
+</div>
+<!-- Live Simulated Waveform -->
+<div class="h-10 w-full flex items-center justify-between gap-1 px-1 py-1" id="waveform-container">
+<span class="w-1 rounded-full bg-primary/40 h-3 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/60 h-6 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/80 h-8 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary h-5 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/90 h-9 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary h-7 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/70 h-4 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/90 h-8 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary h-10 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/80 h-7 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/60 h-5 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/50 h-3 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/80 h-8 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary h-10 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/90 h-7 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/60 h-4 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/80 h-8 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary h-9 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/70 h-6 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/50 h-3 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/80 h-7 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary h-5 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/60 h-4 transition-all duration-150 bar"></span>
+<span class="w-1 rounded-full bg-primary/40 h-2 transition-all duration-150 bar"></span>
+</div>
+</div>
+<!-- Instant Extract Audio Button -->
+<button class="download-trigger w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-xl bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary font-label-lg text-label-lg uppercase tracking-wider font-semibold transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[20px]">download_for_offline</span>
+<span>Download Master MP3 (~8.4 MB)</span>
+</button>
+</div>
+<!-- How It Works Section -->
+<div class="relative z-10 flex flex-col gap-space-md mb-space-xl">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Workflow</span>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Engine In Three Beats</h3>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center shrink-0">1</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary font-semibold">Paste Any Stream URL</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Support for standard YouTube videos, Shorts, mobile youtu.be links, and unlisted high-bitrate media.</p>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center shrink-0">2</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary font-semibold">Extract &amp; Inspect Stream</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Real-time server-side signature extraction bypasses client throttle and presents clean video feeds.</p>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,255,255,0.3)]">3</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-primary font-semibold">Direct Native Download</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Grab uncompressed video files directly to iOS Files, Android Downloads, or your desktop local vault.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Accordion FAQ Section -->
+<div class="relative z-10 flex flex-col gap-space-md mb-space-xl">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Knowledge Base</span>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Frequently Answered</h3>
+</div>
+<div class="flex flex-col gap-space-xs" id="faq-accordion">
+<div class="faq-item rounded-2xl bg-surface-container-low overflow-hidden transition-colors">
+<button class="faq-trigger w-full p-space-md flex items-center justify-between text-left gap-2" type="button">
+<span class="font-label-lg text-label-lg text-primary font-medium">Does TubeVault support YouTube Shorts?</span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant faq-icon transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Yes, completely. Vertical 9:16 Shorts URLs are recognized automatically and processed with original resolution and uncompressed stereo audio track extraction.</p>
+</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low overflow-hidden transition-colors">
+<button class="faq-trigger w-full p-space-md flex items-center justify-between text-left gap-2" type="button">
+<span class="font-label-lg text-label-lg text-primary font-medium">Is there any download limit or rate limit?</span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant faq-icon transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Each user receives up to 100 free instant extractions per 15-minute window via our distributed proxy edge. Pro tokens enable unlimited parallel downloads.</p>
+</div>
+</div>
+<div class="faq-item rounded-2xl bg-surface-container-low overflow-hidden transition-colors">
+<button class="faq-trigger w-full p-space-md flex items-center justify-between text-left gap-2" type="button">
+<span class="font-label-lg text-label-lg text-primary font-medium">How does direct MP4 streaming work?</span>
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant faq-icon transition-transform duration-200">expand_more</span>
+</button>
+<div class="faq-content hidden px-space-md pb-space-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">TubeVault resolves high-throughput CDN byte-range chunks directly from YouTube edge instances and streams them uninterrupted without re-encoding delays.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Client Behavior Scripts -->
+<script>
+// ============ ADEEL XTECH API ENGINE ============
+const API_BASE = 'https://adeel-xtech-apis.vercel.app/api/ytdl';
+
+async function fetchVideoData(ytUrl) {
+  const encoded = encodeURIComponent(ytUrl);
+  const apiUrl = `${API_BASE}?url=${encoded}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15000);
+  try {
+    let res;
+    try {
+      res = await fetch(apiUrl, { signal: controller.signal });
+    } catch (e) {
+      const proxied = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
+      res = await fetch(proxied, { signal: controller.signal });
+    }
+    clearTimeout(timer);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    console.log('[API] Response:', json);
+    const clean = normalizeResponse(json);
+    if (!clean || !clean.downloadUrl) throw new Error('Download link nahi mila');
+    return clean;
+  } catch (err) {
+    clearTimeout(timer);
+    console.error('[API] Error:', err);
+    throw new Error('API fail ho gayi. Thodi der baad try karo.');
+  }
+}
+
+function normalizeResponse(json) {
+  const d = json.data || json.result || json;
+  const title = d.title || d.name || d.videoTitle || json.title || 'Unknown Title';
+  const thumbnail = d.thumbnail || d.thumb || d.image || d.cover || json.thumbnail || '';
+  const duration = d.duration || d.length || d.time || '';
+
+  let downloadUrl = null;
+  if (typeof d.download === 'string') downloadUrl = d.download;
+  else if (d.download && typeof d.download === 'object') downloadUrl = d.download.url || d.download.href;
+
+  downloadUrl = downloadUrl || d.download_url || d.downloadUrl || d.mp4 || d.video || d.audio || d.mp3 || d.url || d.link;
+
+  if (!downloadUrl && Array.isArray(d.formats) && d.formats.length) downloadUrl = d.formats[0].url || d.formats[0].download_url;
+  if (!downloadUrl && Array.isArray(d.medias) && d.medias.length) downloadUrl = d.medias[0].url || d.medias[0].download_url;
+  if (!downloadUrl && Array.isArray(d.links) && d.links.length) downloadUrl = d.links[0].url || d.links[0].link || d.links[0];
+
+  const audioUrl = d.audio || d.mp3 || d.audio_url ||
+    (Array.isArray(d.medias) && d.medias.find(m => (m.type||'').includes('audio'))?.url) || null;
+
+  const videoUrl = downloadUrl || d.mp4 || d.video || d.video_url ||
+    (Array.isArray(d.medias) && d.medias.find(m => (m.type||'').includes('video'))?.url) || null;
+
+  return { title, thumbnail, duration, downloadUrl: videoUrl || audioUrl, videoUrl, audioUrl };
+}
+// ===================================================
+
+// Particle Canvas Animation
+(function initParticles() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width = (canvas.width = canvas.offsetWidth);
+  let height = (canvas.height = canvas.offsetHeight);
+
+  const particles = Array.from({ length: 28 }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 1.5 + 0.5,
+    dx: (Math.random() - 0.5) * 0.4,
+    dy: (Math.random() - 0.5) * 0.4,
+    opacity: Math.random() * 0.5 + 0.1
+  }));
+
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach((p) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+    });
+    requestAnimationFrame(render);
+  }
+  render();
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = canvas.offsetWidth;
+    height = canvas.height = canvas.offsetHeight;
+  });
+})();
+
+// Toast Utility
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toast-message');
+  if (!toast || !toastMsg) return;
+  toastMsg.textContent = msg;
+  toast.classList.remove('opacity-0', '-translate-y-2');
+  toast.classList.add('opacity-100', 'translate-y-0');
+  setTimeout(() => {
+    toast.classList.remove('opacity-100', 'translate-y-0');
+    toast.classList.add('opacity-0', '-translate-y-2');
+  }, 2600);
+}
+
+// Input Actions
+const clearBtn = document.getElementById('clear-btn');
+const urlInput = document.getElementById('url-input');
+const fetchBtn = document.getElementById('fetch-btn');
+const btnSpinner = document.getElementById('btn-spinner');
+const btnLabel = document.getElementById('btn-label');
+
+if (clearBtn && urlInput) {
+  clearBtn.addEventListener('click', () => {
+    urlInput.value = '';
+    urlInput.focus();
+  });
+}
+
+if (fetchBtn) {
+  fetchBtn.addEventListener('click', async () => {
+    const ytUrl = urlInput.value.trim();
+    if (!ytUrl) return showToast('Pehle YouTube link daalo bhai');
+    if (!/(youtube\.com|youtu\.be)/.test(ytUrl)) {
+      return showToast('Ye YouTube link nahi lag rahi');
+    }
+
+    btnLabel.classList.add('hidden');
+    btnSpinner.classList.remove('hidden');
+
+    try {
+      const data = await fetchVideoData(ytUrl);
+
+      const titleEl = document.querySelector('h2.font-headline-sm');
+      if (titleEl) titleEl.textContent = data.title;
+
+      const thumbEl = document.querySelector('.aspect-video img');
+      if (thumbEl && data.thumbnail) thumbEl.src = data.thumbnail;
+
+      const linkText = document.querySelector('.p-space-sm .truncate');
+      if (linkText && data.downloadUrl) linkText.textContent = data.downloadUrl;
+
+      if (copyLinkBtn && data.downloadUrl) copyLinkBtn.dataset.url = data.downloadUrl;
+
+      const mp4Btns = document.querySelectorAll('.download-trigger');
+      mp4Btns.forEach((b, i) => { if (i < 3 && data.videoUrl) b.dataset.url = data.videoUrl; });
+      if (mp4Btns[3]) mp4Btns[3].dataset.url = data.audioUrl || data.downloadUrl;
+
+      showToast('Stream ready! 🚀');
+    } catch (err) {
+      showToast(err.message || 'Kuch galat ho gaya');
+    } finally {
+      btnSpinner.classList.add('hidden');
+      btnLabel.classList.remove('hidden');
+    }
+  });
+}
+
+// Copy direct link trigger
+const copyLinkBtn = document.getElementById('copy-link-btn');
+if (copyLinkBtn) {
+  copyLinkBtn.addEventListener('click', () => {
+    const realUrl = copyLinkBtn.dataset.url;
+    if (!realUrl) return showToast('Pehle video fetch karo');
+    navigator.clipboard?.writeText(realUrl);
+    showToast('Real MP4 link copied! ✅');
+  });
+}
+
+// Download buttons — real download trigger
+document.querySelectorAll('.download-trigger').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const realUrl = btn.dataset.url;
+    if (!realUrl) return showToast('Pehle video fetch karo');
+
+    const a = document.createElement('a');
+    a.href = realUrl;
+    a.download = 'tubevault-download';
+    a.target = '_blank';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    showToast('Download shuru 🚀');
+  });
+});
+
+// Audio Play / Waveform Animation
+const audioPlayBtn = document.getElementById('audio-play-btn');
+const playIcon = document.getElementById('play-icon');
+const bars = document.querySelectorAll('#waveform-container .bar');
+let isPlaying = false;
+let waveInterval = null;
+
+if (audioPlayBtn && playIcon) {
+  audioPlayBtn.addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    if (isPlaying) {
+      playIcon.textContent = 'pause';
+      waveInterval = setInterval(() => {
+        bars.forEach((b) => {
+          const randH = Math.floor(Math.random() * 24) + 6;
+          b.style.height = randH + 'px';
+        });
+      }, 120);
+    } else {
+      playIcon.textContent = 'play_arrow';
+      clearInterval(waveInterval);
+      bars.forEach((b, idx) => {
+        b.style.height = (idx % 3 === 0 ? 16 : 8) + 'px';
+      });
+    }
+  });
+}
+
+// Volume icon toggle
+const muteToggle = document.getElementById('mute-toggle');
+const volumeIcon = document.getElementById('volume-icon');
+let isMuted = false;
+if (muteToggle && volumeIcon) {
+  muteToggle.addEventListener('click', () => {
+    isMuted = !isMuted;
+    volumeIcon.textContent = isMuted ? 'volume_off' : 'volume_up';
+    showToast(isMuted ? 'Muted audio preview' : 'Volume restored');
+  });
+}
+
+// FAQ Accordion Toggle
+document.querySelectorAll('.faq-trigger').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const content = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = !content.classList.contains('hidden');
+
+    document.querySelectorAll('.faq-content').forEach((c) => c.classList.add('hidden'));
+    document.querySelectorAll('.faq-icon').forEach((i) => i.classList.remove('rotate-180'));
+
+    if (!isOpen) {
+      content.classList.remove('hidden');
+      icon.classList.add('rotate-180');
+    }
+  });
+});
+</script>
+</div><footer class="mt-space-xl px-gutter-mobile pb-space-lg pt-space-md text-center flex flex-col items-center gap-space-sm text-on-surface-variant"><div class="flex items-center gap-space-md font-label-md text-label-md"><span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface">API v2.4</span><span class="hover:text-primary transition-colors cursor-pointer">DOCS</span><span class="hover:text-primary transition-colors cursor-pointer">STATUS</span></div><p class="font-body-sm text-body-sm text-outline">© 2025 TubeVault Inc. AMOLED ARCHIVE ENGINE.</p></footer></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-black/90 backdrop-blur-2xl shadow-[0_-4px_24px_rgba(0,0,0,0.9)]" data-active-classes="text-primary scale-105"><div class="flex justify-around items-center h-16 px-gutter-mobile"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] transition-all text-primary scale-105" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">download</span><span class="font-label-sm text-label-sm uppercase">Vault</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="active-queue" href="#"><span class="material-symbols-outlined text-[22px]">stream</span><span class="font-label-sm text-label-sm uppercase">Queue</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="storage-archive" href="#"><span class="material-symbols-outlined text-[22px]">folder_zip</span><span class="font-label-sm text-label-sm uppercase">Archive</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="terminal-logs" href="#"><span class="material-symbols-outlined text-[22px]">terminal</span><span class="font-label-sm text-label-sm uppercase">Logs</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] text-on-surface-variant transition-all hover:text-on-surface" data-path="settings" href="#"><span class="material-symbols-outlined text-[22px]">tune</span><span class="font-label-sm text-label-sm uppercase">Config</span></a></div></nav></body></html>
