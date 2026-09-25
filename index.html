@@ -1399,7 +1399,7 @@
         </div>
 </div>
 <div class="preview-wrapper">
-<iframe class="preview-iframe" id="live-frame" sandbox="allow-scripts allow-modals"></iframe>
+<iframe class="preview-iframe" id="live-frame" sandbox="allow-scripts allow-modals allow-same-origin"></iframe>
 </div>
 </main>
 <!-- TAB 3: OUTPUT -->
@@ -2019,15 +2019,38 @@ function insertSymbol(sym) {
 }
 
 function renderIframe() {
-  const doc = liveFrame.contentDocument || liveFrame.contentWindow.document;
-  doc.open();
-  doc.write(codeInput.value);
-  doc.close();
+  try {
+    const doc = liveFrame.contentDocument || liveFrame.contentWindow.document;
+    if (!doc) {
+      document.getElementById('dom-count').innerText = 'IFRAME ACCESS BLOCKED';
+      return;
+    }
+    let htmlToRender = codeInput.value;
 
-  setTimeout(() => {
-    const count = doc.getElementsByTagName('*').length || 0;
-    document.getElementById('dom-count').innerText = `${count} DOM NODES DETECTED`;
-  }, 50);
+    // Agar code HTML nahi hai to wrap kar ke dikhao
+    if (!htmlToRender.trim().toLowerCase().startsWith('<!doctype') && 
+        !htmlToRender.trim().toLowerCase().startsWith('<html')) {
+      htmlToRender = '<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0d0d0d;color:#fff;"><h2>Preview (wrapped)</h2><pre style="white-space:pre-wrap;">' + 
+        htmlToRender.replace(/</g,'&lt;').replace(/>/g,'&gt;') + 
+        '</pre></body></html>';
+    }
+
+    doc.open();
+    doc.write(htmlToRender);
+    doc.close();
+
+    setTimeout(() => {
+      try {
+        const count = doc.getElementsByTagName('*').length || 0;
+        document.getElementById('dom-count').innerText = count + ' DOM NODES DETECTED';
+      } catch(e) {
+        document.getElementById('dom-count').innerText = 'DOM READ BLOCKED';
+      }
+    }, 100);
+  } catch(e) {
+    console.error('Render failed:', e);
+    document.getElementById('dom-count').innerText = 'RENDER ERROR: ' + e.message;
+  }
 }
 
 function refreshPreview() {
@@ -2277,10 +2300,12 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('pointerdown', () => audio.init(), { once: true });
   window.addEventListener('keydown', () => audio.init(), { once: true });
 
-  // Initial Seed
-  loadPreset('html');
+  // Initial Seed - blank editor, chhota demo preview
+codeInput.value = '<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { background:#0d0d0d; color:#fff; font-family:sans-serif; padding:24px; }\n    h1 { color:#7ee787; }\n  </style>\n</head>\n<body>\n  <h1>Bhai chal gaya 🎉</h1>\n  <p>Yahan apna HTML likh aur Preview tab khol.</p>\n</body>\n</html>';
+updateEditorStats();
+onLanguageSelect('html', false);
   setTimeout(updateIndicator, 50);
   setTimeout(() => audio.play('boot'), 300);
 });
 </script>
-</body></ht
+</body></html>
