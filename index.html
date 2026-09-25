@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en">
-<head>
+<html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
 <title>YUKI-VIEW • CODE-VIEWER</title>
@@ -73,17 +72,45 @@
     overflow-y: auto;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    transition: background-color var(--med) var(--ease), color var(--med) var(--ease);
   }
 
-  #theme-transition-overlay {
-    position: fixed; inset: 0; pointer-events: none; z-index: 99999;
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    opacity: 0; background: rgba(0, 0, 0, 0.08);
-    transform: translateZ(0); will-change: opacity;
-    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Silky smooth Theme Transition Animation CSS with uniform steady pacing */
+  html.theme-transitioning,
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: background-color 750ms linear,
+                border-color 750ms linear,
+                color 750ms linear,
+                box-shadow 750ms linear !important;
+    transition-delay: 0s !important;
   }
-  #theme-transition-overlay.active { opacity: 1; }
+
+  /* GPU-Accelerated Circular Ripple Wave Canvas */
+  #theme-circle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999999;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* Modern View Transition circular expanding setup */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+  ::view-transition-new(root) {
+    z-index: 99999;
+  }
 
   #snow-canvas {
     position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none;
@@ -99,7 +126,6 @@
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-bottom: 1px solid var(--border-1);
     transform: translateZ(0);
-    transition: background var(--med) var(--ease), border-color var(--med) var(--ease);
   }
   .header-inner {
     max-width: 1080px; margin: 0 auto; padding: 0 18px; height: 64px;
@@ -132,7 +158,7 @@
     width: 36px; height: 36px; border-radius: var(--r-sm); background: transparent;
     border: 1px solid transparent; color: var(--text-2); cursor: pointer;
     display: inline-flex; align-items: center; justify-content: center;
-    transition: all var(--fast) var(--ease);
+    transition: transform var(--fast) var(--ease), background var(--fast) var(--ease), color var(--fast) var(--ease);
   }
   .icon-btn svg { width: 17px; height: 17px; }
   .icon-btn:hover { color: var(--text); background: var(--surface-2); border-color: var(--border-2); }
@@ -242,12 +268,40 @@
   .banner-tag { font-size: 9.5px; color: var(--text-4); letter-spacing: 1.2px; padding-left: 2px; }
 
   /* Tabs Bar */
-  .tabs-wrapper { position: relative; width: fit-content; margin: 0 auto; display: flex; justify-content: center; }
-  .tabs {
-    display: inline-flex; align-items: center; gap: 4px; background: var(--surface-1);
-    backdrop-filter: blur(20px); border: 1px solid var(--border-1); border-radius: var(--r-md);
-    padding: 4px; position: relative; white-space: nowrap;
+  .tabs-wrapper {
+    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .tabs-wrapper::-webkit-scrollbar { display: none; }
+
+  .tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--surface-1);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    padding: 4px;
+    position: relative;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    width: max-content;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
   .tab-indicator {
     position: absolute; top: 4px; bottom: 4px; left: 0; background: var(--indicator-bg);
     border: 1px solid var(--border-2); border-radius: var(--r-sm); pointer-events: none;
@@ -281,7 +335,7 @@
     border: 1px solid var(--border-2); color: var(--text-2); letter-spacing: 1.2px;
   }
 
-  /* Clean Helper Banner (IMAGE_2 inspired) */
+  /* Clean Helper Banner */
   .helper-box-arranged {
     background: rgba(255, 255, 255, 0.035);
     border: 1px solid var(--border-2);
@@ -298,7 +352,7 @@
   html.light .helper-box-arranged { background: #f8f8f8; border-color: #d1d5db; color: #374151; }
   .helper-box-icon { color: var(--text-3); display: flex; flex-shrink: 0; }
 
-  /* Presets Bar Arranged (IMAGE_2) */
+  /* Presets Bar Arranged */
   .presets-section-row {
     display: flex;
     align-items: center;
@@ -337,7 +391,7 @@
     transform: translateY(-1px);
   }
 
-  /* Custom Dropdown Trigger & Auto-compile (IMAGE_1 + IMAGE_2 Arranged) */
+  /* Custom Dropdown Trigger & Auto-compile */
   .editor-mid-controls-row {
     display: flex;
     justify-content: space-between;
@@ -387,7 +441,7 @@
     color: var(--text);
   }
 
-  /* Modern Dropdown Menu matching IMAGE_1 */
+  /* Modern Dropdown Menu */
   .custom-dropdown-popover {
     position: absolute;
     top: calc(100% + 8px);
@@ -449,7 +503,7 @@
     background: #e5e5e5;
   }
 
-  /* Radio circle indicator (IMAGE_1) */
+  /* Radio circle indicator */
   .radio-circle-indicator {
     width: 18px;
     height: 18px;
@@ -489,7 +543,7 @@
     color: var(--text-3);
   }
 
-  /* Keys Bar Arranged (IMAGE_2) */
+  /* Keys Bar Arranged */
   .keys-section-row {
     display: flex;
     align-items: center;
@@ -723,7 +777,8 @@
 </style>
 </head>
 <body>
-<div id="theme-transition-overlay"></div>
+<!-- Smooth Hardware Canvas Circular Ripple Layer -->
+<canvas id="theme-circle-canvas"></canvas>
 <canvas id="snow-canvas"></canvas>
 <header class="app-header">
 <div class="header-inner">
@@ -785,11 +840,11 @@
 <div class="drawer-section">
 <div class="drawer-group-label">DISPLAY &amp; THEME</div>
 <div class="theme-selector-grid">
-<button class="theme-btn active" id="theme-btn-dark" onclick="setThemeWithBlur('dark')">
+<button class="theme-btn active" id="theme-btn-dark" onclick="triggerThemeChange('dark', event)">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 <span>DARK MODE</span>
 </button>
-<button class="theme-btn" id="theme-btn-light" onclick="setThemeWithBlur('light')">
+<button class="theme-btn" id="theme-btn-light" onclick="triggerThemeChange('light', event)">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line></svg>
 <span>LIGHT MODE</span>
 </button>
@@ -856,59 +911,7 @@
 </div>
 </section>
 <!-- Tabs -->
-<style>
-.tabs-wrapper {
-  position: relative;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.tabs-wrapper::-webkit-scrollbar { display: none; }
-
-.tabs {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--surface-1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--border-1);
-  border-radius: var(--r-md);
-  padding: 4px;
-  position: relative;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
-  flex-wrap: nowrap;
-  scrollbar-width: none;
-  touch-action: pan-x;
-  width: max-content;
-}
-.tabs::-webkit-scrollbar { display: none; }
-
-@media (max-width: 680px) {
-  .tabs-wrapper {
-    justify-content: flex-start !important;
-    padding: 2px 4px 6px;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-  }
-  .tabs {
-    width: max-content;
-    flex-shrink: 0;
-  }
-  .tab-btn {
-    padding: 6px 14px;
-    font-size: 11.5px;
-    flex: 0 0 auto;
-  }
-}
-</style><div class="tabs-wrapper">
+<div class="tabs-wrapper">
 <nav class="tabs" id="tabs">
 <div class="tab-indicator" id="tab-indicator"></div>
 <button class="tab-btn active" data-tab="editor">EDITOR</button>
@@ -917,28 +920,7 @@
 <button class="tab-btn" data-tab="stdin">STDIN</button>
 <button class="tab-btn" data-tab="telemetry">TELEMETRY</button>
 </nav>
-<script>
-(() => {
-  const tabsEl = document.getElementById('tabs');
-  const tabsWrapperEl = document.querySelector('.tabs-wrapper');
-  if (tabsEl) {
-    tabsEl.addEventListener('scroll', () => { if (typeof updateIndicator === 'function') updateIndicator(); }, { passive: true });
-  }
-  if (tabsWrapperEl) {
-    tabsWrapperEl.addEventListener('scroll', () => { if (typeof updateIndicator === 'function') updateIndicator(); }, { passive: true });
-  }
-  const origSwitchTab = window.switchTab;
-  if (typeof origSwitchTab === 'function') {
-    window.switchTab = function(targetTab) {
-      origSwitchTab(targetTab);
-      const btn = document.querySelector(`.tab-btn[data-tab="${targetTab}"]`);
-      if (btn) {
-        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
-    };
-  }
-})();
-</script></div>
+</div>
 <!-- Console Workspace -->
 <div class="console">
 <!-- TAB 1: EDITOR -->
@@ -950,7 +932,7 @@
 <span class="panel-badge">PROTOCOL 01</span>
 </div>
 </div>
-<!-- Clean Arranged Helper Prompt Box (Reference 2) -->
+<!-- Clean Arranged Helper Prompt Box -->
 <div class="helper-box-arranged">
 <span class="helper-box-icon">
 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
@@ -961,7 +943,7 @@
 </span>
 <span>Apna Code yaha pr paste kro / File upload kro and run script ko click kro</span>
 </div>
-<!-- Arranged Presets Bar (Reference 2) -->
+<!-- Arranged Presets Bar -->
 <div class="presets-section-row">
 <span class="presets-heading-label">PRESETS:</span>
 <button class="preset-capsule" onclick="loadPreset('html')">HTML5 Demo</button>
@@ -971,7 +953,7 @@
 <button class="preset-capsule" onclick="loadPreset('rust')">Rust 1.75</button>
 <button class="preset-capsule" onclick="loadPreset('bash')">Bash Script</button>
 </div>
-<!-- Control Bar: Custom Dropdown Menu with Radio Circles (Reference 1 & 2) -->
+<!-- Control Bar: Custom Dropdown Menu with Radio Circles -->
 <div class="editor-mid-controls-row">
 <div class="custom-dropdown-container" id="custom-dropdown-box">
 <button class="custom-dropdown-trigger" id="lang-custom-btn" type="button">
@@ -982,7 +964,6 @@
 </svg>
 </span>
 </button>
-<!-- Popover List matching IMAGE_1 styling with radio circles -->
 <div class="custom-dropdown-popover" id="lang-popover-menu">
 <button class="dropdown-option-row active" data-lang="html" type="button">
 <span>HTML5 / Sandboxed Web App</span>
@@ -1023,7 +1004,7 @@
 <label class="switch"><input checked="" id="tg-live" type="checkbox"/><span class="slider"></span></label>
 </div>
 </div>
-<!-- Arranged Keys Bar (Reference 2) -->
+<!-- Arranged Keys Bar -->
 <div class="keys-section-row">
 <span class="keys-heading-label">KEYS:</span>
 <button class="key-capsule" onclick="insertSymbol('(')">(</button>
@@ -1433,9 +1414,8 @@ const SNIPPETS = {
 </head>
 <body>
   <div class="box">
-    <h2>Live Code Preview Active 
-    </h2>
-    <p>YUKI-VIEW</p>
+    <h2>Live Code Preview Active</h2>
+    <p>YUKI-WEBVIEW</p>
     <div id="counter">0</div>
     <button onclick="document.getElementById('counter').innerText = ++count">CLICK TO TEST INTERACTION</button>
   </div>
@@ -1534,7 +1514,11 @@ let isExecuting = false;
 function pad2(n) { return String(n).padStart(2, '0'); }
 function nowStr() { return new Date().toTimeString().split(' ')[0]; }
 
-function setThemeWithBlur(targetTheme) {
+/* ============================================================
+   ULTRA SMOOTH CIRCLE THEME TRANSITION ENGINE (CANVAS + VIEW TRANSITION)
+   Comfortable 750ms uniform continuous speed progression start to end
+============================================================ */
+function triggerThemeChange(targetTheme, event) {
   if (isThemeTransitioning) return;
   const currentIsLight = document.documentElement.classList.contains('light');
   const targetIsLight = targetTheme === 'light';
@@ -1543,18 +1527,111 @@ function setThemeWithBlur(targetTheme) {
   isThemeTransitioning = true;
   if (audio) audio.play('toggle');
 
-  const overlay = document.getElementById('theme-transition-overlay');
-  if (overlay) overlay.classList.add('active');
+  // Calculate coordinates of trigger
+  let x = window.innerWidth - 70;
+  let y = 32;
+  if (event && event.clientX !== undefined && event.clientY !== undefined) {
+    x = event.clientX;
+    y = event.clientY;
+  } else {
+    const btn = document.getElementById('btn-theme-quick');
+    if (btn) {
+      const rect = btn.getBoundingClientRect();
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
+  }
 
-  setTimeout(() => {
-    applyThemeState(targetIsLight);
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        if (overlay) overlay.classList.remove('active');
-        isThemeTransitioning = false;
-      }, 50);
+  // Feature detection for native document.startViewTransition
+  if (document.startViewTransition) {
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      applyThemeState(targetIsLight);
     });
-  }, 110);
+
+    transition.ready.then(() => {
+      const anim = document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`
+          ]
+        },
+        {
+          duration: 750,
+          easing: 'linear',
+          pseudoElement: '::view-transition-new(root)'
+        }
+      );
+      anim.onfinish = () => {
+        isThemeTransitioning = false;
+      };
+    }).catch(() => {
+      // Fallback if transition fails
+      runCanvasCircleAnimation(x, y, targetIsLight);
+    });
+  } else {
+    // Canvas Fallback for 100% cross-browser silky circle expansion
+    runCanvasCircleAnimation(x, y, targetIsLight);
+  }
+}
+
+function runCanvasCircleAnimation(x, y, targetIsLight) {
+  const canvas = document.getElementById('theme-circle-canvas');
+  if (!canvas) {
+    applyThemeState(targetIsLight);
+    isThemeTransitioning = false;
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const targetBg = targetIsLight ? '#ffffff' : '#000000';
+  const maxRadius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y)
+  );
+
+  const duration = 750;
+  const startTime = performance.now();
+
+  // Add smooth global CSS transition to smoothly interpolate borders/texts
+  document.documentElement.classList.add('theme-transitioning');
+
+  function draw(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Smooth, uniform steady progression without abrupt deceleration or end jerk
+    const eased = progress;
+    const radius = eased * maxRadius;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fillStyle = targetBg;
+    ctx.fill();
+
+    // Switch theme halfway so everything updates cleanly under the circle
+    if (progress >= 0.5 && document.documentElement.classList.contains('light') !== targetIsLight) {
+      applyThemeState(targetIsLight);
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      document.documentElement.classList.remove('theme-transitioning');
+      isThemeTransitioning = false;
+    }
+  }
+
+  requestAnimationFrame(draw);
 }
 
 function applyThemeState(isLight) {
@@ -1578,9 +1655,9 @@ function applyThemeState(isLight) {
   updateIndicator();
 }
 
-function toggleTheme() {
+function toggleTheme(e) {
   const current = document.documentElement.classList.contains('light') ? 'light' : 'dark';
-  setThemeWithBlur(current === 'light' ? 'dark' : 'light');
+  triggerThemeChange(current === 'light' ? 'dark' : 'light', e);
 }
 
 function handleBannerClick(event, actionName, url) {
@@ -1620,7 +1697,14 @@ function updateIndicator() {
   ind.style.width = active.offsetWidth + 'px';
 }
 
-window.addEventListener('resize', updateIndicator, { passive: true });
+window.addEventListener('resize', () => {
+  updateIndicator();
+  const c = document.getElementById('theme-circle-canvas');
+  if (c) {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+  }
+}, { passive: true });
 
 function loadPreset(type) {
   if (SNIPPETS[type]) {
@@ -1955,7 +2039,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-close-drawer').addEventListener('click', closeDrawer);
   backdrop.addEventListener('click', closeDrawer);
 
-  document.getElementById('btn-theme-quick').addEventListener('click', toggleTheme);
+  document.getElementById('btn-theme-quick').addEventListener('click', (e) => toggleTheme(e));
 
   document.getElementById('btn-sound').addEventListener('click', () => {
     audio.soundOn = !audio.soundOn;
@@ -2033,5 +2117,4 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => audio.play('boot'), 300);
 });
 </script>
-</body>
-</html>
+</body></html>
