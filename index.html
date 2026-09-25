@@ -74,8 +74,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Smooth theme transition: scoped to theme surfaces, without overriding
-     every component's own transition timing or causing layout-wide jank. */
+  /* Smooth theme transition: scoped to theme surfaces */
   html.theme-transitioning,
   html.theme-transitioning body,
   html.theme-transitioning body::before,
@@ -133,6 +132,7 @@
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-bottom: 1px solid var(--border-1);
     transform: translateZ(0);
+    will-change: transform;
   }
   .header-inner {
     max-width: 1080px; margin: 0 auto; padding: 0 18px; height: 64px;
@@ -255,6 +255,7 @@
   .layout {
     position: relative; z-index: 10; max-width: 920px; margin: 0 auto;
     padding: 20px 18px 80px; display: flex; flex-direction: column; gap: 18px;
+    contain: layout style;
   }
 
   .banner {
@@ -597,11 +598,13 @@
     color: var(--bg);
   }
 
-  /* Editor Shell */
+  /* Editor Shell - Optimized with HW acceleration and will-change */
   .editor-shell {
     background: var(--editor-bg); border: 1px solid var(--border-2); border-radius: var(--r-md);
     overflow: hidden; display: flex; flex-direction: column;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    contain: layout paint;
+    transform: translateZ(0);
   }
   .editor-topbar {
     display: flex; justify-content: space-between; align-items: center; padding: 9px 14px;
@@ -614,13 +617,23 @@
     background: var(--dot-color); box-shadow: 0 0 6px var(--dot-glow);
   }
   .editor-stats { display: flex; align-items: center; gap: 12px; }
-  .editor-workspace { display: flex; min-height: 280px; max-height: 480px; background: var(--editor-bg); }
+  .editor-workspace {
+    display: flex; min-height: 280px; max-height: 480px; background: var(--editor-bg);
+    position: relative;
+    contain: strict;
+  }
   .editor-lines {
     width: 44px; padding: 12px 6px; text-align: right; font-family: 'JetBrains Mono', monospace;
     font-size: 12px; line-height: 20px; color: var(--text-4); background: var(--surface-1);
     border-right: 1px solid var(--border-1); user-select: none; overflow: hidden;
+    will-change: transform, scroll-position;
+    transform: translateZ(0);
   }
-  .editor-textarea-container { flex: 1; position: relative; min-width: 0; }
+  .editor-textarea-container {
+    flex: 1; position: relative; min-width: 0;
+    overflow: hidden;
+    contain: strict;
+  }
   .editor-highlight,
   .editor-textarea {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -628,15 +641,21 @@
     padding: 12px 14px; font-family: 'JetBrains Mono', monospace;
     font-size: 12px; line-height: 20px; tab-size: 2;
     white-space: pre; overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   .editor-highlight {
     z-index: 1; pointer-events: none; color: var(--editor-code);
     background: transparent;
+    will-change: transform, scroll-position;
+    transform: translateZ(0);
   }
   .editor-textarea {
     z-index: 2; background: transparent; color: transparent;
     -webkit-text-fill-color: transparent; caret-color: var(--text);
     resize: none; white-space: pre; overflow: auto;
+    overscroll-behavior: contain;
+    will-change: scroll-position;
+    transform: translateZ(0);
   }
   .editor-textarea::selection { background: rgba(100, 150, 255, 0.28); }
   .syntax-tag { color: #7dd3fc; }
@@ -951,7 +970,6 @@
 <div class="console">
 <!-- TAB 1: EDITOR -->
 <main class="page active" id="page-editor">
-
 <!-- Arranged Presets Bar -->
 <div class="presets-section-row">
 <span class="presets-heading-label">PRESETS:</span>
@@ -1008,7 +1026,6 @@
 </button>
 </div>
 </div>
-
 </div>
 <!-- Arranged Keys Bar -->
 <div class="keys-section-row">
@@ -1039,7 +1056,7 @@
 <div class="editor-workspace">
 <div class="editor-lines" id="editor-lines">1</div>
 <div class="editor-textarea-container">
-<pre class="editor-highlight" id="editor-highlight" aria-hidden="true"></pre>
+<pre aria-hidden="true" class="editor-highlight" id="editor-highlight"></pre>
 <textarea class="editor-textarea" id="code-input" placeholder="// Write or paste code here..." spellcheck="false"></textarea>
 </div>
 </div>
@@ -1063,8 +1080,6 @@
 </main>
 <!-- TAB 2: PREVIEW -->
 <main class="page" id="page-preview">
-
-
 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
 <div style="display:flex; gap:8px; flex-wrap:wrap;">
 <button class="btn-ghost" onclick="refreshPreview()">REFRESH</button>
@@ -1084,7 +1099,6 @@
 </main>
 <!-- TAB 3: OUTPUT -->
 <main class="page" id="page-output">
-
 <div class="card">
 <div class="head"><span>PROCESS TELEMETRY</span><span class="badge" id="tele-status">IDLE</span></div>
 <div class="body">
@@ -1277,6 +1291,7 @@ class SnowEngine {
   #w = window.innerWidth;
   #h = window.innerHeight;
   #resizePending = false;
+  #animationFrameId = null;
 
   constructor(canvas) {
     const c = canvas.getContext('2d');
@@ -1292,7 +1307,7 @@ class SnowEngine {
           this.#resizePending = false;
         });
       }
-    });
+    }, { passive: true });
     document.addEventListener('visibilitychange', () => {
       this.#visible = !document.hidden;
     });
@@ -1309,7 +1324,7 @@ class SnowEngine {
 
   #buildFlakes() {
     this.#flakes = [];
-    const count = Math.min(75, Math.max(35, Math.floor(this.#w / 22)));
+    const count = Math.min(50, Math.max(25, Math.floor(this.#w / 30)));
     for (let i = 0; i < count; i++) {
       this.#flakes.push({
         x: Math.random() * this.#w,
@@ -1330,7 +1345,7 @@ class SnowEngine {
   }
 
   #loop = () => {
-    requestAnimationFrame(this.#loop);
+    this.#animationFrameId = requestAnimationFrame(this.#loop);
     if (!this.#enabled || !this.#visible) return;
     const ctx = this.#ctx;
     const w = this.#w;
@@ -1512,7 +1527,6 @@ function nowStr() { return new Date().toTimeString().split(' ')[0]; }
 
 /* ============================================================
    ULTRA SMOOTH CIRCLE THEME TRANSITION ENGINE (CANVAS + VIEW TRANSITION)
-   Comfortable 750ms uniform continuous speed progression start to end
 ============================================================ */
 function triggerThemeChange(targetTheme, event) {
   if (isThemeTransitioning) return;
@@ -1527,16 +1541,25 @@ function triggerThemeChange(targetTheme, event) {
 
   let x = window.innerWidth - 70;
   let y = 32;
-  if (event && Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
+
+  let targetBtn = null;
+  if (event) {
+    if (event.currentTarget && typeof event.currentTarget.getBoundingClientRect === 'function') {
+      targetBtn = event.currentTarget;
+    } else if (event.target && typeof event.target.closest === 'function') {
+      targetBtn = event.target.closest('button');
+    }
+  }
+  if (!targetBtn) {
+    targetBtn = document.getElementById('btn-theme-quick');
+  }
+  if (targetBtn) {
+    const rect = targetBtn.getBoundingClientRect();
+    x = rect.left + rect.width / 2;
+    y = rect.top + rect.height / 2;
+  } else if (event && Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
     x = event.clientX;
     y = event.clientY;
-  } else {
-    const btn = document.getElementById('btn-theme-quick');
-    if (btn) {
-      const rect = btn.getBoundingClientRect();
-      x = rect.left + rect.width / 2;
-      y = rect.top + rect.height / 2;
-    }
   }
 
   const reducedMotion = window.matchMedia &&
@@ -1629,8 +1652,6 @@ function runCanvasCircleAnimation(x, y, targetIsLight) {
 
   document.documentElement.classList.add('theme-transitioning');
 
-  // Reveal the new theme beneath the expanding circle. Switching at the
-  // midpoint prevents the old theme from visibly flashing at the edges.
   function draw(now) {
     const progress = Math.min((now - startTime) / duration, 1);
     const radius = progress * maxRadius;
@@ -1746,16 +1767,13 @@ function onLanguageSelect(lang, notify = true) {
   fileTitle.innerText = FILE_MAP[lang] || 'main.txt';
   document.getElementById('tele-env').innerText = lang.toUpperCase();
 
-  // Update label on custom dropdown
   const labelEl = document.getElementById('lang-selected-label');
   if (labelEl) labelEl.innerText = LANG_LABELS[lang] || lang;
 
-  // Update active state in popup
   document.querySelectorAll('.dropdown-option-row').forEach(opt => {
     opt.classList.toggle('active', opt.dataset.lang === lang);
   });
 
-  // Close dropdown
   const container = document.getElementById('custom-dropdown-box');
   if (container) container.classList.remove('open');
 
@@ -1787,10 +1805,20 @@ function highlightEditorCode(value) {
   return output || ' ';
 }
 
+/* ============================================================
+   HIGH-PERFORMANCE ZERO-LAG EDITOR SCROLL SYNC (rAF Driven)
+============================================================ */
+let scrollSyncRaf = null;
 function syncEditorScroll() {
-  editorHighlight.scrollTop = codeInput.scrollTop;
-  editorHighlight.scrollLeft = codeInput.scrollLeft;
-  editorLines.scrollTop = codeInput.scrollTop;
+  if (scrollSyncRaf) return;
+  scrollSyncRaf = requestAnimationFrame(() => {
+    const top = codeInput.scrollTop;
+    const left = codeInput.scrollLeft;
+    editorHighlight.scrollTop = top;
+    editorHighlight.scrollLeft = left;
+    editorLines.scrollTop = top;
+    scrollSyncRaf = null;
+  });
 }
 
 function updateEditorStats() {
@@ -1808,8 +1836,12 @@ function updateEditorStats() {
   syncEditorScroll();
 }
 
+let inputDebounceTimer = null;
 codeInput.addEventListener('input', () => {
-  updateEditorStats();
+  if (inputDebounceTimer) clearTimeout(inputDebounceTimer);
+  inputDebounceTimer = setTimeout(() => {
+    updateEditorStats();
+  }, 40);
   if (audio) audio.play('key');
 }, { passive: true });
 
@@ -1990,7 +2022,7 @@ async function executeRuntime() {
 
   if (audio) audio.play('scan');
 
-  await new Promise(r => setTimeout(r, 3200));
+  await new Promise(r => setTimeout(r, 1200));
 
   btnRun.classList.remove('is-running');
   btnRun.disabled = false;
@@ -2051,7 +2083,6 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
 
-  // Custom Dropdown Open/Close
   const dropBtn = document.getElementById('lang-custom-btn');
   const dropBox = document.getElementById('custom-dropdown-box');
   if (dropBtn && dropBox) {
