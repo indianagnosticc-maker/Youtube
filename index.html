@@ -925,24 +925,7 @@
 <div class="console">
 <!-- TAB 1: EDITOR -->
 <main class="page active" id="page-editor">
-<div class="panel-head">
-<div class="breadcrumb">RUNTIME / SANDBOXED CODE ENGINE</div>
-<div class="panel-title-row">
-<h1 class="panel-title">CODE EDITOR</h1>
-<span class="panel-badge">PROTOCOL 01</span>
-</div>
-</div>
-<!-- Clean Arranged Helper Prompt Box -->
-<div class="helper-box-arranged">
-<span class="helper-box-icon">
-<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
-<circle cx="12" cy="12" r="10"></circle>
-<line x1="12" x2="12" y1="16" y2="12"></line>
-<line x1="12" x2="12.01" y1="8" y2="8"></line>
-</svg>
-</span>
-<span>Apna Code yaha pr paste kro / File upload kro and run script ko click kro</span>
-</div>
+
 <!-- Arranged Presets Bar -->
 <div class="presets-section-row">
 <span class="presets-heading-label">PRESETS:</span>
@@ -954,7 +937,7 @@
 <button class="preset-capsule" onclick="loadPreset('bash')">Bash Script</button>
 </div>
 <!-- Control Bar: Custom Dropdown Menu with Radio Circles -->
-<div class="editor-mid-controls-row">
+<div class="editor-mid-controls-row" style="justify-content: flex-start;">
 <div class="custom-dropdown-container" id="custom-dropdown-box">
 <button class="custom-dropdown-trigger" id="lang-custom-btn" type="button">
 <span id="lang-selected-label">HTML5 / Sandboxed Web App</span>
@@ -999,10 +982,7 @@
 </button>
 </div>
 </div>
-<div class="auto-compile-cluster">
-<span>AUTO-COMPILE</span>
-<label class="switch"><input checked="" id="tg-live" type="checkbox"/><span class="slider"></span></label>
-</div>
+
 </div>
 <!-- Arranged Keys Bar -->
 <div class="keys-section-row">
@@ -1056,14 +1036,8 @@
 </main>
 <!-- TAB 2: PREVIEW -->
 <main class="page" id="page-preview">
-<div class="panel-head">
-<div class="breadcrumb">SANDBOX / LIVE DOM RUNTIME</div>
-<div class="panel-title-row">
-<h1 class="panel-title">Live HTML Preview</h1>
-<span class="panel-badge">SANDBOXED IFRAME</span>
-</div>
-</div>
-<div class="info">Real-time rendered DOM node inspection within an isolated browsing container.</div>
+
+
 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
 <div style="display:flex; gap:8px; flex-wrap:wrap;">
 <button class="btn-ghost" onclick="refreshPreview()">REFRESH</button>
@@ -1083,13 +1057,7 @@
 </main>
 <!-- TAB 3: OUTPUT -->
 <main class="page" id="page-output">
-<div class="panel-head">
-<div class="breadcrumb">TELEMETRY / SUBPROCESS EXECUTION</div>
-<div class="panel-title-row">
-<h1 class="panel-title">Output Terminal</h1>
-<span class="panel-badge">ENCLAVE OUTPUT</span>
-</div>
-</div>
+
 <div class="card">
 <div class="head"><span>PROCESS TELEMETRY</span><span class="badge" id="tele-status">IDLE</span></div>
 <div class="body">
