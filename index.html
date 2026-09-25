@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html class="dark" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" name="viewport"/>
-<title>CODEVIEW • INTELLIGENCE PLAYGROUND</title>
+<title>YUKI-VIEW • INTELLIGENCE CODE-VIEWER</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
   :root {
     --bg: #000000;
@@ -77,7 +77,7 @@
     transition: background-color var(--med) var(--ease), color var(--med) var(--ease);
   }
 
-  /* Zero-Lag Dedicated Hardware Accelerated Theme Transition Overlay */
+  /* Dedicated Theme Transition Overlay */
   #theme-transition-overlay {
     position: fixed;
     inset: 0;
@@ -203,7 +203,7 @@
   .icon-btn:hover { color: var(--text); background: var(--surface-2); border-color: var(--border-2); transform: translateY(-1px) translateZ(0); }
   .icon-btn:active { transform: scale(0.95) translateZ(0); }
 
-  /* 60fps Butter-Smooth Settings Drawer */
+  /* Settings Drawer */
   .drawer-backdrop {
     position: fixed;
     inset: 0;
@@ -308,7 +308,6 @@
   }
   .drawer-group-label::after { content: ""; flex: 1; height: 1px; background: var(--border-1); }
 
-  /* Theme Selector Segmented */
   .theme-selector-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -370,7 +369,6 @@
   .drawer-item .item-title { display: flex; flex-direction: column; }
   .drawer-item .item-sub { font-size: 9.5px; color: var(--text-3); font-weight: 400; }
 
-  /* iOS Style Switch */
   .switch { position: relative; display: inline-block; width: 40px; height: 22px; flex-shrink: 0; }
   .switch input { opacity: 0; width: 0; height: 0; }
   .slider {
@@ -463,7 +461,6 @@
     overflow-y: visible;
   }
 
-  /* Top Banner with TELEGRAM, OSINT, and CHATS Quick Buttons */
   .banner {
     display: flex;
     align-items: center;
@@ -522,15 +519,17 @@
   .banner-pill-btn svg { width: 12px; height: 12px; stroke-width: 2.2; flex-shrink: 0; }
   .banner-tag { font-size: 9.5px; color: var(--text-4); letter-spacing: 1.2px; padding-left: 2px; }
 
-  /* Smooth Horizontally Scrollable Segmented Tab Bar */
+  /* Fitted Segmented Tabs Bar (No blank space on Telemetry side) */
   .tabs-wrapper {
     position: relative;
-    width: 100%;
-    max-width: 680px;
+    width: fit-content;
+    max-width: 100%;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
   .tabs {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 4px;
     background: var(--surface-1);
@@ -658,7 +657,7 @@
     line-height: 1.55;
   }
 
-  /* Inputs, Buttons, & Controls */
+  /* Buttons & Controls */
   .btn {
     position: relative;
     overflow: hidden;
@@ -675,16 +674,40 @@
     cursor: pointer;
     flex-shrink: 0;
     transform: translateZ(0);
-    transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+    transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease), opacity var(--fast) var(--ease);
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
   }
   .btn:hover { transform: translateY(-1px) translateZ(0); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
   .btn:active { transform: scale(0.97) translateZ(0); }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: translateZ(0); box-shadow: none; }
+  .btn:disabled { opacity: 0.85; cursor: wait; }
+
+  /* In-Button Loading Spinner */
+  .btn-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-top-color: #000000;
+    border-radius: 50%;
+    animation: btnSpin 0.75s linear infinite;
+    display: none;
+  }
+  html.light .btn-spinner {
+    border-color: rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+  }
+  @keyframes btnSpin {
+    to { transform: rotate(360deg); }
+  }
+  .btn.is-running .btn-spinner {
+    display: inline-block;
+  }
+  .btn.is-running svg {
+    display: none;
+  }
 
   .btn-ghost {
     background: transparent;
@@ -721,7 +744,6 @@
   }
   .select-ctrl option { background: var(--surface-solid); color: var(--text); }
 
-  /* Presets Bar & Symbol Accessories */
   .accessory-bar {
     display: flex;
     align-items: center;
@@ -778,7 +800,7 @@
   .key-pill:hover { color: var(--text); background: var(--surface-3); border-color: var(--border-2); }
   .key-pill:active { background: var(--text); color: var(--bg); }
 
-  /* Code Editor Container */
+  /* Editor Shell */
   .editor-shell {
     background: var(--editor-bg);
     border: 1px solid var(--border-2);
@@ -856,38 +878,110 @@
   }
   .editor-actions-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
 
-  /* Search & Stdin form */
-  .search {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface-2);
+  /* Broad Full-Width Preview Frame (Eliminates bottom white gap & responsive for mobile) */
+  .preview-wrapper {
     border: 1px solid var(--border-1);
     border-radius: var(--r-md);
-    padding: 6px 12px;
-    transition: border-color var(--med) var(--ease), background var(--med) var(--ease), box-shadow var(--med) var(--ease);
+    overflow: hidden;
+    background: #0d0d0d;
+    margin-top: 14px;
+    transform: translateZ(0);
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
   }
-  .search:focus-within {
-    border-color: var(--border-3);
-    background: var(--surface-3);
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
-  }
-  .prompt { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-3); font-weight: 600; flex-shrink: 0; }
-  .search textarea {
-    flex: 1;
-    min-width: 0;
-    background: transparent;
-    border: 0;
-    outline: 0;
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12.5px;
-    padding: 9px 4px;
-    caret-color: var(--text);
-  }
-  .search textarea::placeholder { color: var(--text-4); }
 
-  /* Dossiers, Cards, & Metrics */
+  .preview-iframe {
+    width: 100%;
+    height: 520px;
+    border: none;
+    background: #ffffff;
+    display: block;
+    transform: none;
+    transition: height var(--med) var(--ease);
+  }
+
+  .preview-iframe.expanded {
+    height: 780px;
+  }
+
+  /* Full Screen View Overlay */
+  .fullscreen-preview-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: #000000;
+    display: none;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+  .fullscreen-preview-overlay.open {
+    display: flex;
+  }
+  .fs-topbar {
+    height: 52px;
+    background: #0d0d0d;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .fs-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .fs-badge {
+    background: rgba(126, 231, 135, 0.15);
+    color: #7ee787;
+    border: 1px solid rgba(126, 231, 135, 0.4);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+  }
+  .fs-close-btn {
+    background: rgba(255,255,255,0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 160ms var(--ease);
+  }
+  .fs-close-btn:hover {
+    background: #ffffff;
+    color: #000000;
+  }
+  .fs-iframe-container {
+    flex: 1;
+    width: 100%;
+    height: calc(100vh - 52px);
+    background: #ffffff;
+  }
+  .fs-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #ffffff;
+    display: block;
+  }
+
+  /* Output Dossiers, Cards, & Metrics */
   .card {
     position: relative;
     background: var(--card-bg);
@@ -940,7 +1034,6 @@
   .row .v { color: var(--text); word-break: break-word; font-weight: 500; }
   .row .v.hi { font-weight: 600; }
 
-  /* Terminal & Raw Shell */
   pre.raw {
     background: var(--surface-solid);
     border: 1px solid var(--border-1);
@@ -968,32 +1061,38 @@
   }
   .term-btn.active { background: var(--surface-3); color: var(--text); border-color: var(--border-2); font-weight: 600; }
 
-  /* Live Preview Frame Container */
-  .preview-wrapper {
-  border: 1px solid var(--border-1);
-  border-radius: var(--r-md);
-  overflow: hidden;
-  background: #fff;
-  margin-top: 14px;
-  transform: translateZ(0);
-  position: relative;
-  width: 100%;
-}
+  /* Search & Stdin */
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    padding: 6px 12px;
+    transition: border-color var(--med) var(--ease), background var(--med) var(--ease), box-shadow var(--med) var(--ease);
+  }
+  .search:focus-within {
+    border-color: var(--border-3);
+    background: var(--surface-3);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  }
+  .prompt { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-3); font-weight: 600; flex-shrink: 0; }
+  .search textarea {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    padding: 9px 4px;
+    caret-color: var(--text);
+  }
+  .search textarea::placeholder { color: var(--text-4); }
 
-.preview-iframe {
-  width: 180%;
-  height: 480px;
-  border: none;
-  background: #fff;
-  transform: scale(0.555);
-  transform-origin: top left;
-}
-
-.preview-iframe.expanded {
-  height: 720px;
-}
-
-  /* Secondary Live Telemetry & Compliance */
+  /* Secondary Live Telemetry */
   .secondary {
     border: 1px solid var(--border-1);
     border-radius: var(--r-md);
@@ -1099,7 +1198,6 @@
   }
   .foot-disc { max-width: 580px; line-height: 1.6; }
 
-  /* Media Queries */
   @media (max-width: 680px) {
     .header-telemetry { display: none; }
     .layout { padding: 14px 12px 60px; gap: 14px; }
@@ -1112,13 +1210,15 @@
     .editor-actions-row .btn, .editor-actions-row .btn-ghost { width: 100%; }
     .row { grid-template-columns: 110px 1fr; gap: 10px; }
     .app-footer { flex-direction: column; text-align: center; gap: 8px; }
+    .preview-iframe { height: 420px; }
   }
 </style>
 </head>
 <body>
-<!-- Zero-Lag Dedicated Hardware Accelerated Theme Transition Overlay -->
+<!-- Theme Transition Overlay -->
 <div id="theme-transition-overlay"></div>
 <canvas id="snow-canvas"></canvas>
+
 <!-- Header Architecture -->
 <header class="app-header">
 <div class="header-inner">
@@ -1169,7 +1269,8 @@
 </div>
 </div>
 </header>
-<!-- Redesigned Luxury Engineering Settings Drawer -->
+
+<!-- Settings Drawer -->
 <div class="drawer-backdrop" id="drawer-backdrop"></div>
 <div class="drawer-container" id="drawer-container">
 <aside class="drawer" id="drawer">
@@ -1186,10 +1287,8 @@
 </button>
 </div>
 <div class="drawer-scroll-body">
-<!-- Section 1: Display & Theme -->
 <div class="drawer-section">
 <div class="drawer-group-label">DISPLAY &amp; THEME</div>
-<!-- Theme Selector Segmented Control -->
 <div class="theme-selector-grid">
 <button class="theme-btn active" id="theme-btn-dark" onclick="setThemeWithBlur('dark')">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
@@ -1216,7 +1315,6 @@
 </div>
 </div>
 </div>
-<!-- Section 2: Audio FX & Sensory -->
 <div class="drawer-section">
 <div class="drawer-group-label">AUDIO FX &amp; SENSORY</div>
 <div class="drawer-card">
@@ -1243,7 +1341,6 @@
 </div>
 </div>
 </div>
-<!-- Section 3: Network Relays -->
 <div class="drawer-section">
 <div class="drawer-group-label">NETWORK RELAYS</div>
 <div style="display:flex; flex-direction:column; gap:8px;">
@@ -1261,9 +1358,10 @@
 </div>
 </aside>
 </div>
+
 <!-- Main Container -->
 <div class="layout">
-<!-- Top Banner with TELEGRAM, OSINT, and CHATS Quick Buttons -->
+<!-- Top Banner -->
 <section class="banner">
 <div class="banner-left">
 <div class="banner-chips">
@@ -1274,22 +1372,21 @@
 </div>
 </div>
 <div class="banner-actions">
-<!-- Three sleek buttons fitted side-by-side: TELEGRAM, OSINT, CHATS -->
-<a class="banner-pill-btn" href="kekekekeke" onclick="handleBannerClick(event, 'TELEGRAM', 'kekekekeke')" rel="noopener noreferrer" target="_blank" title="Open Telegram Enclave">
+<a class="banner-pill-btn" href="https://t.me/YukiiKeCodes" onclick="handleBannerClick(event, 'TELEGRAM', 'kekekekeke')" rel="noopener noreferrer" target="_blank" title="Open Telegram Enclave">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
 <line x1="22" x2="11" y1="2" y2="13"></line>
 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
 </svg>
 <span>TELEGRAM</span>
 </a>
-<a class="banner-pill-btn" href="ekejejw" onclick="handleBannerClick(event, 'OSINT', 'ekejejw')" rel="noopener noreferrer" target="_blank" title="Open OSINT Terminal">
+<a class="banner-pill-btn" href="ekejejw" onclick="handleBannerClick(event, 'OSINT', 'https://yuki-terminal.vercel.app')" rel="noopener noreferrer" target="_blank" title="Open OSINT Terminal">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
 <circle cx="11" cy="11" r="8"></circle>
 <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
 </svg>
 <span>OSINT</span>
 </a>
-<a class="banner-pill-btn" href="kwkwkwkw" onclick="handleBannerClick(event, 'CHATS', 'kwkwkwkw')" rel="noopener noreferrer" target="_blank" title="Open Secure Chats Relay">
+<a class="banner-pill-btn" href="http://yuki-chats.vercel.app" onclick="handleBannerClick(event, 'CHATS', 'kwkwkwkw')" rel="noopener noreferrer" target="_blank" title="Open Secure Chats Relay">
 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24">
 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
 </svg>
@@ -1298,7 +1395,8 @@
 <div class="banner-tag">ZERO-RETENTION</div>
 </div>
 </section>
-<!-- Horizontally Scrollable Segmented Tabs Bar -->
+
+<!-- Fitted Segmented Tabs Bar -->
 <div class="tabs-wrapper">
 <nav class="tabs" id="tabs">
 <div class="tab-indicator" id="tab-indicator"></div>
@@ -1309,6 +1407,7 @@
 <button class="tab-btn" data-tab="telemetry">TELEMETRY</button>
 </nav>
 </div>
+
 <!-- Console Workspace -->
 <div class="console">
 <!-- TAB 1: EDITOR -->
@@ -1316,12 +1415,12 @@
 <div class="panel-head">
 <div class="breadcrumb">RUNTIME / SANDBOXED CODE ENGINE</div>
 <div class="panel-title-row">
-<h1 class="panel-title">Code Editor</h1>
+<h1 class="panel-title">CODE EDITOR</h1>
 <span class="panel-badge">PROTOCOL 01</span>
 </div>
 </div>
-<div class="info">Vercel serverless proxy with Judge0 isolated execution &amp; sandboxed iframe.</div>
-<!-- Presets & Language Selection -->
+<div class="info">Apna Code yaha pr paste kro / File upload kro and run script ko click kro</div>
+
 <div class="accessory-bar">
 <span class="tag-label">Presets:</span>
 <button class="acc-pill" onclick="loadPreset('html')">HTML5 Demo</button>
@@ -1331,6 +1430,7 @@
 <button class="acc-pill" onclick="loadPreset('rust')">Rust 1.75</button>
 <button class="acc-pill" onclick="loadPreset('bash')">Bash Script</button>
 </div>
+
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
 <select class="select-ctrl" id="lang-select" onchange="onLanguageSelect(this.value)">
 <option selected="" value="html">HTML5 / Sandboxed Web App</option>
@@ -1347,7 +1447,7 @@
 <label class="switch"><input checked="" id="tg-live" type="checkbox"/><span class="slider"></span></label>
 </div>
 </div>
-<!-- Mobile symbol keys -->
+
 <div class="accessory-bar">
 <span class="tag-label">KEYS:</span>
 <button class="key-pill" onclick="insertSymbol('(')">(</button>
@@ -1364,7 +1464,7 @@
 <button class="key-pill" onclick="insertSymbol('&quot;')">"</button>
 <button class="key-pill" onclick="insertSymbol(':')">:</button>
 </div>
-<!-- Editor Shell -->
+
 <div class="editor-shell" id="editor-box">
 <div class="editor-topbar">
 <div class="editor-file" id="file-title">index.html</div>
@@ -1384,14 +1484,15 @@
 <span id="save-pill">STANDBY</span>
 </div>
 </div>
-<!-- Actions -->
+
 <div class="editor-actions-row">
 <button class="btn" id="btn-run" onclick="executeRuntime()">
+<span class="btn-spinner" id="run-spinner"></span>
 <svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14">
 <polygon points="5 3 19 12 5 21 5 3"></polygon>
 </svg>
-          RUN SCRIPT
-        </button>
+<span id="btn-run-label">RUN SCRIPT</span>
+</button>
 <button class="btn-ghost" onclick="formatScript()">FORMAT</button>
 <button class="btn-ghost" onclick="clearScript()">CLEAR</button>
 <button class="btn-ghost" onclick="document.getElementById('hidden-file-input').click()">UPLOAD</button>
@@ -1399,6 +1500,7 @@
 <input id="hidden-file-input" onchange="handleFile(event)" style="display:none;" type="file"/>
 </div>
 </main>
+
 <!-- TAB 2: PREVIEW -->
 <main class="page" id="page-preview">
 <div class="panel-head">
@@ -1410,18 +1512,29 @@
 </div>
 <div class="info">Real-time rendered DOM node inspection within an isolated browsing container.</div>
 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-<div style="display:flex; gap:8px;">
+<div style="display:flex; gap:8px; flex-wrap:wrap;">
 <button class="btn-ghost" onclick="refreshPreview()">REFRESH</button>
 <button class="btn-ghost" onclick="toggleExpandPreview()">TOGGLE SIZE</button>
+<button class="btn-ghost" id="btn-view-fs" onclick="openFullscreenPreview()" style="display:inline-flex; align-items:center; gap:6px;">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<polyline points="15 3 21 3 21 9"></polyline>
+<polyline points="9 21 3 21 3 15"></polyline>
+<line x1="21" x2="14" y1="3" y2="10"></line>
+<line x1="3" x2="10" y1="21" y2="14"></line>
+</svg>
+<span>VIEW</span>
+</button>
 </div>
 <div id="dom-count" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3);">
-          0 DOM NODES DETECTED
-        </div>
+0 DOM NODES DETECTED
 </div>
+</div>
+
 <div class="preview-wrapper">
 <iframe class="preview-iframe" id="live-frame" sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-downloads"></iframe>
 </div>
 </main>
+
 <!-- TAB 3: OUTPUT -->
 <main class="page" id="page-output">
 <div class="panel-head">
@@ -1432,7 +1545,6 @@
 </div>
 </div>
 <div class="info">Live standard out, memory telemetry, and isolated edge execution metrics.</div>
-<!-- Dossier Card -->
 <div class="card">
 <div class="head">
 <span>PROCESS TELEMETRY</span>
@@ -1455,6 +1567,7 @@
 &gt; Execute your program or inspect preview frame.</pre>
 <pre class="raw" id="console-stderr" style="display:none; color:#ef4444;">// No execution traps or compiler warnings reported.</pre>
 </main>
+
 <!-- TAB 4: STDIN -->
 <main class="page" id="page-stdin">
 <div class="panel-head">
@@ -1474,6 +1587,7 @@
 <button class="btn-ghost" onclick="document.getElementById('stdin-field').value=''">CLEAR STDIN</button>
 </div>
 </main>
+
 <!-- TAB 5: TELEMETRY -->
 <main class="page" id="page-telemetry">
 <div class="panel-head">
@@ -1498,6 +1612,7 @@
 </div>
 </main>
 </div>
+
 <!-- Collapsible Secondary Live Telemetry & Compliance -->
 <section class="secondary" id="secondary">
 <button class="secondary-toggle" id="btn-secondary" type="button">
@@ -1529,11 +1644,33 @@
 </div>
 </section>
 </div>
+
+<!-- Full Screen Functional Interactive View Overlay -->
+<div class="fullscreen-preview-overlay" id="fs-overlay">
+  <div class="fs-topbar">
+    <div class="fs-title-group">
+      <span>FULL PREVIEW EXECUTION</span>
+      <span class="fs-badge">INTERACTIVE RUNTIME</span>
+    </div>
+    <button class="fs-close-btn" onclick="closeFullscreenPreview()">
+      <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+        <line x1="18" x2="6" y1="6" y2="18"></line>
+        <line x1="6" x2="18" y1="6" y2="18"></line>
+      </svg>
+      <span>EXIT VIEW (ESC)</span>
+    </button>
+  </div>
+  <div class="fs-iframe-container">
+    <iframe id="fs-frame" sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-downloads"></iframe>
+  </div>
+</div>
+
 <!-- App Footer -->
 <footer class="app-footer">
 <div class="foot-disc">This application is for educational and software engineering exploration only. The owner does not support or encourage illegal activities. Any execution of scripts is solely the user's responsibility.</div>
-<div>CODEVIEW ENCLAVE · v3.8</div>
+<div>YUKI-VIEW ENCLAVE · v3.8</div>
 </footer>
+
 <script>
 /* ============================================================
    AUDIO ENGINE (Synthesized Audio Engine)
@@ -1638,7 +1775,7 @@ class AudioEngine {
 }
 
 /* ============================================================
-   CANVAS SNOWFALL ENGINE (Zero-Lag 60FPS Optimized)
+   CANVAS SNOWFALL ENGINE (Zero-Lag 60FPS)
    ============================================================ */
 class SnowEngine {
   #ctx;
@@ -1741,47 +1878,55 @@ const SNIPPETS = {
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      background: #000;
+      background: #0d0d0d;
       color: #fff;
-      font-family: -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 90vh;
       margin: 0;
+      padding: 16px;
     }
     .box {
       border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 24px;
       background: rgba(255,255,255,0.04);
       text-align: center;
-      max-width: 320px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    h2 { margin: 0 0 8px; font-size: 18px; color: #7ee787; }
-    p { font-size: 13px; color: #8b949e; line-height: 1.5; }
+    h2 { margin: 0 0 10px; font-size: 20px; color: #7ee787; }
+    p { font-size: 13px; color: #8b949e; line-height: 1.5; margin-bottom: 16px; }
     button {
-      background: #fff;
-      color: #000;
+      background: #ffffff;
+      color: #000000;
       border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-weight: 600;
+      font-size: 12.5px;
       cursor: pointer;
-      margin-top: 12px;
+      width: 100%;
+      letter-spacing: 0.5px;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
-    #counter { font-size: 28px; font-weight: bold; margin: 10px 0; }
+    button:active { transform: scale(0.97); }
+    #counter { font-size: 32px; font-weight: bold; margin: 12px 0; color: #fff; }
   </style>
 </head>
 <body>
   <div class="box">
-    <h2>CODEVIEW SANDBOX</h2>
-    <p>Isolated live HTML/DOM environment rendering inside iframe.</p>
+    <h2>Live Code Preview Active 🎉</h2>
+    <p>Yahan apna HTML/CSS/JS likhein aur full functionality check karein.</p>
     <div id="counter">0</div>
-    <button onclick="document.getElementById('counter').innerText = ++count">CLICK TO MUTATE</button>
+    <button onclick="document.getElementById('counter').innerText = ++count">CLICK TO TEST INTERACTION</button>
   </div>
   <script>let count = 0;<\/script>
 </body>
@@ -1866,13 +2011,12 @@ const lineStat = document.getElementById('line-stat');
 const fileTitle = document.getElementById('file-title');
 const liveFrame = document.getElementById('live-frame');
 let currentLang = 'html';
-let debounceTimer = null;
 let isThemeTransitioning = false;
+let isExecuting = false;
 
 function pad2(n) { return String(n).padStart(2, '0'); }
 function nowStr() { return new Date().toTimeString().split(' ')[0]; }
 
-// 60fps Butter-Smooth Hardware-Accelerated Theme Switch
 function setThemeWithBlur(targetTheme) {
   if (isThemeTransitioning) return;
   const currentIsLight = document.documentElement.classList.contains('light');
@@ -1907,7 +2051,6 @@ function applyThemeState(isLight) {
     lightBtn.classList.toggle('active', isLight);
   }
 
-  // Header quick icon
   const darkIcon = document.getElementById('theme-icon-dark');
   const lightIcon = document.getElementById('theme-icon-light');
   if (darkIcon && lightIcon) {
@@ -1923,17 +2066,14 @@ function toggleTheme() {
   setThemeWithBlur(current === 'light' ? 'dark' : 'light');
 }
 
-// Banner Action Click Handler
 function handleBannerClick(event, actionName, url) {
   if (audio) audio.play('scan');
-  // Log telemetry in output console
   const stdout = document.getElementById('console-stdout');
   if (stdout) {
     stdout.innerText = `[RELAY ACTION DISPATCHED: ${actionName}]\n> Target URI: ${url}\n> Cipher Tunnel: AES-256 GCM initialized.\n> Zero-retention session token generated.\n> Status: 200 Tunnel Active.`;
   }
 }
 
-// Tab Switching
 function switchTab(targetTab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1965,7 +2105,6 @@ function updateIndicator() {
 
 window.addEventListener('resize', updateIndicator, { passive: true });
 
-// Preset Loader
 function loadPreset(type) {
   if (SNIPPETS[type]) {
     codeInput.value = SNIPPETS[type];
@@ -1978,7 +2117,6 @@ function loadPreset(type) {
   }
 }
 
-// Language Picker
 function onLanguageSelect(lang, notify = true) {
   currentLang = lang;
   fileTitle.innerText = FILE_MAP[lang] || 'main.txt';
@@ -1986,7 +2124,6 @@ function onLanguageSelect(lang, notify = true) {
   if (notify && audio) audio.play('toggle');
 }
 
-// Editor Utilities
 function updateEditorStats() {
   const val = codeInput.value;
   charStat.innerText = `${val.length} chars`;
@@ -1999,7 +2136,6 @@ function updateEditorStats() {
   }
   editorLines.innerHTML = numHtml;
   editorLines.scrollTop = codeInput.scrollTop;
-
 }
 
 codeInput.addEventListener('input', () => {
@@ -2032,38 +2168,36 @@ function insertSymbol(sym) {
   if (audio) audio.play('key');
 }
 
-function renderIframe() {
+function renderIframe(targetFrameId = 'live-frame') {
   try {
-    const doc = liveFrame.contentDocument || liveFrame.contentWindow.document;
-    if (!doc) {
-      document.getElementById('dom-count').innerText = 'IFRAME ACCESS BLOCKED';
-      return;
-    }
+    const frame = document.getElementById(targetFrameId);
+    if (!frame) return;
+    
     let htmlToRender = codeInput.value;
-
-    // Agar code HTML nahi hai to wrap kar ke dikhao
     if (!htmlToRender.trim().toLowerCase().startsWith('<!doctype') && 
         !htmlToRender.trim().toLowerCase().startsWith('<html')) {
-      htmlToRender = '<!DOCTYPE html><html><body style="font-family:sans-serif;padding:20px;background:#0d0d0d;color:#fff;"><h2>Preview (wrapped)</h2><pre style="white-space:pre-wrap;">' + 
+      htmlToRender = '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body style="font-family:sans-serif;padding:20px;background:#0d0d0d;color:#fff;"><h2>Preview (wrapped)</h2><pre style="white-space:pre-wrap;">' + 
         htmlToRender.replace(/</g,'&lt;').replace(/>/g,'&gt;') + 
         '</pre></body></html>';
     }
 
-    doc.open();
-    doc.write(htmlToRender);
-    doc.close();
+    frame.srcdoc = htmlToRender;
 
-    setTimeout(() => {
+    frame.onload = () => {
       try {
-        const count = doc.getElementsByTagName('*').length || 0;
-        document.getElementById('dom-count').innerText = count + ' DOM NODES DETECTED';
+        const doc = frame.contentDocument || frame.contentWindow.document;
+        if (doc) {
+          const count = doc.getElementsByTagName('*').length || 0;
+          const domCountEl = document.getElementById('dom-count');
+          if (domCountEl) domCountEl.innerText = count + ' DOM NODES DETECTED';
+        }
       } catch(e) {
-        document.getElementById('dom-count').innerText = 'DOM READ BLOCKED';
+        const domCountEl = document.getElementById('dom-count');
+        if (domCountEl) domCountEl.innerText = 'SANDBOXED ACTIVE';
       }
-    }, 100);
+    };
   } catch(e) {
     console.error('Render failed:', e);
-    document.getElementById('dom-count').innerText = 'RENDER ERROR: ' + e.message;
   }
 }
 
@@ -2076,6 +2210,29 @@ function toggleExpandPreview() {
   liveFrame.classList.toggle('expanded');
   if (audio) audio.play('toggle');
 }
+
+function openFullscreenPreview() {
+  const overlay = document.getElementById('fs-overlay');
+  if (overlay) {
+    renderIframe('fs-frame');
+    overlay.classList.add('open');
+    if (audio) audio.play('scan');
+  }
+}
+
+function closeFullscreenPreview() {
+  const overlay = document.getElementById('fs-overlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+    if (audio) audio.play('toggle');
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeFullscreenPreview();
+  }
+});
 
 function formatScript() {
   if (currentLang === 'html') {
@@ -2143,10 +2300,12 @@ function injectStdinSample(str) {
   if (audio) audio.play('key');
 }
 
-// Runtime Dispatch
 async function executeRuntime() {
-  if (audio) audio.play('scan');
-  const t0 = performance.now();
+  if (isExecuting) return;
+  isExecuting = true;
+
+  const btnRun = document.getElementById('btn-run');
+  const btnLabel = document.getElementById('btn-run-label');
   const teleStatus = document.getElementById('tele-status');
   const teleDur = document.getElementById('tele-dur');
   const teleMem = document.getElementById('tele-mem');
@@ -2154,38 +2313,35 @@ async function executeRuntime() {
   const stdout = document.getElementById('console-stdout');
   const stderr = document.getElementById('console-stderr');
 
+  btnRun.classList.add('is-running');
+  btnRun.disabled = true;
+  btnLabel.innerText = 'EXECUTING...';
   teleStatus.innerText = 'EXECUTING...';
-// HTML ke liye preview tab auto-open
-if (currentLang === 'html') {
-  switchTab('preview');
-}
-  if (currentLang === 'html') {
-  const t0Html = performance.now();
-  teleStatus.innerText = 'EXECUTING...';
-  stdout.innerText = '> Spinning up sandboxed render engine...\n> Waiting 2.5s for DOM stabilization...';
-  stderr.innerText = '// Idle — no traps yet.';
 
-  setTimeout(() => {
-    renderIframe();
-    const dur = Math.round(performance.now() - t0Html);
-    teleStatus.innerText = '200 OK';
-    teleDur.innerText = `${dur}ms`;
-    teleMem.innerText = '1.4 MB';
-    teleExit.innerText = '0';
-    stdout.innerText = `[HTML5 Sandbox DOM Executed in ${dur}ms]\n- Status: 200 OK\n- Render Frame: Sandboxed Iframe (allow-scripts allow-same-origin)\n- DOM Tree Mounted Cleanly.`;
-    stderr.innerText = '// No DOM traps or syntax hazards emitted.';
-    if (audio) audio.play('success');
-  }, 2500);
+  if (audio) audio.play('scan');
 
-  return;
-}
+  // Non-blocking 3.2s execution phase
+  await new Promise(r => setTimeout(r, 3200));
 
-  await new Promise(r => setTimeout(r, 180));
-  const dur = Math.round(performance.now() - t0) + 14;
+  btnRun.classList.remove('is-running');
+  btnRun.disabled = false;
+  btnLabel.innerText = 'RUN SCRIPT';
+  isExecuting = false;
+
+  const dur = Math.floor(180 + Math.random() * 80);
   teleStatus.innerText = '200 OK';
   teleDur.innerText = `${dur}ms`;
-  teleMem.innerText = '2.1 MB';
+  teleMem.innerText = '1.8 MB';
   teleExit.innerText = '0';
+
+  if (currentLang === 'html') {
+    switchTab('preview');
+    renderIframe();
+    stdout.innerText = `[HTML5 Sandbox DOM Executed in ${dur}ms]\n- Status: 200 OK\n- Render Frame: Sandboxed Iframe (allow-scripts allow-same-origin)\n- DOM Tree Mounted Cleanly & Interactive.`;
+    stderr.innerText = '// No DOM traps or syntax hazards emitted.';
+    if (audio) audio.play('success');
+    return;
+  }
 
   const stdinVal = document.getElementById('stdin-field').value.trim();
 
@@ -2223,12 +2379,10 @@ window.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('snow-canvas');
   if (canvas) snow = new SnowEngine(canvas);
 
-  // Tab buttons
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
 
-  // Drawer
   const drawerContainer = document.getElementById('drawer-container');
   const backdrop = document.getElementById('drawer-backdrop');
   
@@ -2248,10 +2402,8 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-close-drawer').addEventListener('click', closeDrawer);
   backdrop.addEventListener('click', closeDrawer);
 
-  // Quick theme toggle
   document.getElementById('btn-theme-quick').addEventListener('click', toggleTheme);
 
-  // Sound & Switch toggles
   document.getElementById('btn-sound').addEventListener('click', () => {
     audio.soundOn = !audio.soundOn;
     document.getElementById('btn-sound').style.opacity = audio.soundOn ? '1' : '0.4';
@@ -2277,7 +2429,6 @@ window.addEventListener('DOMContentLoaded', () => {
     audio.volume = (v / 100) * 0.09;
   });
 
-  // Secondary Collapsible
   document.getElementById('btn-secondary').addEventListener('click', () => {
     document.getElementById('secondary').classList.toggle('open');
     audio.play('toggle');
@@ -2289,7 +2440,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Clock & Latency Heartbeat
   const startTs = Date.now();
   setInterval(() => {
     const e = Math.floor((Date.now() - startTs) / 1000);
@@ -2302,7 +2452,6 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('latency').innerText = (10 + Math.floor(Math.random() * 8)) + 'ms';
   }, 3500);
 
-  // Live log simulation
   const logEl = document.getElementById('log');
   const samples = [
     { tag: 'QUERY', cls: '', txt: 'Judge0 worker pool ping OK (12ms).' },
@@ -2321,16 +2470,15 @@ window.addEventListener('DOMContentLoaded', () => {
     logEl.scrollTop = logEl.scrollHeight;
   }, 8000);
 
-  // Audio activation listeners
   window.addEventListener('pointerdown', () => audio.init(), { once: true });
   window.addEventListener('keydown', () => audio.init(), { once: true });
 
-  // Initial Seed - blank editor, chhota demo preview
-codeInput.value = '<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { background:#0d0d0d; color:#fff; font-family:sans-serif; padding:24px; }\n    h1 { color:#7ee787; }\n  </style>\n</head>\n<body>\n  <h1>Bhai chal gaya 🎉</h1>\n  <p>Yahan apna HTML likh aur Preview tab khol.</p>\n</body>\n</html>';
-updateEditorStats();
-onLanguageSelect('html', false);
+  codeInput.value = SNIPPETS.html;
+  updateEditorStats();
+  onLanguageSelect('html', false);
   setTimeout(updateIndicator, 50);
   setTimeout(() => audio.play('boot'), 300);
 });
 </script>
-</body></html>
+</body>
+</html>
