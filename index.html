@@ -819,6 +819,35 @@
     .editor-actions-row .btn, .editor-actions-row .btn-ghost { width: 100%; }
     .preview-iframe { height: 420px; }
   }
+
+
+  /* JSON Converter — additive module */
+  .json-converter { display:flex; flex-direction:column; gap:12px; }
+  .json-dropzone {
+    position:relative; display:flex; align-items:center; justify-content:center; min-height:210px;
+    border:1px dashed var(--border-2); border-radius:14px; background:var(--surface-1);
+    transition:border-color var(--fast) var(--ease), background var(--fast) var(--ease), transform var(--fast) var(--ease);
+    cursor:pointer; overflow:hidden;
+  }
+  .json-dropzone:hover, .json-dropzone.dragover { border-color:var(--border-3); background:var(--surface-2); }
+  .json-dropzone.dragover { transform:scale(0.995); }
+  .json-dropzone input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
+  .json-drop-content { display:flex; flex-direction:column; align-items:center; gap:9px; pointer-events:none; text-align:center; padding:24px; }
+  .json-drop-icon { width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--surface-2); border:1px solid var(--border-2); color:var(--text-2); }
+  .json-drop-icon svg { width:21px; height:21px; }
+  .json-drop-name { max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:600 12px 'JetBrains Mono',monospace; color:var(--text); }
+  .json-drop-meta { font:10px 'JetBrains Mono',monospace; color:var(--text-3); }
+  .json-preview {
+    display:none; background:var(--editor-bg); border:1px solid var(--border-1); border-radius:12px; overflow:hidden;
+  }
+  .json-preview.show { display:block; animation:pageIn 180ms var(--ease) both; }
+  .json-preview-top { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 12px; background:var(--surface-2); border-bottom:1px solid var(--border-1); }
+  .json-preview-top span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:600 10px 'JetBrains Mono',monospace; color:var(--text-2); }
+  .json-preview pre { margin:0; padding:13px; max-height:280px; overflow:auto; color:var(--editor-code); font:11px/1.6 'JetBrains Mono',monospace; white-space:pre-wrap; word-break:break-word; }
+  .json-actions { display:flex; gap:8px; flex-wrap:wrap; }
+  .json-actions .btn, .json-actions .btn-ghost { flex:1 1 150px; }
+  .json-status { min-height:18px; font:10px 'JetBrains Mono',monospace; color:var(--text-3); }
+  @media (max-width:680px) { .json-dropzone { min-height:180px; } .json-actions { flex-direction:column; } .json-actions .btn, .json-actions .btn-ghost { width:100%; } }
 </style>
 </head>
 <body>
@@ -960,6 +989,7 @@
 <nav class="tabs" id="tabs">
 <div class="tab-indicator" id="tab-indicator"></div>
 <button class="tab-btn active" data-tab="editor">EDITOR</button>
+<button class="tab-btn" data-tab="json">JSON</button>
 <button class="tab-btn" data-tab="preview">PREVIEW</button>
 <button class="tab-btn" data-tab="output">OUTPUT</button>
 <button class="tab-btn" data-tab="stdin">STDIN</button>
@@ -1078,7 +1108,34 @@
 <input id="hidden-file-input" onchange="handleFile(event)" style="display:none;" type="file"/>
 </div>
 </main>
-<!-- TAB 2: PREVIEW -->
+<!-- TAB 2: JSON CONVERTER -->
+<main class="page" id="page-json">
+<div class="json-converter">
+<div class="json-dropzone" id="json-dropzone">
+<input id="json-file-input" type="file" aria-label="Choose a file to convert to JSON"/>
+<div class="json-drop-content">
+<div class="json-drop-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M8 13h8M8 17h5"></path></svg>
+</div>
+<div class="json-drop-name" id="json-file-name">Choose a file</div>
+<div class="json-drop-meta" id="json-file-meta">Any file · click or drag &amp; drop</div>
+</div>
+</div>
+<div class="json-preview" id="json-preview">
+<div class="json-preview-top"><span id="json-preview-name">converted.json</span><span id="json-preview-size">0 B</span></div>
+<pre id="json-preview-code">{}</pre>
+</div>
+<div class="json-actions">
+<button class="btn" id="json-download-btn" type="button" disabled>
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+<span>DOWNLOAD JSON</span>
+</button>
+<button class="btn-ghost" id="json-clear-btn" type="button">CLEAR</button>
+</div>
+<div class="json-status" id="json-status"></div>
+</div>
+</main>
+<!-- TAB 3: PREVIEW -->
 <main class="page" id="page-preview">
 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
 <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -1975,6 +2032,147 @@ function handleFile(e) {
   reader.readAsText(file);
 }
 
+/* ============================================================
+   JSON FILE CONVERTER — additive, client-side only
+============================================================ */
+let jsonConvertedFile = null;
+let jsonConvertedText = '';
+let jsonConvertedName = 'converted.json';
+
+function formatJsonBytes(bytes) {
+  if (!Number.isFinite(bytes) || bytes < 1024) return `${bytes || 0} B`;
+  const units = ['KB', 'MB', 'GB', 'TB'];
+  let value = bytes, i = -1;
+  do { value /= 1024; i++; } while (value >= 1024 && i < units.length - 1);
+  return `${value.toFixed(value >= 100 ? 0 : value >= 10 ? 1 : 2)} ${units[i]}`;
+}
+
+function jsonSafeName(name) {
+  const base = String(name || 'file').replace(/\\/g, '/').split('/').pop() || 'file';
+  return base.replace(/[^a-zA-Z0-9._-]/g, '_');
+}
+
+function makeJsonDownloadName(name) {
+  const safe = jsonSafeName(name);
+  return safe.toLowerCase().endsWith('.json') ? safe : `${safe}.json`;
+}
+
+async function convertFileToJson(file) {
+  if (!file) return;
+  const preview = document.getElementById('json-preview');
+  const previewCode = document.getElementById('json-preview-code');
+  const previewName = document.getElementById('json-preview-name');
+  const previewSize = document.getElementById('json-preview-size');
+  const fileName = document.getElementById('json-file-name');
+  const fileMeta = document.getElementById('json-file-meta');
+  const status = document.getElementById('json-status');
+  const downloadBtn = document.getElementById('json-download-btn');
+
+  fileName.textContent = file.name || 'Unnamed file';
+  fileMeta.textContent = `${file.type || 'application/octet-stream'} · ${formatJsonBytes(file.size)}`;
+  status.textContent = 'Converting…';
+  downloadBtn.disabled = true;
+
+  try {
+    const buffer = await file.arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+    const chunkSize = 0x8000;
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      binary += String.fromCharCode(...bytes.subarray(i, Math.min(i + chunkSize, bytes.length)));
+    }
+    const base64 = btoa(binary);
+    let textContent = null;
+    const looksText = /^text\//i.test(file.type) || /\.(txt|csv|json|xml|html?|css|js|mjs|cjs|ts|tsx|jsx|py|java|cpp|c|h|hpp|rs|go|php|rb|sh|md|yaml|yml|sql|log|ini|conf|toml)$/i.test(file.name || '');
+    if (looksText) {
+      try { textContent = new TextDecoder('utf-8', { fatal: false }).decode(bytes); } catch (_) { textContent = null; }
+    }
+
+    const payload = {
+      fileName: file.name || 'unnamed',
+      mimeType: file.type || 'application/octet-stream',
+      size: file.size,
+      lastModified: file.lastModified ? new Date(file.lastModified).toISOString() : null,
+      encoding: textContent !== null ? 'utf-8' : 'base64',
+      content: textContent !== null ? textContent : base64
+    };
+
+    jsonConvertedText = JSON.stringify(payload, null, 2);
+    jsonConvertedName = makeJsonDownloadName(file.name);
+    jsonConvertedFile = new Blob([jsonConvertedText], { type: 'application/json;charset=utf-8' });
+    previewCode.textContent = jsonConvertedText;
+    previewName.textContent = jsonConvertedName;
+    previewSize.textContent = formatJsonBytes(jsonConvertedFile.size);
+    preview.classList.add('show');
+    downloadBtn.disabled = false;
+    status.textContent = 'Ready';
+    if (audio) audio.play('success');
+  } catch (error) {
+    jsonConvertedFile = null;
+    jsonConvertedText = '';
+    preview.classList.remove('show');
+    status.textContent = 'Could not convert this file.';
+    console.error('JSON conversion failed:', error);
+  }
+}
+
+function downloadJsonFile() {
+  if (!jsonConvertedFile) return;
+  const url = URL.createObjectURL(jsonConvertedFile);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = jsonConvertedName || 'converted.json';
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  if (audio) audio.play('success');
+}
+
+function clearJsonConverter() {
+  jsonConvertedFile = null;
+  jsonConvertedText = '';
+  jsonConvertedName = 'converted.json';
+  const input = document.getElementById('json-file-input');
+  const preview = document.getElementById('json-preview');
+  const fileName = document.getElementById('json-file-name');
+  const fileMeta = document.getElementById('json-file-meta');
+  const status = document.getElementById('json-status');
+  const downloadBtn = document.getElementById('json-download-btn');
+  if (input) input.value = '';
+  if (preview) preview.classList.remove('show');
+  if (fileName) fileName.textContent = 'Choose a file';
+  if (fileMeta) fileMeta.innerHTML = 'Any file · click or drag &amp; drop';
+  if (status) status.textContent = '';
+  if (downloadBtn) downloadBtn.disabled = true;
+}
+
+function setupJsonConverter() {
+  const input = document.getElementById('json-file-input');
+  const dropzone = document.getElementById('json-dropzone');
+  const downloadBtn = document.getElementById('json-download-btn');
+  const clearBtn = document.getElementById('json-clear-btn');
+  if (!input || !dropzone || !downloadBtn || !clearBtn) return;
+
+  input.addEventListener('change', e => convertFileToJson(e.target.files && e.target.files[0]));
+  downloadBtn.addEventListener('click', downloadJsonFile);
+  clearBtn.addEventListener('click', clearJsonConverter);
+
+  ['dragenter', 'dragover'].forEach(type => dropzone.addEventListener(type, e => {
+    e.preventDefault(); e.stopPropagation(); dropzone.classList.add('dragover');
+  }));
+  ['dragleave', 'drop'].forEach(type => dropzone.addEventListener(type, e => {
+    e.preventDefault(); e.stopPropagation(); dropzone.classList.remove('dragover');
+  }));
+  dropzone.addEventListener('drop', e => {
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!file) return;
+    try { const dt = new DataTransfer(); dt.items.add(file); input.files = dt.files; } catch (_) {}
+    convertFileToJson(file);
+  });
+}
+
 function switchTermView(view) {
   document.getElementById('term-tab-stdout').classList.toggle('active', view === 'stdout');
   document.getElementById('term-tab-stderr').classList.toggle('active', view === 'stderr');
@@ -2082,6 +2280,8 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
+
+  setupJsonConverter();
 
   const dropBtn = document.getElementById('lang-custom-btn');
   const dropBox = document.getElementById('custom-dropdown-box');
